@@ -1,8 +1,10 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
+import dotenv from 'dotenv';
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -16,4 +18,4 @@ app.listen(port, () => {
   console.log('Listening on port ', port);
 });
 
-module.exports = app;
+export default app;
