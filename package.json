@@ -4,7 +4,9 @@
   "description": "streamlined information about civic activities and opportunities to get involved, your civics portal",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.14.1"
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "morgan": "^1.8.0"
   },
   "devDependencies": {
     "eslint": "^3.15.0",
