@@ -1,5 +1,5 @@
+"use strict"
 const request = require('request');
-
 const civApiKey = process.env.GOOGLE_CIV_APIKEY;
 const repApiURL = 'https://www.googleapis.com/civicinfo/v2/representatives';
 const voterApiURL = 'https://www.googleapis.com/civicinfo/v2/voterinfo';
@@ -34,6 +34,7 @@ const Google = {
         gzip: true,
       },
       (error, response, body) => {
+
         let resBody = JSON.parse(body);
         if (error) {
           console.error(error);
