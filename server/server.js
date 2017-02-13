@@ -1,4 +1,4 @@
-"use strict"
+// "use strict"
 
 require('dotenv').config();
 const express = require('express');
@@ -31,7 +31,7 @@ app.use(webpackDevMiddleware(compiler, {
   historyApiFallback: true,
 }));
 app.use('/api', routes);
-app.use(express.static(path.join(__dirname, '../www')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 app.listen(port, () => {
   console.log('Listening on port ', port);
