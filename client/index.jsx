@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Router, Route, browserHistory, Link } from 'react-router';
 
 import Counter from './components/counter';
+import req from './src/req'
 
 const meow = function meow() {
   return (<div>
@@ -21,6 +22,6 @@ const home = function home() {
 console.log('yo');
 
 render((<Router history={browserHistory} >
-  <Route path="/" component={Counter} />
-  <Route path="/meow" component={meow} />
+  <Route path="/" component={home} />
+  <Route path="/meow" component={req} />
 </Router>), document.getElementById('root'));
