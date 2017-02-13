@@ -1,4 +1,5 @@
-"use strict"
+"use strict";
+
 const request = require('request');
 const civApiKey = process.env.GOOGLE_CIV_APIKEY;
 const repApiURL = 'https://www.googleapis.com/civicinfo/v2/representatives';
