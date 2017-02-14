@@ -1,14 +1,19 @@
 import React from 'react';
+import ReduxPromise from 'redux-promise';
 import { render } from 'react-dom';
-import { Router, Route, browserHistory, Link } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import CounterApp from './reducers/counter2';
+import { Router, Route, browserHistory, Link } from 'react-router';
+import { createStore, applyMiddleware } from 'redux';
+
+// import routes from './routes';
+import reducers from './reducers';
+
 import counter from './containers/counter2';
 import locationBar from './components/locationBar';
 import req from './src/req';
 
-const store = createStore(CounterApp);
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const store = createStoreWithMiddleware(reducers);
 
 const meow = function meow() {
   return (<div>
@@ -28,12 +33,17 @@ const home = function home() {
   </div>);
 };
 
-render((
-  <Provider store={store}>
-    <Router history={browserHistory} >
-      <Route path="/" component={home} />
-      <Route path="/req" component={req} />
-      <Route path="/counter" component={counter} />
-      <Route path="/location" component={locationBar} />
-    </Router>
-  </Provider>), document.getElementById('root'));
+render(
+  (
+    <Provider store={store}>
+      {/* <Router history={browserHistory} routes={routes} > */}
+      <Router history={browserHistory} >
+        <Route path="/" component={home} />
+        <Route path="/req" component={req} />
+        <Route path="/counter" component={counter} />
+        <Route path="/location" component={locationBar} />
+      </Router>
+    </Provider>
+  ),
+  document.getElementById('root')
+);
