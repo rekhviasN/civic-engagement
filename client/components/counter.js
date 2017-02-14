@@ -9,7 +9,7 @@ class Counter extends Component {
         onClick={() => {
           console.log('clicky clicky');
           return {
-            type: "INCREMENT",
+            type: 'INCREMENT',
           }
           // incCounter;
         }}
