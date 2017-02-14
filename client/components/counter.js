@@ -11,7 +11,9 @@ class Counter extends Component {
       <button
         onClick={() => {
           console.log('clicky clicky');
-          return incCounter();
+          return {
+            type: 'INCREMENT',
+          }
           // incCounter;
         }}
       >
