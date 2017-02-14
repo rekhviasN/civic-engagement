@@ -1,5 +1,4 @@
-// not yet functioning
-export default function locBar(state = 0, action) {
+export default function locBar(state = '', action) {
   switch (action.type) {
     case 'Location_Search':
       return { ...state, GoogleResults: action.payload.data };
