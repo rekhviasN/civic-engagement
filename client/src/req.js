@@ -5,7 +5,7 @@ export default class testReq extends Component {
   render() {
     return (
       <Request
-        url="/test"
+        url="/api/test"
         method='get'
         verbose={true}
       >

@@ -31,7 +31,6 @@ app.use(webpackDevMiddleware(compiler, {
 app.use('/api', routes);
 
 app.use(express.static(path.join(__dirname, '../client')));
-app.get('/test', (req, res) => { console.log('got it'); res.send({ data: 'data!' }); });
 
 app.listen(port, () => {
   console.log('Listening on port ', port);
