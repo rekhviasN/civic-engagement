@@ -1,8 +1,7 @@
-const webpack = require('webpack')
 const path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'client/dist');
-var APP_DIR = path.resolve(__dirname, 'client');
+const APP_DIR = path.resolve(__dirname, 'client');
+const BUILD_DIR = path.resolve(__dirname, 'client/dist');
 
 module.exports = {
   entry: APP_DIR + '/index.js',
@@ -12,10 +11,11 @@ module.exports = {
   },
   module: {
     loaders: [
-       { test : /\.js?/,
-        include : APP_DIR,
-        loader : 'babel-loader'
-      }
-    ]
-  }
+      {
+        test: /\.js?/,
+        include: APP_DIR,
+        loader: 'babel-loader',
+      },
+    ],
+  },
 };
