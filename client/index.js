@@ -1,4 +1,5 @@
 import React from 'react';
+import ReduxPromise from 'redux-promise';
 import { render } from 'react-dom';
 import { Router, browserHistory, Link } from 'react-router';
 import { Provider } from 'react-redux';
@@ -9,7 +10,8 @@ import CounterApp from './reducers/counter2';
 // import req from './src/req';
 import Routes from './routes';
 
-const store = createStore(CounterApp);
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const store = createStoreWithMiddleware(reducers);
 
 const meow = function meow() {
   return (<div>
