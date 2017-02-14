@@ -1,6 +1,5 @@
-"use strict";
-
 const request = require('request');
+
 const civApiKey = process.env.GOOGLE_CIV_APIKEY;
 const repApiURL = 'https://www.googleapis.com/civicinfo/v2/representatives';
 const voterApiURL = 'https://www.googleapis.com/civicinfo/v2/voterinfo';
@@ -14,7 +13,7 @@ const Google = {
       {
         method: 'GET',
         uri: `${repApiURL}?key=${civApiKey}&address=${address}`,
-        gzip: true,
+        gzip: true
       },
       (error, response, body) => {
         if (error) {
@@ -32,10 +31,9 @@ const Google = {
       {
         method: 'GET',
         uri: `${voterApiURL}?key=${civApiKey}&address=${address}`,
-        gzip: true,
+        gzip: true
       },
       (error, response, body) => {
-
         let resBody = JSON.parse(body);
         if (error) {
           console.error(error);
@@ -45,7 +43,7 @@ const Google = {
           res.status(200).send(body);
         }
       });
-  },
+  }
 };
 
 module.exports = Google;
