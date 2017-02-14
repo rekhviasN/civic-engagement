@@ -40,4 +40,4 @@ jspm_packages
 .env
 
 # babel-compiled file(s)
-client/dist/bundle.js
+client/dist/
