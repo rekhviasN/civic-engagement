@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { submitLoc } from '../actions/locationBarActions';
+import submitLoc from '../actions/locationBarActions';
 
 class LocationBar extends Component{
   constructor(props) {
@@ -19,7 +19,7 @@ class LocationBar extends Component{
 
   onFormSubmit(event) {
     event.preventDefault();
-    submitLoc(this.state.searchLocation);
+    this.props.submitLoc(this.state.searchLocation);
     console.log(this.state.searchLocation);
   }
 
