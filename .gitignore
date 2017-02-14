@@ -39,4 +39,5 @@ jspm_packages
 # Local environment variables
 .env
 
-client/dist/bundle.js
+# babel-compiled file(s)
+client/dist/
