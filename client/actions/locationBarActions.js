@@ -1,9 +1,9 @@
-import Axios from 'axios'
+import Axios from 'axios';
 
-const ROOT_URL = 'http://localhost:8000/api'
+const ROOT_URL = 'http://localhost:8000/api';
 
 export default function(location) {
-  const request = Axios.get(`${ROOT_URL}/representatives/${location}`).then(data => console.log(data));
+  const request = Axios.get(`${ROOT_URL}/representatives/${location}`);
   return {
     type: 'Location_Search',
     payload: request

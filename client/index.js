@@ -1,15 +1,15 @@
 import React from 'react';
+import ReduxPromise from 'redux-promise';
 import { render } from 'react-dom';
-import { Router, browserHistory, Link } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import CounterApp from './reducers/counter2';
-// import counter from './containers/counter2';
-// import locationBar from './components/locationBar';
-// import req from './src/req';
-import Routes from './routes';
+import { Router, Route, browserHistory, Link } from 'react-router';
+import { createStore, applyMiddleware } from 'redux';
 
-const store = createStore(CounterApp);
+import Routes from './routes';
+import Reducers from './reducers';
+
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const store = createStoreWithMiddleware(Reducers);
 
 const meow = function meow() {
   return (<div>

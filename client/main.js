@@ -1,3 +1,5 @@
+// to be deleted at some point
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
