@@ -1,6 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory, Link } from 'react-router';
+import { Provider } from 'react-redux';
+// import Routes from './routes';
+import { createStore } from 'redux';
+// import ReduxPromise from 'redux-promise';
+// const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+import CounterApp from './reducers/counter2';
+const store = createStore(CounterApp);
+import reducers from './reducers/counter';
+
+import counter from './containers/counter2';
+import req from './src/req';
 
 // import { createStore, applyMiddleware } from 'redux';
 // import { Provider } from 'react-redux';
