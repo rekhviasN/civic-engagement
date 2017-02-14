@@ -7,7 +7,7 @@ import { createStore } from 'redux';
 // import ReduxPromise from 'redux-promise';
 // const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 import CounterApp from './reducers/counter2';
-const store = createStore(CounterApp);
+// const store = createStore(CounterApp);
 import reducers from './reducers/counter';
 
 import counter from './containers/counter2';
@@ -21,17 +21,17 @@ import req from './src/req';
 //
 // import req from './src/req'
 
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 // import Routes from './routes';
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 // import ReduxPromise from 'redux-promise';
 // const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-import CounterApp from './reducers/counter2';
-const store = createStore(CounterApp);
-import reducers from './reducers/counter';
+// import CounterApp from './reducers/counter2';
+// const store = createStore(CounterApp);
+// import reducers from './reducers/counter';
 
-import counter from './containers/counter2';
-import req from './src/req';
+// import counter from './containers/counter2';
+// import req from './src/req';
 
 const store = createStore(reducers);  // create the redux store and pass in your reducer(s)
 
