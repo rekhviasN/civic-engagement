@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import CounterApp from './reducers/counter2';
 import counter from './containers/counter2';
+import locationBar from './components/locationBar';
 import req from './src/req';
 
 const store = createStore(CounterApp);
@@ -22,6 +23,8 @@ const home = function home() {
     <Link to="/counter">Counter</Link>
     <br />
     <Link to="/req">Go to request</Link>
+    <br />
+    <Link to="/location">Rep Lookup</Link>
   </div>);
 };
 
@@ -31,5 +34,6 @@ render((
       <Route path="/" component={home} />
       <Route path="/req" component={req} />
       <Route path="/counter" component={counter} />
+      <Route path="/location" component={locationBar} />
     </Router>
   </Provider>), document.getElementById('root'));
