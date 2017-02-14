@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { incCounter, decCounter } from '../actions/counterActions';
 
 class Counter extends Component {
   render() {
@@ -8,9 +11,7 @@ class Counter extends Component {
       <button
         onClick={() => {
           console.log('clicky clicky');
-          return {
-            type: "INCREMENT",
-          }
+          return incCounter();
           // incCounter;
         }}
       >
@@ -18,10 +19,16 @@ class Counter extends Component {
       </button>
     );
   }
-
 }
 
+function mapStateToProps(state) {
+  return {
+    count: state
+  };
+}
 
-// const store = createStore(counter);
-// mapStateToProps(Counter);
-export default Counter;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ incCounter, decCounter }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);

@@ -6,6 +6,7 @@ export function incCounter() {
 }
 
 export function decCounter() {
+  console.log('decrement counter!');
   return {
     type: 'DECREMENT',
   };
