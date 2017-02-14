@@ -19,7 +19,7 @@ class LocationBar extends Component{
 
   onFormSubmit(event) {
     event.preventDefault();
-    submitLoc(this.state.searchLocation);
+    this.props.submitLoc(this.state.searchLocation);
     console.log(this.state.searchLocation);
   }
 
