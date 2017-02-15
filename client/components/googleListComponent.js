@@ -3,6 +3,7 @@ import ListView from './ListView';
 
 export default class GoogleList extends Component {
   render() {
+    console.log('in GoogleList, this.props', this.props)
     let GoogleResultsOffices = this.props.GoogleResults.offices || [];
     let GoogleResultsOfficials = this.props.GoogleResults.officials || [];
 

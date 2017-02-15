@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import submitLoc from '../actions/locationBarActions';
 
-class LocationBar extends Component{
+class LocationBar extends Component {
   constructor(props) {
     super(props);
     this.state = { searchLocation: '' };

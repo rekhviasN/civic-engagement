@@ -5,11 +5,22 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory, Link } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 
-import Routes from './routes';
-import Reducers from './reducers';
+// import Routes from './routes';
+// import Reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-const store = createStoreWithMiddleware(Reducers);
+// const store = createStoreWithMiddleware(Reducers);
+
+// import { createStore } from 'redux';
+// import CounterApp from './reducers/counter2';
+// import counter from './containers/counter2';
+// import locationBar from './components/locationBar';
+// import req from './src/req';
+// import resultsComp from './containers/reqContainer';
+// import reducer from './reducers/locBarReducer';
+
+// const store = createStore(reducer);
+
 
 const meow = function meow() {
   return (<div>
@@ -31,7 +42,15 @@ const meow = function meow() {
 
 render((
   <Provider store={store}>
-    <Router history={browserHistory} routes={Routes} />
-  </Provider>),
-  document.getElementById('root')
-);
+//     <Router history={browserHistory} routes={Routes} />
+//   </Provider>),
+//   document.getElementById('root')
+// );
+
+    <Router history={browserHistory} >
+      <Route path="/" component={resultsComp} />
+      <Route path="/req" component={req} />
+      <Route path="/counter" component={counter} />
+      <Route path="/location" component={locationBar} />
+    </Router>
+  </Provider>), document.getElementById('root'));
