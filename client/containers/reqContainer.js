@@ -6,10 +6,6 @@ import GoogleList from '../components/googleListComponent';
 import LocationBar from '../components/locationBar';
 
 class resultsComp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { GoogleResults: '' };
-  }
   render() {
     const { data } = this.props;
     return (
