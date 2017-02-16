@@ -11,7 +11,6 @@ class LocationBar extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
-
   onInputChange(event) {
     console.log(event.target.value);
     this.setState({ searchLocation: event.target.value });
@@ -24,6 +23,7 @@ class LocationBar extends Component {
   }
 
   render() {
+      console.log("in locbar");
     return (
       <form onSubmit={this.onFormSubmit}>
         <input
