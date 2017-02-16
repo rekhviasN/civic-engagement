@@ -8,6 +8,7 @@ import LocationBar from '../components/locationBar';
 class resultsComp extends React.Component {
   render() {
     const { data } = this.props;
+    console.log("data", data);
     return (
       <div>
         <LocationBar />
@@ -19,7 +20,7 @@ class resultsComp extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    data: state.GoogleResults
+    data: state.GoogleResults.GoogleResults
   };
 }
 
