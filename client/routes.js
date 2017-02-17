@@ -5,6 +5,7 @@ import { Route, IndexRoute, Link } from 'react-router';
 import Req from './src/req';
 import Counter from './containers/counter2';
 import LocationBar from './components/locationBar';
+import MapContainer from './containers/GoogleMapContainer';
 
 const home = function home() {
   return (<div>
@@ -14,6 +15,8 @@ const home = function home() {
     <Link to="/req">Go to request</Link>
     <br />
     <Link to="/location">Rep Lookup</Link>
+    <br />
+    <Link to="/map">Google Map</Link>
   </div>);
 };
 
@@ -23,5 +26,6 @@ export default (
     <Route path="req" component={Req} />
     <Route path="counter" component={Counter} />
     <Route path="location" component={LocationBar} />
+    <Route path="map" component={MapContainer} />
   </Route>
 );
