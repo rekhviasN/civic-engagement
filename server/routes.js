@@ -1,6 +1,7 @@
 const express = require('express');
 const Google = require('./api/google');
 const nytimes = require('./api/nytimes');
+const bingNews = require('./api/bingNews');
 // const wsj = require('./api/wsj');
 // const reuters = require('./api/reuters');
 // const apnews = require('./api/apnews');
@@ -11,9 +12,10 @@ router.get('/representatives/:address', Google.getReps);
 router.get('/voting/:address', Google.getVoterInfo);
 
 router.get('/nytimes/:name', nytimes.getArticles);
+router.get('/bingNews/:name', bingNews.getArticles);
 // router.get('/wsj/:name', wsj.getArticles); // only allows top headlines
-// router.get('/reuters/:name', reuters.getArticles);
-// router.get('/apnews/:name', apnews.getArticles);
+// router.get('/reuters/:name', reuters.getArticles); // crap api
+// router.get('/apnews/:name', apnews.getArticles); // fake news
 
 router.get('/test', (req, res) => {
   console.log('got it');
