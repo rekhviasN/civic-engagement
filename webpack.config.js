@@ -3,13 +3,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const APP_DIR = path.resolve(__dirname, 'client');
 const BUILD_DIR = path.resolve(__dirname, 'client/dist');
-const STYLE_DIR = path.resolve(__dirname, 'client/dist/bundle.style.css');
 
 const extractSass = new ExtractTextPlugin({
-  filename: STYLE_DIR,
+  filename: 'bundle.style.css',
   allChunks: true
 });
-
 
 module.exports = {
   entry: APP_DIR + '/index.js',
