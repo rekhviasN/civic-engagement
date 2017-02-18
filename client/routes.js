@@ -11,7 +11,7 @@ const home = function home() {
     <h1>welcome to the home ppage!</h1>
     <Link to="/req">Go to request</Link>
     <br />
-    <Link to="/map">Google Map</Link>
+    <Link to="map">Google Map</Link>
   </div>);
 };
 
