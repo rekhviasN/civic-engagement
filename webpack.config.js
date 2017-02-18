@@ -1,7 +1,15 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const APP_DIR = path.resolve(__dirname, 'client');
 const BUILD_DIR = path.resolve(__dirname, 'client/dist');
+const STYLE_DIR = path.resolve(__dirname, 'client/dist/bundle.style.css');
+
+const extractSass = new ExtractTextPlugin({
+  filename: STYLE_DIR,
+  allChunks: true
+});
+
 
 module.exports = {
   entry: APP_DIR + '/index.js',
@@ -10,13 +18,27 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js?/,
         include: APP_DIR,
-        loader: 'babel-loader'
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: [
+            'css-loader',
+            'sass-loader'
+          ],
+          fallback: 'style-loader'
+        })
       }
     ]
   },
+  plugins: [
+    extractSass
+  ],
   devtool: 'source-map'
 };
