@@ -5,10 +5,12 @@ import * as actions from '../actions/locationBarActions';
 import GoogleList from '../components/googleListComponent';
 import LocationBar from '../components/locationBar';
 
-class resultsComp extends React.Component {
+class ResultsComp extends React.Component {
+  componentWillMount() {
+    console.log('ResultsComp will mount')
+  }
   render() {
     const { data } = this.props;
-    console.log("data", data);
     return (
       <div>
         <LocationBar />
@@ -24,8 +26,5 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(resultsComp);
+export default connect(mapStateToProps)(ResultsComp);
