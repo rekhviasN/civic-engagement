@@ -4,12 +4,9 @@ import { Route, IndexRoute, Link } from 'react-router';
 // import ReqContainer from './containers/ReqContainer'
 import Req from './src/req';
 import Counter from './containers/counter2';
-<<<<<<< HEAD
 import MapContainer from './containers/GoogleMapContainer';
-=======
 import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
->>>>>>> sidebar
 
 const home = function home() {
   return (<div>

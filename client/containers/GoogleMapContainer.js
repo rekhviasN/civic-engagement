@@ -59,8 +59,8 @@ class SimpleMap extends Component {
           googleMapElement={
             <GoogleMap
               ref={(map) => console.log(map)}
-              defaultZoom={3}
-              defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+              defaultZoom={9}
+              defaultCenter={{ lat: 40.7058253, lng: -74.1180872 }}
             />
           }
         />
