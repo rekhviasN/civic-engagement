@@ -8,13 +8,10 @@ import Counter from './containers/counter2';
 // import MapContainer from './containers/GoogleMapContainer';
 import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
-
 import MapContainer from './containers/GoogleMapContainer';
 import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
 import News from './components/newsList';
-
-
 
   // <Route path="map" component={MapContainer} />
 const home = function home() {
@@ -44,7 +41,7 @@ export default (
     <Route path="counter" component={Counter} />
     <Route path="location" component={LocationBar} />
     <Route path="menuAnd" component={MenuContainer} />
-    <Route path="menuAnd" component={MenuContainer}/>
+    <Route path="menuAnd" component={MenuContainer} />
     <Route path="news" component={News} />
   </Route>
 );
