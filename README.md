@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/boolean-bobcats/civic-engagement.png?label=ready&title=Ready)](https://waffle.io/boolean-bobcats/civic-engagement)
 # civic-engagement
 
 > streamlined information about civic activities and opportunities to get involved, your civics portal
