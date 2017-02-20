@@ -30,7 +30,6 @@ export default (
   <Route path="/">
     <IndexRoute component={home} />
     <Route path="req" component={Req} />
-    <Route path="counter" component={Counter} />
     <Route path="map" component={MapContainer} />
     <Route path="location" component={LocationBar} />
     <Route path="menuAnd" component={MenuContainer}/>
