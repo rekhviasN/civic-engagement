@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import sampleData from '../reference/markerDummyData';
 
 class Map extends Component {
   constructor(props, context) {
@@ -14,6 +15,32 @@ class Map extends Component {
       current_name: ''
     };
   }
+  // componentWillMount() {
+  //   this.context.store.subscribe(() => {
+  //     const state = this.context.store.getState();
+  //     this.setState({
+  //       windowPosition: state.position,
+  //       showInfoWindow: state.showInfoWindow,
+  //       current_name: state.key
+  //     });
+  //   });
+  // }
+  toggleInfoWindow(name, loc) {
+    if (loc === null) {
+      this.setState({ windowPosition: null });
+      return;
+    }
+    const markerLoc = {
+      lat: loc.latLng.lat(),
+      lng: loc.latLng.lng()
+    };
+    this.setState({
+      current_name: name,
+      windowPosition: markerLoc,
+      showInfoWindow: true
+    });
+  }
+
   render() {
     return (
       <section style={{ height: '100%', width: '100%' }}>
@@ -27,8 +54,13 @@ class Map extends Component {
               defaultZoom={9}
               defaultCenter={{ lat: 40.7058253, lng: -74.1180872 }}
             >
-              <Marker />
-              <InfoWindow />
+              {sampleData.map(marker =>
+              (
+                <Marker
+                  position={{ lat: marker.lat, lng: marker.lng }}
+                  key={marker.id}
+                />
+              ))}
             </GoogleMap>
           }
         />
