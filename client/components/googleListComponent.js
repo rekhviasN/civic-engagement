@@ -19,7 +19,14 @@ class GoogleList extends Component {
         let party = profile.party || "N/A"
         let phoneNum = profile.phones[0] || "N/A"
 
-        return (<ListView key={key} title={title} name={name} party={party} phone={phoneNum} />);
+        return (
+          <ListView
+            key={key} 
+            title={title} 
+            name={name} 
+            party={party} 
+            phone={phoneNum} 
+          />);
       });
 
       return (

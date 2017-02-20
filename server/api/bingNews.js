@@ -7,8 +7,9 @@ const articleSearchURL = 'https://api.cognitive.microsoft.com/bing/v5.0/news/sea
 
 const bingNews = {
   getArticles: (req, res) => {
+    const query = req.params.name;
     const options = {
-      q: req.params.name,
+      q: query,
       count: 20,
       mkt: 'en-us',
       safeSearch: 'Moderate'
@@ -34,7 +35,7 @@ const bingNews = {
           url: article.url
         };
       });
-      const parsed = { articles, api: 'bing' };
+      const parsed = { articles, query, api: 'bing' };
       res.status(200).send(parsed);
       // res.status(200).send(data);
     })

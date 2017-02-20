@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import _ from 'underscore';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,12 +8,13 @@ import search from '../actions/politicianSearchActions';
 
 class NewsList extends Component {
   componentWillMount() { // staged to render
+    console.log('newsList.js componentWillMount', this.props);
     // hit API route
     // ie dispatch an actions
   }
 
   componentDidMount() { // after rendering
-    this.props.search('barack obama'); // debug
+    // this.props.search('barack obama'); // debug
   }
 
   componentWillReceiveProps() {
@@ -66,7 +67,7 @@ class NewsList extends Component {
 
 function mapStateToProps(state) {
   return {
-    PoliticianNews: state.News.News
+    PoliticianNews: state.News
   };
 }
 
