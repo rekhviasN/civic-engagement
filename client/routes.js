@@ -9,6 +9,10 @@ import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
 import MapContainer from './containers/GoogleMapContainer-v2';
 import News from './components/newsList';
+// import MapContainer from './containers/GoogleMapContainer';
+import LocationBar from './components/locationBar';
+import MenuContainer from './containers/sidebarContainer';
+
 
   // <Route path="map" component={MapContainer} />
 const home = function home() {
@@ -24,9 +28,9 @@ const home = function home() {
     <br />
     <Link to="/menuAnd">Menu with header </Link>
     <br />
-    <Link to="/header">Header</Link>
-    <br />
     <Link to="/news">News</Link>
+    <br />
+    <Link to="/header">Header</Link>
   </div>);
 };
 
@@ -36,8 +40,8 @@ export default (
     <IndexRoute component={home} />
     <Route path="req" component={Req} />
     <Route path="location" component={LocationBar} />
+    <Route path="map" component={MapContainer} />
     <Route path="menuAnd" component={MenuContainer} />
     <Route path="news" component={News} />
-    <Route path="map" component={MapContainer} />
   </Route>
 );
