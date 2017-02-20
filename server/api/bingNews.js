@@ -1,4 +1,4 @@
-const request = require('request');
+const rp = require('request-promise');
 const param = require('jquery-param');
 
 const bingNewsApiKey = process.env.BINGNEWS_APIKEY;
@@ -19,13 +19,26 @@ const bingNews = {
         'Ocp-Apim-Subscription-Key': bingNewsApiKey
       }
     };
-    request.get(config, (err, response, body) => {
-      if (err) {
-        console.error(err);
-      } else {
-        res.status(200).send(body);
-      }
-    });
+    rp.get(config)
+    .then((data) => {
+      const articles = JSON.parse(data).value.map((article, index) => {
+        // console.log(index, article.image);
+        const thumb = (article.image) ?
+          (article.image.thumbnail) ?
+            article.image.thumbnail.contentUrl : null : null;
+
+        return {
+          thumb,
+          title: article.name,
+          blurb: article.description,
+          url: article.url
+        };
+      });
+      const parsed = { articles, api: 'bing' };
+      res.status(200).send(parsed);
+      // res.status(200).send(data);
+    })
+    .catch(err => console.error(err));
   }
 };
 
