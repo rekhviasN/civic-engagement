@@ -8,7 +8,7 @@ import { Router, browserHistory } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import routes from './routes';
-import './style/test.scss';
+import './style/main.scss';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger();
