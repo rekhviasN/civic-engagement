@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
 import NewsList from './newsList';
-import search from '../actions/politicianSearchActions';
 
 // this is more of a 'ListViewItem'
 class ListView extends Component {
   constructor(props) {
     super(props);
-    this.state = { searched: false };
+    this.state = {
+      visible: false
+    };
   }
+
 
   handleClick() {
     console.log('clicky clicky', this.props.name);
-    this.props.search(this.props.name);
-    this.setState({ searched: !this.state.searched });
+    this.setState({ visible: !this.state.visible });
   }
 
   render() {
-    console.log('props at render: ', this.props);
-    const visible = this.state.searched;
+    // console.log('props at render: ', this.props);
+    const visible = this.state.visible;
     return (
       <div>
         <h3>Name </h3><span className="listViewItem">{this.props.name}</span>
@@ -30,8 +30,8 @@ class ListView extends Component {
         <h3>Phone </h3><span className="listViewItem">{this.props.phone}</span>
         <br />
         <button onClick={() => this.handleClick()}>In the news...</button>
-        {visible ? (
-          <NewsList />
+        { visible ? (
+          <NewsList news={this.props.News[this.props.name]} />
         ) : (
           <div />
         )}
@@ -56,13 +56,13 @@ ListView.defaultProps = {
 
 function mapStateToProps(state) {
   return { 
-    News: state.news
+    News: state.News
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ search }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ search }, dispatch);
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListView);
+export default connect(mapStateToProps)(ListView);
 // export default ListView;
