@@ -1,4 +1,5 @@
 const request = require('request');
+const Promise = require('bluebird');
 
 const civApiKey = process.env.GOOGLE_CIV_APIKEY;
 const mapsApiKey = process.env.GOOGLE_MAPS_APIKEY;
@@ -52,19 +53,14 @@ const Google = {
     );
   },
 
-  // Geocode an address or zipcode
-  geocode: (req, res) => {
-    googleMapsClient.geocode({
-      address: req.params.location
-    }, function(err, response, body) {
-      if (err) {
-        console.error(error);
-      } else {
-        const resBody = response.json.results;
-        // console.log(resBody);
-        res.status(200).send(resBody);  
-      }
-    });
+  // Geocode an address or zipcode - more of a helper function
+  // not super useful as an API call
+  geocode: (location = 10001) => {
+    const geocoder = Promise.promisify(googleMapsClient.geocode);
+    // returns a promise!
+    return geocoder({ address: location })
+      .then(response => response.json.results)
+      .catch(err => console.error(err));
   }
 };
 
