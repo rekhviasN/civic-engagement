@@ -5,7 +5,7 @@ import createLogger from 'redux-logger';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers';
 import routes from './routes';
 import './style/main.scss';
