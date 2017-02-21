@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import sampleData from '../reference/markerDummyData';
+import meetupData from '../reference/meetupDummyData';
 
 class Map extends Component {
   constructor(props, context) {
