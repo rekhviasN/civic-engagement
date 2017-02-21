@@ -5,10 +5,6 @@ import { Route, IndexRoute, Link } from 'react-router';
 import Req from './src/req';
 import Counter from './containers/counter2';
 
-// import MapContainer from './containers/GoogleMapContainer';
-import LocationBar from './components/locationBar';
-import MenuContainer from './containers/sidebarContainer';
-
 import MapContainer from './containers/GoogleMapContainer';
 import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
