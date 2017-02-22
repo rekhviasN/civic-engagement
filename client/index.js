@@ -10,7 +10,7 @@ import rootReducer from './reducers';
 import routes from './routes';
 import './style/main.scss';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+// const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger();
