@@ -13,7 +13,7 @@ const divStyle = {
 const iconUrls = [
   ["http://www.webarti.com/projects/images/palette-ninja.png", "Profile", 'routeTBD'],
   ["http://www.webarti.com/projects/images/palette-ninja.png", "Your Reps", 'routeTBD'],
-  ["http://www.webarti.com/projects/images/palette-ninja.png", "News", 'routeTBD'],
+  ["http://www.webarti.com/projects/images/palette-ninja.png", "Map", '/map'],
   ["http://www.webarti.com/projects/images/palette-ninja.png", "Events", 'routeTBD'],
   ["http://www.webarti.com/projects/images/palette-ninja.png", "Friends", 'routeTBD']
 ];
