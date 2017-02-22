@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import meetupSearch from '../actions/meetupSearchActions';
 import sampleData from '../reference/markerDummyData';
 import meetupData from '../reference/meetupDummyData';
 
@@ -15,6 +17,9 @@ class Map extends Component {
       showInfoWindow: false,
       current_name: ''
     };
+  }
+  componentDidMount() {
+    this.props.meetupSearch('1216 Broadway, New York, NY');
   }
   // componentWillMount() {
   //   this.context.store.subscribe(() => {
@@ -70,4 +75,10 @@ class Map extends Component {
   }
 }
 
-export default Map;
+function mapStateToProps(state) {
+  return {
+    MeetupEvents: state.Meetup.eventResults
+  };
+}
+
+export default connect(mapStateToProps, { meetupSearch })(Map);
