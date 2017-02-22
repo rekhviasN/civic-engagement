@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
-import sampleData from '../reference/markerDummyData';
-import meetupData from '../reference/meetupDummyData';
+import meetupSearch from '../actions/meetupSearchActions';
+// import sampleData from '../reference/markerDummyData';
+// import meetupData from '../reference/meetupDummyData';
 
-class Map extends Component {
+class MapContainer extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -15,6 +17,10 @@ class Map extends Component {
       showInfoWindow: false,
       current_name: ''
     };
+    this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
+  }
+  componentWillMount() {
+    this.props.meetupSearch('1216 Broadway, New York, NY');
   }
   // componentWillMount() {
   //   this.context.store.subscribe(() => {
@@ -43,6 +49,22 @@ class Map extends Component {
   }
 
   render() {
+    const { results } = this.props.MeetupEvents;
+    console.log('Google Maps Line 53   ', this.props);
+    let markers = [];
+    if (results) {
+      markers = results.map((event) => {
+        const venueLat = event.venue ? event.venue.lat : event.group.group_lat;
+        const venueLng = event.venue ? event.venue.lon : event.group.group_lon;
+        return (
+          <Marker
+            position={{ lat: venueLat, lng: venueLng }}
+            key={event.id}
+            onClick={this.toggleInfoWindow.bind(this, event.id)}
+          />
+        );
+      });
+    }
     return (
       <section style={{ height: '100%', width: '100%' }}>
         <GoogleMapLoader
@@ -55,13 +77,17 @@ class Map extends Component {
               defaultZoom={9}
               defaultCenter={{ lat: 40.7058253, lng: -74.1180872 }}
             >
-              {sampleData.map(marker =>
-              (
-                <Marker
-                  position={{ lat: marker.lat, lng: marker.lng }}
-                  key={marker.id}
-                />
-              ))}
+              { markers }
+              {
+                this.state.showInfoWindow &&
+                <InfoWindow
+                  position={this.state.windowPosition}
+                  onCloseclick={(e) => { this.setState({ showInfoWindow: false }); }}
+                  options={{ pixelOffset: new window.google.maps.Size(0, -30) }}
+                >
+                  {this.state.current_name}
+                </InfoWindow>
+              }
             </GoogleMap>
           }
         />
@@ -70,4 +96,10 @@ class Map extends Component {
   }
 }
 
-export default Map;
+function mapStateToProps(state) {
+  return {
+    MeetupEvents: state.Meetup.eventResults
+  };
+}
+
+export default connect(mapStateToProps, { meetupSearch })(MapContainer);

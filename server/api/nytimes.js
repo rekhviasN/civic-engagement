@@ -7,6 +7,7 @@ const articleSearchURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.js
 
 const nytimes = {
   getArticles: (req, res) => {
+    const query = req.params.name;
     const options = {
       'api-key': nytimesApiKey,
       q: req.params.name,
@@ -23,7 +24,7 @@ const nytimes = {
           url: article.web_url
         };
       });
-      const parsed = { articles, api: 'nytimes' };
+      const parsed = { articles, query, api: 'nytimes' };
       res.status(200).send(parsed);
       // res.status(200).send(data);
     })
