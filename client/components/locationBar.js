@@ -23,7 +23,7 @@ class LocationBar extends Component {
   }
 
   render() {
-      console.log("in locbar");
+    console.log("in locbar");
     return (
       <form onSubmit={this.onFormSubmit}>
         <input
