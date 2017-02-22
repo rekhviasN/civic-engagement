@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import meetupSearch from '../actions/meetupSearchActions';
 
@@ -25,10 +24,6 @@ class MeetupSearchBar extends Component {
     console.log(this.state.input);
   }
 
-  static propTypes = {
-    meetupSearch: PropTypes.func
-  }
-
   render() {
     console.log('Render Meetup Search Bar');
     return (
@@ -46,3 +41,11 @@ class MeetupSearchBar extends Component {
     );
   }
 }
+
+function mapStateToProps(state) { // Temporary state setup. Please feel free to modify this.
+  return {
+    EventLocation: state.input
+  };
+}
+
+export default connect(mapStateToProps, { meetupSearch })(MeetupSearchBar);

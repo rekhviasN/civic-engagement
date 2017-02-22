@@ -1,6 +1,6 @@
 import React from 'react';
 import Map from '../containers/GoogleMapContainer-v2';
-import Search from '../containers/reqContainer';
+import Search from './meetupSearchBar';
 
 const Dashboard = () =>
   (
