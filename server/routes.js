@@ -7,6 +7,7 @@ const bingNews = require('./api/bingNews');
 // const apnews = require('./api/apnews');
 
 const meetup = require('./api/meetup');
+const eventbrite = require('./api/eventbrite');
 
 const router = express.Router();
 
@@ -19,8 +20,9 @@ router.get('/bingNews/:name', bingNews.getArticles);
 // router.get('/reuters/:name', reuters.getArticles); // crap api
 // router.get('/apnews/:name', apnews.getArticles); // fake news
 
-router.get('/geocode/:location', Google.geocode);
+// router.get('/geocode/:location', Google.geocode);
 router.get('/meetup/:location', meetup.getEvents);
+router.get('/eventbrite/:location', meetup.getEvents);
 
 
 
