@@ -8,7 +8,7 @@ class HeaderView extends Component {
     const headerIcons = this.props.headerIcons;
     if (headerIcons) {
       let header = headerIcons.map((url, index) => {
-        return (<HeaderIconView url={url[0]} description={url[1]} />);
+        return (<HeaderIconView url={url[0]} description={url[1]} route ={url[2]}/>);
       });
 
       return (

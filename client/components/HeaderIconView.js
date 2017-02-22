@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, hashHistory } from 'react-router';
 import Radium from 'radium';
 
 const style = {
@@ -30,11 +31,14 @@ const style = {
 };
 
 class HeaderIconView extends React.Component {
+  //
   render() {
     return (
       <div style={style}>
-        <img src={this.props.url} />
-        {this.props.description}
+        <Link to={this.props.route}>
+          <img src={this.props.url} />
+          {this.props.description}
+        </Link>
       </div>
     );
   }
