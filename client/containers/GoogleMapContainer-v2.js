@@ -15,7 +15,7 @@ class MapContainer extends Component {
       },
       windowPosition: null,
       showInfoWindow: false,
-      current_name: ''
+      current_event: ''
     };
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }
@@ -32,7 +32,7 @@ class MapContainer extends Component {
   //     });
   //   });
   // }
-  toggleInfoWindow(name, loc) {
+  toggleInfoWindow(event, loc) {
     if (loc === null) {
       this.setState({ windowPosition: null });
       return;
@@ -42,7 +42,7 @@ class MapContainer extends Component {
       lng: loc.latLng.lng()
     };
     this.setState({
-      current_name: name,
+      current_event: event,
       windowPosition: markerLoc,
       showInfoWindow: true
     });
@@ -53,14 +53,15 @@ class MapContainer extends Component {
     console.log('Google Maps Line 53   ', this.props);
     let markers = [];
     if (results) {
-      markers = results.map((event) => {
+      markers = results.map((event, index) => {
         const venueLat = event.venue ? event.venue.lat : event.group.group_lat;
         const venueLng = event.venue ? event.venue.lon : event.group.group_lon;
         return (
           <Marker
             position={{ lat: venueLat, lng: venueLng }}
             key={event.id}
-            onClick={this.toggleInfoWindow.bind(this, event.id)}
+            index={index}
+            onClick={this.toggleInfoWindow.bind(this, event)}
           />
         );
       });
@@ -85,7 +86,12 @@ class MapContainer extends Component {
                   onCloseclick={(e) => { this.setState({ showInfoWindow: false }); }}
                   options={{ pixelOffset: new window.google.maps.Size(0, -30) }}
                 >
-                  {this.state.current_name}
+                  {
+                    `<h2>${this.state.current_event.name}</h2>
+                    <h4>Hosted By: ${this.state.current_event.group.name}</h4>
+                    <h4>When: ${new Date(this.state.current_event.time)}</h4>
+                    <p>${this.state.current_event.description}</p>`
+                  }
                 </InfoWindow>
               }
             </GoogleMap>
