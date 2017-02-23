@@ -24,7 +24,7 @@ class EventListComponent extends Component {
     }
 
     return (
-      <div className="MeetupEventsList">
+      <div className="meetup-events-list">
         {eventList}
       </div>
     );
