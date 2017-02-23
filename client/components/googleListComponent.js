@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListView from './ListView';
-import search from '../actions/politicianSearchActions';
+// import search from '../actions/politicianSearchActions';
 
 class GoogleList extends Component {
   render() {
@@ -20,8 +20,8 @@ class GoogleList extends Component {
         let party = profile.party || "N/A"
         let phoneNum = profile.phones[0] || "N/A"
 
-        // grab news articles for each result
-        this.props.search(name);
+        // // grab news articles for each result
+        // this.props.search(name);
 
         return (
           <ListView
@@ -52,4 +52,5 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { search })(GoogleList);
+// export default connect(mapStateToProps, { search })(GoogleList);
+export default connect(mapStateToProps)(GoogleList);

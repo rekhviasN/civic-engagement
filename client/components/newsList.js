@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import NewsItem from './newsItem';
-import search from '../actions/politicianSearchActions';
+// import search from '../actions/politicianSearchActions';
 
 // class NewsList extends Component {
 //   componentWillMount() { // staged to render

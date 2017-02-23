@@ -35,7 +35,7 @@ const bingNews = {
           url: article.url
         };
       });
-      const parsed = { articles, query, api: 'bing' };
+      const parsed = { articles, query, api: ['bing'] };
       res.status(200).send(parsed);
       // res.status(200).send(data);
     })

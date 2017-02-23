@@ -16,15 +16,23 @@ const nytimes = {
     };
     rp.get(`${articleSearchURL}?${param(options)}`)
     .then((data) => {
+
       const articles = JSON.parse(data).response.docs.map((article, index) => {
+        const thumbUrl = (article.multimedia) ?
+          (article.multimedia[0]) ?
+            article.multimedia[0].url : null : null;
+        const thumb = `http://www.nytimes.com/${thumbUrl}` || null;
+
         return {
-          thumb: `http://www.nytimes.com/${article.multimedia[0].url}`,
+          // thumb: `http://www.nytimes.com/${thumbUrl}`,
+          thumb,
           title: article.headline.main,
           blurb: article.snippet,
           url: article.web_url
         };
       });
-      const parsed = { articles, query, api: 'nytimes' };
+      
+      const parsed = { articles, query, api: ['nytimes'] };
       res.status(200).send(parsed);
       // res.status(200).send(data);
     })
