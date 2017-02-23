@@ -33,6 +33,7 @@ const home = function home() {
     <Link to="/news">News</Link>
     <br />
     <Link to="/dashboard">Dashboard</Link>
+    <br />
     <Link to="/header">Header</Link>
     <br />
     <Link to="/testing">Testing</Link>
@@ -44,8 +45,8 @@ const home = function home() {
 const testing = function testing() {
   return (<div>
     <h1>Testing</h1>
-    </div>)
-  }
+  </div>);
+};
 
 
 export default (
