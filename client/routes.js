@@ -12,6 +12,7 @@ import News from './components/newsList';
 import Dashboard from './components/dashboard';
 // import MapContainer from './containers/GoogleMapContainer';
 import PageNotFound from './components/PageNotFound';
+import Login from './components/Login';
 
   // <Route path="map" component={MapContainer} />
 const home = function home() {
@@ -32,17 +33,20 @@ const home = function home() {
     <Link to="/news">News</Link>
     <br />
     <Link to="/dashboard">Dashboard</Link>
+    <br />
     <Link to="/header">Header</Link>
     <br />
     <Link to="/testing">Testing</Link>
+    <br />
+    <Link to="/login">Login</Link>
   </div>);
 };
 
 const testing = function testing() {
   return (<div>
     <h1>Testing</h1>
-    </div>)
-  }
+  </div>);
+};
 
 
 export default (
@@ -55,6 +59,7 @@ export default (
     <Route path="map" component={MapContainer} />
     <Route path="dashboard" component={Dashboard} />
     <Route path="testing" component={testing} />
+    <Route path="login" component={Login} />
     <Route path="*" component={PageNotFound} />
   </Route>
 );
