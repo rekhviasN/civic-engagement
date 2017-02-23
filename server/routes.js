@@ -2,6 +2,7 @@ const express = require('express');
 const Google = require('./api/google');
 const nytimes = require('./api/nytimes');
 const bingNews = require('./api/bingNews');
+const propublica = require('./api/propublica');
 // const wsj = require('./api/wsj');
 // const reuters = require('./api/reuters');
 // const apnews = require('./api/apnews');
@@ -20,10 +21,15 @@ router.get('/bingNews/:name', bingNews.getArticles);
 // router.get('/reuters/:name', reuters.getArticles); // crap api
 // router.get('/apnews/:name', apnews.getArticles); // fake news
 
+
 // router.get('/geocode/:location', Google.geocode);
 router.get('/meetup/:location', meetup.getEvents);
 router.get('/eventbrite/:location', meetup.getEvents);
 
+router.get('/propublica/chamber/:chamber', propublica.memberList);
+router.get('/propublica/member/:id', propublica.memberBio);
+router.get('/propublica/member/votes/:id', propublica.memberVotes);
+router.get('/propublica/member/bills/:id', propublica.memberBills);
 
 
 router.get('/test', (req, res) => {
