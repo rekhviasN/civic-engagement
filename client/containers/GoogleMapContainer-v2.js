@@ -67,7 +67,7 @@ class MapContainer extends Component {
       });
     }
     return (
-      <section style={{ height: '100%', width: '100%' }}>
+      <section className="meetup-map" style={{ height: '100%', width: '100%' }}>
         <GoogleMapLoader
           containerElement={
             <div style={{ height: '100%' }} />
