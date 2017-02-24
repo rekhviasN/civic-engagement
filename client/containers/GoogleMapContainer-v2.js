@@ -52,8 +52,8 @@ class MapContainer extends Component {
     const map = this.map;
 
     results.forEach((event) => {
-      let vLat = event.venue ? event.venue.lat : event.group.group_lat;
-      let vLng = event.venue ? event.venue.lon : event.group.group_lon;
+      let vLat = event.venue ? event.venue.lat || event.group.group_lat : event.group.group_lat;
+      let vLng = event.venue ? event.venue.lon || event.group.group_lon : event.group.group_lon;
       vLat = Number(vLat);
       vLng = Number(vLng);
       bounds.extend(new window.google.maps.LatLng(vLat, vLng));
@@ -76,8 +76,8 @@ class MapContainer extends Component {
     let markers = [];
     if (results) {
       markers = results.map((event, index) => {
-        const venueLat = event.venue ? event.venue.lat : event.group.group_lat;
-        const venueLng = event.venue ? event.venue.lon : event.group.group_lon;
+        let venueLat = event.venue ? event.venue.lat || event.group.group_lat : event.group.group_lat;
+        let venueLng = event.venue ? event.venue.lon || event.group.group_lon : event.group.group_lon;
         return (
           <Marker
             position={{ lat: venueLat, lng: venueLng }}
