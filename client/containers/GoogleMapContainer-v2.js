@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import meetupSearch from '../actions/meetupSearchActions';
@@ -23,8 +23,8 @@ class MapContainer extends Component {
 
   componentDidUpdate(prevProps) {
     console.log('In Component Did Update');
-    const old = JSON.stringify(prevProps.MeetupEvents.results);
-    const current = JSON.stringify(this.props.MeetupEvents.results);
+    const old = JSON.stringify(prevProps.MeetupEvents);
+    const current = JSON.stringify(this.props.MeetupEvents);
     if (old === current) { return; }
     this._fitTheBounds();
   }
@@ -48,7 +48,7 @@ class MapContainer extends Component {
   _fitTheBounds() {
     console.log('_fitTheBounds has been triggered');
     const bounds = new window.google.maps.LatLngBounds();
-    const { results } = this.props.MeetupEvents;
+    const results = this.props.MeetupEvents;
     const map = this.map;
 
     results.forEach((event) => {
@@ -61,7 +61,7 @@ class MapContainer extends Component {
     map.fitBounds(bounds);
     map.panToBounds(bounds);
     // this._fitTheBounds = () => {};
-    let currentZoom = map.getZoom();
+    const currentZoom = map.getZoom();
     console.log(currentZoom);
     if (currentZoom > 15) {
       map.setZoom(15);
@@ -72,15 +72,15 @@ class MapContainer extends Component {
   }
 
   render() {
-    const { results } = this.props.MeetupEvents;
+    const results = this.props.MeetupEvents;
     let markers = [];
     if (results) {
       markers = results.map((event, index) => {
-        let venueLat = event.venue ? event.venue.lat || event.group.group_lat : event.group.group_lat;
-        let venueLng = event.venue ? event.venue.lon || event.group.group_lon : event.group.group_lon;
+        let vLat = event.venue ? event.venue.lat || event.group.group_lat : event.group.group_lat;
+        let vLng = event.venue ? event.venue.lon || event.group.group_lon : event.group.group_lon;
         return (
           <Marker
-            position={{ lat: venueLat, lng: venueLng }}
+            position={{ lat: vLat, lng: vLng }}
             key={event.id}
             index={index}
             onClick={this.toggleInfoWindow.bind(this, event)}
@@ -105,7 +105,7 @@ class MapContainer extends Component {
                 this.state.showInfoWindow &&
                 <InfoWindow
                   position={this.state.windowPosition}
-                  onCloseclick={(e) => { this.setState({ showInfoWindow: false }); }}
+                  onCloseclick={() => { this.setState({ showInfoWindow: false }); }}
                   options={{ pixelOffset: new window.google.maps.Size(0, -30) }}
                 >
                   {
@@ -124,9 +124,17 @@ class MapContainer extends Component {
   }
 }
 
+MapContainer.propTypes = {
+  MeetupEvents: PropTypes.arrayof(PropTypes.object)
+};
+
+MapContainer.defaultProps = {
+  MeetupEvents: 'n/a'
+};
+
 function mapStateToProps(state) {
   return {
-    MeetupEvents: state.Meetup.eventResults
+    MeetupEvents: state.Meetup.eventResults.results
   };
 }
 
