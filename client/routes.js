@@ -9,12 +9,12 @@ import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
 import MapContainer from './containers/GoogleMapContainer-v2';
 import Dashboard from './components/dashboard';
-// import MapContainer from './containers/GoogleMapContainer';
+import News from './components/newsList';
 import PageNotFound from './components/PageNotFound';
 import Login from './components/Login';
 // import MapContainer from './containers/GoogleMapContainer';
-import LocationBar from './components/locationBar';
-import MenuContainer from './containers/sidebarContainer';
+// import LocationBar from './components/locationBar';
+// import MenuContainer from './containers/sidebarContainer';
 
   // <Route path="map" component={MapContainer} />
 const home = function home() {

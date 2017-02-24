@@ -6,10 +6,7 @@
   "dependencies": {
     "@google/maps": "^0.3.1",
     "axios": "^0.15.3",
-<<<<<<< HEAD
-=======
     "bcrypt": "^1.0.2",
->>>>>>> auth
     "bluebird": "^3.4.7",
     "body-parser": "^1.16.0",
     "bourbon": "^4.3.2",

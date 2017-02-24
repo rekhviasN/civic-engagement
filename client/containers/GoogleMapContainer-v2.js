@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import meetupSearch from '../actions/meetupSearchActions';
@@ -124,13 +124,13 @@ class MapContainer extends Component {
   }
 }
 
-MapContainer.propTypes = {
-  MeetupEvents: PropTypes.arrayof(PropTypes.object)
-};
-
-MapContainer.defaultProps = {
-  MeetupEvents: 'n/a'
-};
+// MapContainer.propTypes = {
+//   MeetupEvents: PropTypes.arrayof(PropTypes.object)
+// };
+//
+// MapContainer.defaultProps = {
+//   MeetupEvents: 'n/a'
+// };
 
 function mapStateToProps(state) {
   return {
