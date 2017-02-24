@@ -19,7 +19,7 @@ class Login extends React.Component {
     this.setState({ password: event.target.value });
   }
   handleSubmit(event) {
-    console.log('Email and pword submitted ' + this.state.email + this.state.password);
+    console.log('Email and pword submitted ', this.state.email + this.state.password);
     event.preventDefault();
   }
 
@@ -37,5 +37,6 @@ class Login extends React.Component {
       </div>);
   }
 }
+
 
 export default Login;
