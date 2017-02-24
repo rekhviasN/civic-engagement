@@ -10,28 +10,25 @@ class MapContainer extends Component {
     super(props, context);
     this.state = {
       defaultCenter: {
-        lat: 49,
-        lng: -105
+        lat: 40.746275,
+        lng: -73.988249
       },
+      defaultZoom: 9,
       windowPosition: null,
       showInfoWindow: false,
       current_event: ''
     };
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }
-  componentWillMount() {
-    this.props.meetupSearch('1216 Broadway, New York, NY');
+
+  componentDidUpdate(prevProps) {
+    console.log('In Component Did Update');
+    const old = JSON.stringify(prevProps.MeetupEvents.results);
+    const current = JSON.stringify(this.props.MeetupEvents.results);
+    if (old === current) { return; }
+    this._fitTheBounds();
   }
-  // componentWillMount() {
-  //   this.context.store.subscribe(() => {
-  //     const state = this.context.store.getState();
-  //     this.setState({
-  //       windowPosition: state.position,
-  //       showInfoWindow: state.showInfoWindow,
-  //       current_name: state.key
-  //     });
-  //   });
-  // }
+
   toggleInfoWindow(event, loc) {
     if (loc === null) {
       this.setState({ windowPosition: null });
@@ -48,9 +45,34 @@ class MapContainer extends Component {
     });
   }
 
+  _fitTheBounds() {
+    console.log('_fitTheBounds has been triggered');
+    const bounds = new window.google.maps.LatLngBounds();
+    const { results } = this.props.MeetupEvents;
+    const map = this.map;
+
+    results.forEach((event) => {
+      let vLat = event.venue ? event.venue.lat : event.group.group_lat;
+      let vLng = event.venue ? event.venue.lon : event.group.group_lon;
+      vLat = Number(vLat);
+      vLng = Number(vLng);
+      bounds.extend(new window.google.maps.LatLng(vLat, vLng));
+    });
+    map.fitBounds(bounds);
+    map.panToBounds(bounds);
+    // this._fitTheBounds = () => {};
+    let currentZoom = map.getZoom();
+    console.log(currentZoom);
+    if (currentZoom > 15) {
+      map.setZoom(15);
+      setTimeout(() => {
+        this.setState({ defaultZoom: 15 });
+      }, 100);
+    }
+  }
+
   render() {
     const { results } = this.props.MeetupEvents;
-    console.log('Google Maps Line 53   ', this.props);
     let markers = [];
     if (results) {
       markers = results.map((event, index) => {
@@ -74,9 +96,9 @@ class MapContainer extends Component {
           }
           googleMapElement={
             <GoogleMap
-              ref={(map) => { console.log(map); }}
-              defaultZoom={9}
-              defaultCenter={{ lat: 40.7058253, lng: -74.1180872 }}
+              ref={(comp) => { this.map = comp; }}
+              defaultZoom={this.state.defaultZoom}
+              defaultCenter={this.state.defaultCenter}
             >
               { markers }
               {
