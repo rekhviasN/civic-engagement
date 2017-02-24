@@ -9,18 +9,26 @@ class EventListComponent extends Component {
   }
   render() {
     const { results } = this.props.events;
+    const selected = this.props.InfoWindow.current_event.id;
     console.log('Event List Line 8   ', this.props);
     let eventList = [];
     if (results) {
-      eventList = results.map((event, index) =>
-        (
+      eventList = results.map((event, index) => {
+        let styling = {};
+        if (event.id === selected && this.props.InfoWindow.showInfoWindow) {
+          styling = {
+            backgroundColor: 'red'
+          };
+        }
+        return (
           <ListItem
             key={event.id}
             event={event}
             index={index}
+            style={styling}
           />
         )
-      );
+      });
     }
 
     return (
@@ -41,7 +49,8 @@ EventListComponent.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    events: state.Meetup.eventResults
+    events: state.Meetup.eventResults,
+    InfoWindow: state.MeetupMap
   };
 }
 
