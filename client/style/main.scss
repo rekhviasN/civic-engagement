@@ -11,3 +11,21 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.dashboard-side {
+  max-width: 400px;
+}
+
+.meetup-map {
+}
+
+.meetup-events-list {
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.meetup-list-item {
+  border: 1px solid #333333;
+  word-wrap: break-word;
+}
