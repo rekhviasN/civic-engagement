@@ -7,6 +7,15 @@ class EventListComponent extends Component {
     super(props);
     this.state = {};
   }
+  componentDidUpdate(prevProps) {
+    console.log('In MeetupEvenList Component Did Update');
+    const old = prevProps.InfoWindow.current_event.id;
+    const current = this.props.InfoWindow.current_event.id;
+    if (old === current && !this.props.InfoWindow.showInfoWindow) { return; }
+    const el = document.getElementById('selected');
+    console.log(el);
+    el.scrollIntoView({ block: 'end', behavior: 'smooth' });
+  }
   render() {
     const { results } = this.props.events;
     const selected = this.props.InfoWindow.current_event.id;
@@ -14,20 +23,27 @@ class EventListComponent extends Component {
     let eventList = [];
     if (results) {
       eventList = results.map((event, index) => {
-        let styling = {};
+        const styling = {
+          backgroundColor: 'red'
+        };
         if (event.id === selected && this.props.InfoWindow.showInfoWindow) {
-          styling = {
-            backgroundColor: 'red'
-          };
+          return (
+            <ListItem
+              key={event.id}
+              event={event}
+              index={index}
+              style={styling}
+              id="selected"
+            />
+          );
         }
         return (
           <ListItem
             key={event.id}
             event={event}
             index={index}
-            style={styling}
           />
-        )
+        );
       });
     }
 
