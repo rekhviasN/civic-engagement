@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListView from './ListView';
+// import search from '../actions/politicianSearchActions';
 
 class GoogleList extends Component {
   render() {
@@ -12,14 +13,24 @@ class GoogleList extends Component {
       let GoogleResultsOfficials = data.GoogleResults.officials;
       console.log(GoogleResultsOffices, "GoogleResultsOffices");
       let GoogleResults = GoogleResultsOffices.map((Office, index) => {
-        let key = Office._id || index || "N/A"
+        let key = Office._id || index
         let profile = GoogleResultsOfficials[Office.officialIndices[0]] || "N/A"
         let title = Office.name || "N/A"
         let name = profile.name || "N/A"
         let party = profile.party || "N/A"
         let phoneNum = profile.phones[0] || "N/A"
 
-        return (<ListView key={key} title={title} name={name} party={party} phone={phoneNum} />);
+        // // grab news articles for each result
+        // this.props.search(name);
+
+        return (
+          <ListView
+            key={key} 
+            title={title} 
+            name={name} 
+            party={party} 
+            phone={phoneNum} 
+          />);
       });
 
       return (
@@ -41,4 +52,5 @@ function mapStateToProps(state) {
 }
 
 
+// export default connect(mapStateToProps, { search })(GoogleList);
 export default connect(mapStateToProps)(GoogleList);

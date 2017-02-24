@@ -1,28 +1,32 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../actions/locationBarActions';
-import GoogleList from '../components/googleListComponent';
-import LocationBar from '../components/locationBar';
+import Header from '../components/HeaderView';
 import Menu from '../components/sidebar';
 import ResultsComp from './reqContainer';
 
 const divStyle = {
+  paddingTop: '180px',
   width: '600',
   height: '40px',
-  backgroundColor: 'yellow',
   textAlign: 'right'
 };
+
+const iconUrls = [
+  ["http://www.webarti.com/projects/images/palette-ninja.png", "Profile", 'routeTBD'],
+  ["http://www.webarti.com/projects/images/palette-ninja.png", "Your Reps", 'routeTBD'],
+  ["http://www.webarti.com/projects/images/palette-ninja.png", "Map", '/map'],
+  ["http://www.webarti.com/projects/images/palette-ninja.png", "Events", 'routeTBD'],
+  ["http://www.webarti.com/projects/images/palette-ninja.png", "Friends", 'routeTBD']
+];
+
 
 class SidebarContainer extends React.Component {
 
   render() {
-    const { data } = this.props;
     return (
-      <div>
-        <header>I am a fixed header!</header>
-        <Menu />
-        <div style={divStyle} >
+      <div id="outer-container">
+        <header><Header headerIcons={iconUrls} /></header>
+        <Menu pageWrapID={'page-wrap'} outerContainerId={'outer-container'} />
+        <div id="page-wrap" style={divStyle} >
           <ResultsComp />
         </div>
       </div>
@@ -31,3 +35,12 @@ class SidebarContainer extends React.Component {
 }
 
 export default SidebarContainer;
+
+
+// <div id="outer-container">
+//   <header className="header-bar"></header>
+//   <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } noOverlay />
+//   <main id="page-wrap">
+//     // Other stuff
+//   </main>
+// </div
