@@ -11,6 +11,7 @@ const meetup = require('./api/meetup');
 const eventbrite = require('./api/eventbrite');
 
 const router = express.Router();
+const userController = require('./UserController');
 
 router.get('/representatives/:address', Google.getReps);
 router.get('/voting/:address', Google.getVoterInfo);
@@ -20,8 +21,6 @@ router.get('/bingNews/:name', bingNews.getArticles);
 // router.get('/wsj/:name', wsj.getArticles); // only allows top headlines
 // router.get('/reuters/:name', reuters.getArticles); // crap api
 // router.get('/apnews/:name', apnews.getArticles); // fake news
-
-
 // router.get('/geocode/:location', Google.geocode);
 router.get('/meetup/:location', meetup.getEvents);
 router.get('/eventbrite/:location', meetup.getEvents);
@@ -30,6 +29,9 @@ router.get('/propublica/chamber/:chamber', propublica.memberList);
 router.get('/propublica/member/:id', propublica.memberBio);
 router.get('/propublica/member/votes/:id', propublica.memberVotes);
 router.get('/propublica/member/bills/:id', propublica.memberBills);
+
+router.post('/api/users/signin', userController.signin)
+router.post('/api/users/signup', userController.signup)
 
 
 router.get('/test', (req, res) => {

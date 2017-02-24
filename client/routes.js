@@ -8,11 +8,13 @@ import Req from './src/req';
 import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
 import MapContainer from './containers/GoogleMapContainer-v2';
-import News from './components/newsList';
 import Dashboard from './components/dashboard';
 // import MapContainer from './containers/GoogleMapContainer';
 import PageNotFound from './components/PageNotFound';
 import Login from './components/Login';
+// import MapContainer from './containers/GoogleMapContainer';
+import LocationBar from './components/locationBar';
+import MenuContainer from './containers/sidebarContainer';
 
   // <Route path="map" component={MapContainer} />
 const home = function home() {
@@ -27,8 +29,6 @@ const home = function home() {
     <Link to="/location">Rep Lookup</Link>
     <br />
     <Link to="/menuAnd">Menu with header </Link>
-    <br />
-    <Link to="/header">Header</Link>
     <br />
     <Link to="/news">News</Link>
     <br />
@@ -45,6 +45,7 @@ const home = function home() {
 const testing = function testing() {
   return (<div>
     <h1>Testing</h1>
+    <Link to="/header">Header</Link>
   </div>);
 };
 
@@ -54,6 +55,7 @@ export default (
     <IndexRoute component={home} />
     <Route path="req" component={Req} />
     <Route path="location" component={LocationBar} />
+    <Route path="map" component={MapContainer} />
     <Route path="menuAnd" component={MenuContainer} />
     <Route path="news" component={News} />
     <Route path="map" component={MapContainer} />
