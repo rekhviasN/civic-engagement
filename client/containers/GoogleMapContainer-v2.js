@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
-import meetupSearch from '../actions/meetupSearchActions';
+import { toggleInfoWindow, closeInfoWindow } from '../actions/meetupMapActions';
 // import sampleData from '../reference/markerDummyData';
 // import meetupData from '../reference/meetupDummyData';
 
@@ -13,12 +14,12 @@ class MapContainer extends Component {
         lat: 40.746275,
         lng: -73.988249
       },
-      defaultZoom: 9,
-      windowPosition: null,
-      showInfoWindow: false,
-      current_event: ''
+      defaultZoom: 9
+      // windowPosition: null,
+      // showInfoWindow: false,
+      // current_event: ''
     };
-    this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
+    // this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -29,21 +30,21 @@ class MapContainer extends Component {
     this._fitTheBounds();
   }
 
-  toggleInfoWindow(event, loc) {
-    if (loc === null) {
-      this.setState({ windowPosition: null });
-      return;
-    }
-    const markerLoc = {
-      lat: loc.latLng.lat(),
-      lng: loc.latLng.lng()
-    };
-    this.setState({
-      current_event: event,
-      windowPosition: markerLoc,
-      showInfoWindow: true
-    });
-  }
+  // toggleInfoWindow(event, loc) {
+  //   if (loc === null) {
+  //     this.setState({ windowPosition: null });
+  //     return;
+  //   }
+  //   const markerLoc = {
+  //     lat: loc.latLng.lat(),
+  //     lng: loc.latLng.lng()
+  //   };
+  //   this.setState({
+  //     current_event: event,
+  //     windowPosition: markerLoc,
+  //     showInfoWindow: true
+  //   });
+  // }
 
   _fitTheBounds() {
     console.log('_fitTheBounds has been triggered');
@@ -83,7 +84,8 @@ class MapContainer extends Component {
             position={{ lat: vLat, lng: vLng }}
             key={event.id}
             index={index}
-            onClick={this.toggleInfoWindow.bind(this, event)}
+            // onClick={this.toggleInfoWindow.bind(this, event)}
+            onClick={this.props.toggleInfoWindow.bind(this, event)}
           />
         );
       });
@@ -102,17 +104,24 @@ class MapContainer extends Component {
             >
               { markers }
               {
-                this.state.showInfoWindow &&
+                // this.state.showInfoWindow &&
+                this.props.InfoWindow.showInfoWindow &&
                 <InfoWindow
-                  position={this.state.windowPosition}
-                  onCloseclick={() => { this.setState({ showInfoWindow: false }); }}
+                  // position={this.state.windowPosition}
+                  // onCloseclick={() => { this.setState({ showInfoWindow: false }); }}
+                  position={this.props.InfoWindow.windowPosition}
+                  onCloseclick={this.props.closeInfoWindow}
                   options={{ pixelOffset: new window.google.maps.Size(0, -30) }}
                 >
                   {
-                    `<h2>${this.state.current_event.name}</h2>
-                    <h4>Hosted By: ${this.state.current_event.group.name}</h4>
-                    <h4>When: ${new Date(this.state.current_event.time)}</h4>
-                    <p>${this.state.current_event.description}</p>`
+                    // `<h2>${this.state.current_event.name}</h2>
+                    // <h4>Hosted By: ${this.state.current_event.group.name}</h4>
+                    // <h4>When: ${new Date(this.state.current_event.time)}</h4>
+                    // <p>${this.state.current_event.description}</p>`
+                    `<h2>${this.props.InfoWindow.current_event.name}</h2>
+                    <h4>Hosted By: ${this.props.InfoWindow.current_event.group.name}</h4>
+                    <h4>When: ${new Date(this.props.InfoWindow.current_event.time)}</h4>
+                    <p>${this.props.InfoWindow.current_event.description}</p>`
                   }
                 </InfoWindow>
               }
@@ -134,8 +143,13 @@ class MapContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    MeetupEvents: state.Meetup.eventResults.results
+    MeetupEvents: state.Meetup.eventResults.results,
+    InfoWindow: state.MeetupMap
   };
 }
 
-export default connect(mapStateToProps, { meetupSearch })(MapContainer);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ toggleInfoWindow, closeInfoWindow }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
