@@ -3,11 +3,11 @@ export default function search(state = {}, action) {
     case 'Politician_Search_bing': { // bing News search
       console.log('Politican_Search bing dispatched and received');
       const { data } = action.payload;
-      const { query, api } = action.payload.data;
+      const { query } = action.payload.data;
 
       if (state[query]) {
         data.api = data.api.concat(state[query].api);
-        data.articles = data.articles.concat(state[query].articles)
+        data.articles = state[query].articles.concat(data.articles);
       }
       return { ...state, [query]: data };
     }
@@ -18,7 +18,7 @@ export default function search(state = {}, action) {
       
       if (state[query]) {
         data.api = data.api.concat(state[query].api);
-        data.articles = data.articles.concat(state[query].articles)
+        data.articles = data.articles.concat(state[query].articles);
       }
       return { ...state, [query]: data };
     }

@@ -40,7 +40,7 @@ const NewsList = (props) => {
   const { articles } = props.news;
 
   // if (PoliticianNews && PoliticianNews.articles) {
-  if (articles) {
+  if (articles.length > 0) {
     const NewsItems = _.map((articles), (article, index) => {
       const key = index;
       const { title, blurb, thumb, url } = article;
