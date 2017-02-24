@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/boolean-bobcats/civic-engagement.png?label=ready&title=Ready)](https://waffle.io/boolean-bobcats/civic-engagement)
 # civic-engagement
 
 > streamlined information about civic activities and opportunities to get involved, your civics portal
@@ -24,7 +25,7 @@
 
 ## Requirements
 
-- Node 0.10.x
+- Node ^6.0
 - Redis 2.6.x
 - Postgresql 9.1.x
 - etc

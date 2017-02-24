@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const EventItem = props =>
   (
-    <div className="meetup-list-item">
+    <div id={props.id} className="meetup-list-item" style={props.style}>
       <h2>{props.event.name}</h2>
       <h4>{`Hosted By: ${props.event.group.name}`}</h4>
       <h4>{`When: ${new Date(props.event.time)}`}</h4>
