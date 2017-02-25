@@ -30,8 +30,9 @@ router.get('/propublica/member/:id', propublica.memberBio);
 router.get('/propublica/member/votes/:id', propublica.memberVotes);
 router.get('/propublica/member/bills/:id', propublica.memberBills);
 
-router.post('/api/users/signin', userController.signin)
-router.post('/api/users/signup', userController.signup)
+router.post('/users/signin', userController.signin);
+router.post('/users/signup', userController.signup);
+router.get('/users/checkAuth', userController.checkAuth);
 
 
 router.get('/test', (req, res) => {
