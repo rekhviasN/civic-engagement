@@ -27,7 +27,7 @@ router.get('/meetup/:location', meetup.getEvents);
 router.get('/eventbrite/:location', meetup.getEvents);
 
 router.get('/propublica/chamber/:chamber', propublica.memberList);
-router.get('/propublica/member/:id', propublica.memberBio);
+router.get('/propublica/member/:name', propublica.memberBio);
 router.get('/propublica/member/votes/:id', propublica.memberVotes);
 router.get('/propublica/member/bills/:id', propublica.memberBills);
 

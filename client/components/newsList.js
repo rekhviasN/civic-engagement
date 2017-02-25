@@ -1,4 +1,6 @@
 import _ from 'underscore';
+import shortid from 'shortid';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -42,7 +44,8 @@ const NewsList = (props) => {
   // if (PoliticianNews && PoliticianNews.articles) {
   if (articles.length > 0) {
     const NewsItems = _.map((articles), (article, index) => {
-      const key = index;
+      const key = shortid.generate();
+      // console.log(article);
       const { title, blurb, thumb, url } = article;
       return (
         <NewsItem

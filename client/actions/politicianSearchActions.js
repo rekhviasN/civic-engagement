@@ -21,7 +21,7 @@ export function nytimes(name) {
 }
 
 export function bio(name) {
-  const request = Axios.get(`${ROOT_URL}/repBios/${name}`);
+  const request = Axios.get(`${ROOT_URL}/propublica/member/${name}`);
   return {
     type: 'Politician_Search_bio',
     payload: request

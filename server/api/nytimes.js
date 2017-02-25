@@ -17,11 +17,12 @@ const nytimes = {
     rp.get(`${articleSearchURL}?${param(options)}`)
     .then((data) => {
 
+      const defaultThumb = 'apple-touch-icon.png';
       const articles = JSON.parse(data).response.docs.map((article, index) => {
         const thumbUrl = (article.multimedia) ?
           (article.multimedia[0]) ?
-            article.multimedia[0].url : null : null;
-        const thumb = `http://www.nytimes.com/${thumbUrl}` || null;
+            article.multimedia[0].url : defaultThumb : defaultThumb;
+        const thumb = `http://www.nytimes.com/${thumbUrl}`;
 
         return {
           // thumb: `http://www.nytimes.com/${thumbUrl}`,

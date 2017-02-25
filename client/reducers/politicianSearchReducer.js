@@ -1,3 +1,5 @@
+// aka news search reducer
+
 export default function search(state = {}, action) {
   switch (action.type) {
     case 'Politician_Search_bing': { // bing News search
