@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -19,9 +20,17 @@ class Signup extends React.Component {
     this.setState({ password: event.target.value });
   }
   handleSubmit(event) {
-    console.log('Email and pword submitted ' + this.state.email + this.state.password);
     event.preventDefault();
-  }
+    console.log('Email and pword submitted ', this.state.email + this.state.password);
+    const response = Axios.post(`${ROOT_URL}/users/signup`, {
+      firstName: username,
+      lastName: password
+    }).then((resp)=>{
+      localStorage.setItem('token', resp.data.token);
+    }).then(()=>{
+      this.transitionTo('/home');
+    });
+  };
 
   render() {
     return (
