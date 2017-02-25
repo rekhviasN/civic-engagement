@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import submitCreds from '../actions/authActions';
+
 
 class Signup extends React.Component {
   constructor(props) {
