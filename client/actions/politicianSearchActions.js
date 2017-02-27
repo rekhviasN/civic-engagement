@@ -21,9 +21,25 @@ export function nytimes(name) {
 }
 
 export function bio(name) {
-  const request = Axios.get(`${ROOT_URL}/repBios/${name}`);
+  const request = Axios.get(`${ROOT_URL}/propublica/member/${name}`);
   return {
     type: 'Politician_Search_bio',
+    payload: request
+  };
+}
+
+export function bills(name) {
+  const request = Axios.get(`${ROOT_URL}/propublica/member/bills/${name}`);
+  return {
+    type: 'Politician_Search_bills_sponsored',
+    payload: request
+  };
+}
+
+export function votes(name) {
+  const request = Axios.get(`${ROOT_URL}/propublica/member/votes/${name}`);
+  return {
+    type: 'Politician_Search_voting_record',
     payload: request
   };
 }
