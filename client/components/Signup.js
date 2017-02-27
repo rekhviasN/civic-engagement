@@ -49,9 +49,9 @@ class Signup extends React.Component {
         </form>
         {
            this.state.valid ? <Redirect to={{ pathname: '/auth' }} /> : null
-        }
+         }
       </div>);
-  }
+    }
 }
 
 export default Signup;
