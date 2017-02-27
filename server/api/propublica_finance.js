@@ -7,10 +7,11 @@ const BASE_URL = 'https://api.propublica.org/campaign-finance/v1';
 
 const propublica = {
 
-  memberList: (req, res) => {
-    console.log('test');
-    const chamber = req.params.chamber;
-    const url = `${BASE_URL}/${SESSION}/${chamber}/members.json`;
+  top20List: (req, res) => {
+    console.log('Top 20 List Lookup');
+    const cycle = req.params.cycle;
+    const category = req.params.category;
+    const url = `${BASE_URL}/${cycle}/candidates/leaders/${category}.json`;
     const config = { url, headers };
 
     rp.get(config)
@@ -21,8 +22,8 @@ const propublica = {
       res.status(200).send(data);
     })
     .catch(err => console.error(err));
-  },
-
+  }
+/*
   memberBio: (req, res) => {
     console.log('test');
     const id = req.params.id;
@@ -73,9 +74,8 @@ const propublica = {
       res.status(200).send(data);
     })
     .catch(err => console.error(err));
-  },
-
-
+  }
+*/
 };
 
 module.exports = propublica;
