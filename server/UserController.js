@@ -66,11 +66,12 @@ module.exports = {
               .fail(function (error) {
                 console.log("some failure");
                 next(error);
-              });
+                    });
+            })
+            .catch((err) => { console.log(err); });
+        }
       })
-      .catch((err) => { console.log(err); });
-  }
-})
+      .catch((err)=> { console.log(err)});
 },
 
   signin: function (req, res, next) {
@@ -93,7 +94,7 @@ module.exports = {
           });
         }
       })
-      .fail(function (error) {
+      .catch(function (error) {
         next(error);
       });
   },
@@ -119,12 +120,12 @@ module.exports = {
       User.findOne({ where: { username: user.username } })
         .then(function (foundUser) {
           if (foundUser) {
-            res.send(200);
+            res.send(foundUser);
           } else {
-            res.send(401);
+            res.sendStatus(401);
           }
         })
-        .fail(function (error) {
+        .catch(function (error) {
           next(error);
         });
     }
