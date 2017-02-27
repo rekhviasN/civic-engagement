@@ -48,7 +48,7 @@ const propublica = {
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
-      const bio = JSON.parse(data).results;
+      const bio = JSON.parse(data).results[0];
       const parsed = { bio, name };
       res.status(200).send(parsed);
       // res.status(200).send({ data, name });
@@ -66,7 +66,7 @@ const propublica = {
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
-      const votes = JSON.parse(data).results;
+      const votes = JSON.parse(data).results[0];
       const parsed = { votes, name };
       res.status(200).send(parsed);
       // res.status(200).send(data);
@@ -84,7 +84,7 @@ const propublica = {
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
-      const bills = JSON.parse(data).results;
+      const bills = JSON.parse(data).results[0];
       const parsed = { bills, name };
       res.status(200).send(parsed);
       // res.status(200).send(data);

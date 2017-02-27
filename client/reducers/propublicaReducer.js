@@ -1,32 +1,22 @@
-export default function search(state = { votingrecord: {}, bills: {} }, action) {
+export default function search(state = {}, action) {
   switch (action.type) {
     case 'Politician_Search_bio': {
       const { name, bio } = action.payload.data;
+      if (state[name]) Object.assign(bio, state[name]);
 
-      if (state[name]) {
-      
-      }
-      return { ...state, [name]: bio[0] };
+      return { ...state, [name]: bio };
     }
-    
-    // if (state[name]) {
-    //     data.api = data.api.concat(state[name].api);
-    //     data.articles = state[name].articles.concat(data.articles);
-    //   }
     case 'Politician_Search_bills_sponsored': {
-      let { name, bills } = action.payload.data;
+      const { name, bills } = action.payload.data;
+      if (state[name]) Object.assign(bills, state[name]);
 
-      bills = Object.assign(bills[0], state[name]);
-
-      // return { ...state, [name]: bills[0] };
       return { ...state, [name]: bills };
     }
-
     case 'Politician_Search_voting_record': {
       const { name, votes } = action.payload.data;
+      if (state[name]) Object.assign(votes, state[name]);
 
-      // return { ...state, [name]: votes[0] };
-      return state;
+      return { ...state, [name]: votes };
     }
     default:
       return state;

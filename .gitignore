@@ -41,6 +41,3 @@ jspm_packages
 
 # babel-compiled file(s)
 client/dist/
-
-# static lookup tables
-id_tables
