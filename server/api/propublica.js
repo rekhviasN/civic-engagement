@@ -41,9 +41,10 @@ const propublica = {
   memberBio: (req, res) => {
     const name = req.params.name;
     const id = senateID[name] || houseID[name];
-    const url = `${BASE_URL}/members/${id}.json`;
 
+    const url = `${BASE_URL}/members/${id}.json`;
     const config = { url, headers };
+
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
@@ -56,40 +57,40 @@ const propublica = {
   },
 
   memberVotes: (req, res) => {
-    console.log('test');
-    const id = req.params.id;
-    console.log(id);
+    const name = req.params.name;
+    const id = senateID[name] || houseID[name];
+    console.log('memberVotes: ', name, id, req.params);
     const url = `${BASE_URL}/members/${id}/votes.json`;
     const config = { url, headers };
 
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
-      // const parsed = { stuffs };
-      // res.status(200).send(parsed);
-      res.status(200).send(data);
+      const votes = JSON.parse(data).results;
+      const parsed = { votes, name };
+      res.status(200).send(parsed);
+      // res.status(200).send(data);
     })
     .catch(err => console.error(err));
   },
 
   memberBills: (req, res) => {
-    console.log('test');
-    const id = req.params.id;
-    console.log(id);
+    const name = req.params.name;
+    const id = senateID[name] || houseID[name];
+    console.log('memberBills: ', name, id, req.params);
     const url = `${BASE_URL}/members/${id}/bills/cosponsored.json`;
     const config = { url, headers };
 
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
-      // const parsed = { stuffs };
-      // res.status(200).send(parsed);
-      res.status(200).send(data);
+      const bills = JSON.parse(data).results;
+      const parsed = { bills, name };
+      res.status(200).send(parsed);
+      // res.status(200).send(data);
     })
     .catch(err => console.error(err));
-  },
-
-
+  }
 };
 
 module.exports = propublica;

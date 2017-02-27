@@ -9,8 +9,8 @@ export default function locBar(state = {}, action) {
         .map(i => officials[i]);
 
       const district = offices
-        .filter(office => office.name.slice(0, 19) === 'United States House')[0]
-        .name.slice(39);
+        .filter(office =>
+          office.name.slice(0, 19) === 'United States House')[0].name.slice(39);
 
       return {
         ...state,

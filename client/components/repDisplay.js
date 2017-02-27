@@ -4,30 +4,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import RepBio from './repBio';
+import RepBillsList from './repBillsList';
+import RepVoteStats from './repVoteStats';
 
-import RepBillsList from '../components/repBillsList';
-import ListView from './ListView';
-
-import debug from '../actions/locationBarActions';
+import { bio, bills, votes } from '../actions/politicianSearchActions';
+import testing from '../actions/locationBarActions';
 
 class RepDisplay extends Component {
   constructor(props) {
     super(props);
-    
-    // seed a location for testing
-    this.props.debug('1216 broadway ny ny');
-  }
 
-  componentDidUpdate() {
-    console.log('repDisplay.js componentDidUpdate');
-    this.props.reps.forEach(rep => {
-      console.log(rep);
+    // seed a location and some reps for testing
+    this.props.testing('1216 broadway ny ny');
+
+    const names = [
+      'Charles E. Schumer',
+      'Kirsten E. Gillibrand',
+      'Carolyn B. Maloney'
+    ];
+    names.forEach((name) => {
+      this.props.bio(name);
+      this.props.bills(name);
+      this.props.votes(name);
     });
   }
 
   render() {
-    const { reps } = this.props;
+    const { reps, propublica } = this.props;
     // reps have been saved to state! this should always be populated.
+    
+    console.log('rendering!', reps, propublica);
+    
     if (reps) {
       const display = reps.map((rep) => {
         const { name, party, phones } = rep;
@@ -35,21 +43,20 @@ class RepDisplay extends Component {
         const title = (chamber === 'house') ?
           'House Representative' : 'Senator';
 
-        // the ListView class should be something different from the other listView
-        // i.e. render similar information differently
         return (
           <div key={shortid.generate()}>
-            <ListView
+            <RepBio
               key={shortid.generate()}
-              rawData={rep}
-              title={title}
-              name={name}
-              party={party}
-              phone={phones[0]}
+              googleRep={rep}
+              propublicaRep={propublica[rep.name]}
             />
-            <RepBillsList 
-              rep={rep}
+            <RepVoteStats
               key={shortid.generate()}
+              rep={propublica[rep.name]}
+            />
+            <RepBillsList
+              key={shortid.generate()}
+              rep={propublica[rep.name]}
             />
           </div>
         );
@@ -68,10 +75,11 @@ class RepDisplay extends Component {
 
 function mapStateToProps(state) {
   return {
-    reps: state.GoogleResults.reps
+    reps: state.GoogleResults.reps,
+    propublica: state.Propublica
   };
 }
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ debug }, dispatch);
+  return bindActionCreators({ testing, bills, bio, votes }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(RepDisplay);

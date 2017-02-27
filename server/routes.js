@@ -24,12 +24,12 @@ router.get('/bingNews/:name', bingNews.getArticles);
 
 // router.get('/geocode/:location', Google.geocode);
 router.get('/meetup/:location', meetup.getEvents);
-router.get('/eventbrite/:location', meetup.getEvents);
+router.get('/eventbrite/:location', eventbrite.getEvents);
 
 router.get('/propublica/chamber/:chamber', propublica.memberList);
 router.get('/propublica/member/:name', propublica.memberBio);
-router.get('/propublica/member/votes/:id', propublica.memberVotes);
-router.get('/propublica/member/bills/:id', propublica.memberBills);
+router.get('/propublica/member/votes/:name', propublica.memberVotes);
+router.get('/propublica/member/bills/:name', propublica.memberBills);
 
 
 router.get('/test', (req, res) => {

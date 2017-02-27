@@ -44,7 +44,7 @@ class ListView extends Component {
         <h3>Phone </h3><span className="listViewItem">{this.props.phone}</span>
         <br />
         <button onClick={() => this.handleClick()}>In the news...</button>
-        { this.state.visible ? 
+        { this.state.visible ?
           (
           this.state.searched ? (
             <NewsList news={this.props.News[this.props.name]} />
