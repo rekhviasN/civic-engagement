@@ -3,17 +3,16 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ProfileEdit from '../components/ProfileEdit';
-import setLoggedIn from '../actions/loggingActions';
-
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setLoggedIn }, dispatch);
-}
+import { setLoggedIn } from '../actions/loggingActions';
 
 function mapStateToProps(state) {
   return {
-    LoggedIn: state.LoggedIn
+    LoggedIn: state.LoggedIn.userData
   };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setLoggedIn }, dispatch);
 }
 
 class Auth extends Component {
@@ -62,4 +61,4 @@ class Auth extends Component {
   }
 }
 
-export default connect(mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Cookies from 'js-cookie';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setLoggedIn } from '../actions/loggingActions';
 import ImageUpload from './ImageUpload';
 import { Redirect } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
 const divStyle = {
   fontFamily: 'Andale Mono',
@@ -12,16 +15,26 @@ const divStyle = {
 	lineHeight: '20px'
 };
 
+
+function mapStateToProps(state) {
+  return {
+    UserData: state.LoggedIn
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setLoggedIn }, dispatch);
+}
+
 class ProfileEdit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      issues: this.props.info.issues || 'n/a',
-      location: this.props.info.location || 'n/a',
-      issues: this.props.info.issues || 'n/a',
-      quote: this.props.info.quote || 'n/a',
-      aboutme: this.props.info.aboutme || 'n/a',
+      location: this.props.UserData.location || 'n/a',
+      issues: this.props.UserData.issues || 'n/a',
+      quote: this.props.UserData.quote || 'n/a',
+      aboutme: this.props.UserData.aboutme || 'n/a',
       log: true
     };
 
@@ -91,5 +104,4 @@ class ProfileEdit extends Component {
   }
 }
 
-
-export default ProfileEdit;
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileEdit);

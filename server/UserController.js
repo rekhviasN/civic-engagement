@@ -4,8 +4,12 @@ const sequelize = require('./DB');
 const Bcrypt = require('bcrypt');
 const Promise = require('promise');
 
-
 const User = sequelize.define('user', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   username: Sequelize.STRING,
   password: Sequelize.STRING,
   location: Sequelize.STRING,
@@ -23,16 +27,8 @@ const User = sequelize.define('user', {
       });
     }
   }
-}
-);
+});
 
-sequelize
-  .sync({ force: true })
-  .then(function(err) {
-    console.log('It worked!');
-  }, function (err) {
-    console.log('An error occurred while creating the table:', err);
-  });
 
 function encrypt(pass) {
   return new Promise(function (fulfill, reject){
