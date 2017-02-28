@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Chart from './Top20Chart';
 import top20Search from '../actions/top20SearchActions';
 import { categories, cycles } from '../constants/top20SelectorOptions';
 
@@ -10,7 +11,8 @@ class Top20Console extends Component {
     super(props);
     this.state = {
       category: 'contribution-total',
-      cycle: 2016
+      catKey: 'total_contributions',
+      cycle: '2016'
     };
     this.catHandleChange = this.catHandleChange.bind(this);
     this.cycleHandleChange = this.cycleHandleChange.bind(this);
@@ -18,10 +20,12 @@ class Top20Console extends Component {
   }
 
   componentDidMount() {
-    this.props.top20Search('pac-total', '2016');
+    this.props.top20Search(this.state.category, this.state.cycle);
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentDidUpdate(nextProps, nextState) {
+    console.log('Current State ', this.state);
+    console.log('New State ', nextState);
     if (JSON.stringify(this.state) === JSON.stringify(nextState)) {
       return
     }
@@ -29,12 +33,18 @@ class Top20Console extends Component {
   }
 
   catHandleChange(event) {
+    let key = categories.find((el) => {
+      return el[0] === event.target.value;
+    });
     this.setState({
-      category: event.target.value
+      category: event.target.value,
+      catKey: key[1]
     });
   }
 
   cycleHandleChange(event) {
+    console.log('current cycle ', this.state.cycle);
+    console.log('new cycle ', event.target.value);
     this.setState({
       cycle: event.target.value
     });
@@ -47,7 +57,7 @@ class Top20Console extends Component {
   render() {
     const catOptions = categories.map(category =>
       (
-        <option value={category[0]}>{ category[2] }</option>
+        <option key={category[1]} value={category[0]}>{ category[3] }</option>
       )
     );
     const cycleOptions = cycles.map(cycle =>
@@ -56,12 +66,9 @@ class Top20Console extends Component {
       )
     );
 
-    if (this.props.data) {
+    if (this.props.data && this.props.data.results) {
       const results = this.props.data.results;
-      let spend = [];
-
-      if (results) {
-        spend = results.map((candidate, index) => {
+      const spend = results.map((candidate, index) => {
           return (
             <div
               key={index}
@@ -69,35 +76,32 @@ class Top20Console extends Component {
               {candidate.name}
             </div>
           )
-        });
+      });
 
-        return (
-          <div className="top20-console">
-            <div className="row">
-              <form>
-                <label>
-                    Category:
-                    <select value={this.state.category} onChange={this.catHandleChange}>
-                      {catOptions}
-                    </select>
-                </label>
-                <label>
-                    Election Cycle:
-                    <select value={this.state.cycle} onChange={this.cycleHandleChange}>
-                      {cycleOptions}
-                    </select>
-                </label>
-              </form>
-            </div>
-            <div>
-              { spend }
-            </div>
-          </div>
-        );
-      }
       return (
-        <div>
-          <h3>Loading</h3>
+        <div className="top20-console">
+          <div className="row">
+            <form>
+              <label>
+                  Category:
+                  <select value={this.state.category} onChange={this.catHandleChange}>
+                    {catOptions}
+                  </select>
+              </label>
+              <label>
+                  Election Cycle:
+                  <select value={this.state.cycle} onChange={this.cycleHandleChange}>
+                    {cycleOptions}
+                  </select>
+              </label>
+            </form>
+          </div>
+          <div>
+            <Chart
+              data={this.props.data.results}
+              search={this.state.catKey}
+            />
+          </div>
         </div>
       );
     }
