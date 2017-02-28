@@ -38,5 +38,5 @@ module.exports = {
   plugins: [
     extractSass
   ],
-  devtool: 'source-map'
+  devtool: 'eval-source-map'
 };

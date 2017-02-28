@@ -23,11 +23,8 @@ const User = sequelize.define('user', {
       });
     }
   }
-},
-  {
-    tableName: 'user'
-  }
-)
+}
+);
 
 sequelize
   .sync({ force: true })
@@ -103,7 +100,7 @@ module.exports = {
   signin: function (req, res, next) {
     const username = req.body.username;
     const password = req.body.password;
-
+    console.log('in signin')
     User.findOne({ where: { username: username } })
       .then(function (user) {
         if (!user) {
