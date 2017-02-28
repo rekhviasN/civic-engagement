@@ -44,3 +44,5 @@ client/dist/
 
 # static lookup tables		
 id_tables 
+
+client/debug.js

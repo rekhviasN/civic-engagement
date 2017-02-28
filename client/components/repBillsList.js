@@ -10,8 +10,11 @@ import { bio as search } from '../actions/politicianSearchActions';
 class RepBillsList extends Component {
   constructor(props) {
     super(props);
-    const { rep } = props;
-    const { bills } = rep;
+
+    if (props.rep && props.rep.bills) {
+      const { rep } = props;
+      const { bills } = rep;
+    }
 
     // console.log('repBillsList! rep: ', rep, 'bills: ', bills);
   }
