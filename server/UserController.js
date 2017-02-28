@@ -4,8 +4,12 @@ const sequelize = require('./DB');
 const Bcrypt = require('bcrypt');
 const Promise = require('promise');
 
-
 const User = sequelize.define('user', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   username: Sequelize.STRING,
   password: Sequelize.STRING,
   location: Sequelize.STRING,
@@ -23,19 +27,8 @@ const User = sequelize.define('user', {
       });
     }
   }
-},
-  {
-    tableName: 'user'
-  }
-)
+});
 
-sequelize
-  .sync({ force: true })
-  .then(function(err) {
-    console.log('It worked!');
-  }, function (err) {
-    console.log('An error occurred while creating the table:', err);
-  });
 
 function encrypt(pass) {
   return new Promise(function (fulfill, reject){
@@ -103,7 +96,7 @@ module.exports = {
   signin: function (req, res, next) {
     const username = req.body.username;
     const password = req.body.password;
-
+    console.log('in signin')
     User.findOne({ where: { username: username } })
       .then(function (user) {
         if (!user) {
