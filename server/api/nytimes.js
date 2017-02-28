@@ -1,4 +1,4 @@
-const request = require('request');
+const rp = require('request-promise');
 const param = require('jquery-param');
 
 const nytimesApiKey = process.env.NYTIMES_APIKEY;
@@ -7,21 +7,37 @@ const articleSearchURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.js
 
 const nytimes = {
   getArticles: (req, res) => {
+    const query = req.params.name;
     const options = {
       'api-key': nytimesApiKey,
       q: req.params.name,
       fq: 'news_desk:("politics")',
       sort: 'newest'
     };
-    // console.log(options);
-    // console.log(`in nytimes article search api route with options: ${options}`);
-    request.get(`${articleSearchURL}?${param(options)}`, (err, response, body) => {
-      if (err) {
-        console.error(err);
-      } else {
-        res.status(200).send(body);
-      }
-    });
+    rp.get(`${articleSearchURL}?${param(options)}`)
+    .then((data) => {
+
+      const defaultThumb = 'apple-touch-icon.png';
+      const articles = JSON.parse(data).response.docs.map((article, index) => {
+        const thumbUrl = (article.multimedia) ?
+          (article.multimedia[0]) ?
+            article.multimedia[0].url : defaultThumb : defaultThumb;
+        const thumb = `http://www.nytimes.com/${thumbUrl}`;
+
+        return {
+          // thumb: `http://www.nytimes.com/${thumbUrl}`,
+          thumb,
+          title: article.headline.main,
+          blurb: article.snippet,
+          url: article.web_url
+        };
+      });
+      
+      const parsed = { articles, query, api: ['nytimes'] };
+      res.status(200).send(parsed);
+      // res.status(200).send(data);
+    })
+    .catch(err => console.error(err));
   }
 };
 
