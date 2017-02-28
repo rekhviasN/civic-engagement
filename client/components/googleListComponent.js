@@ -5,7 +5,7 @@ import ListView from './ListView';
 
 class GoogleList extends Component {
   render() {
-    console.log("this.props.GoogleResults", this.props.GoogleResults);
+    // console.log("this.props.GoogleResults", this.props.GoogleResults);
     const data = this.props.GoogleResults;
     //if there GoogleResults on the state, fill out the component
     if(data.GoogleResults){

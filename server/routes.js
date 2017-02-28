@@ -25,12 +25,12 @@ router.get('/bingNews/:name', bingNews.getArticles);
 // router.get('/apnews/:name', apnews.getArticles); // fake news
 // router.get('/geocode/:location', Google.geocode);
 router.get('/meetup/:location', meetup.getEvents);
-router.get('/eventbrite/:location', meetup.getEvents);
+router.get('/eventbrite/:location', eventbrite.getEvents);
 
 router.get('/propublica/chamber/:chamber', propublica.memberList);
-router.get('/propublica/member/:id', propublica.memberBio);
-router.get('/propublica/member/votes/:id', propublica.memberVotes);
-router.get('/propublica/member/bills/:id', propublica.memberBills);
+router.get('/propublica/member/:name', propublica.memberBio);
+router.get('/propublica/member/votes/:name', propublica.memberVotes);
+router.get('/propublica/member/bills/:name', propublica.memberBills);
 router.get('/propublica/top20/:cycle/:category', pubFinance.top20List);
 
 router.post('/users/signin', userController.signin);

@@ -19,6 +19,8 @@ import Auth from './components/Auth';
 // import LocationBar from './components/locationBar';
 // import MenuContainer from './containers/sidebarContainer';
 
+import CongressContainer from './containers/congressMembersContainer';
+
   // <Route path="map" component={MapContainer} />
 const home = function home() {
   return (<div>
@@ -44,6 +46,8 @@ const home = function home() {
     <Link to="/login">Login</Link>
     <br />
     <Link to="/signup">Signup</Link>
+    <br />
+    <Link to="/congress">Congress!</Link>
   </div>);
 };
 
@@ -69,6 +73,7 @@ export default (
     <Route path="login" component={Login} />
     <Route path="signup" component={Signup} />
     <Route path="auth" component={Auth} />
+    <Route path="congress" component={CongressContainer} />
     <Route path="*" component={PageNotFound} />
   </Route>
 );

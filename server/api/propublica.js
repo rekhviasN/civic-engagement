@@ -1,83 +1,96 @@
+const houseID = require('../id_tables/house');
+const senateID = require('../id_tables/senate');
+
 const rp = require('request-promise');
 const param = require('jquery-param');
 
 const propublicaApiKey = process.env.PROPUBLICA_APIKEY;
 const SESSION = 115;
-const headers = { 'X-API-Key': propublicaApiKey };
+const headers = {
+  'X-API-Key': propublicaApiKey
+};
 
 const BASE_URL = 'https://api.propublica.org/congress/v1';
 
 const propublica = {
 
   memberList: (req, res) => {
-    console.log('test');
     const chamber = req.params.chamber;
     const url = `${BASE_URL}/${SESSION}/${chamber}/members.json`;
     const config = { url, headers };
 
     rp.get(config)
     .then((data) => {
-      // PARSE THE DATA AS NECESSARY
-      // const parsed = { articles, query, api: 'bing' };
-      // res.status(200).send(parsed);
+
+      /* this was used to generate the id-lookup tables
+       * otherwise this is just a key-ed route into the propublica API */
+      
+      // data = {};
+      // JSON.parse(data).results[0].members
+      //   .forEach(member => {
+      //     const { id, first_name, middle_name, last_name } = member;
+      //     const name = [first_name, middle_name, last_name].join(' ').split('  ').join(' ');
+      //     parsed[name] = id;
+      //   });
+
       res.status(200).send(data);
     })
     .catch(err => console.error(err));
   },
 
   memberBio: (req, res) => {
-    console.log('test');
-    const id = req.params.id;
-    console.log(id);
+    const name = req.params.name;
+    const id = senateID[name] || houseID[name];
+
     const url = `${BASE_URL}/members/${id}.json`;
-    // const url = 'https://api.propublica.org/congress/v1/members/K000388.json';
     const config = { url, headers };
 
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
-      // const parsed = { articles, query, api: 'bing' };
-      // res.status(200).send(parsed);
-      res.status(200).send(data);
+      const bio = JSON.parse(data).results[0];
+      const parsed = { bio, name };
+      res.status(200).send(parsed);
+      // res.status(200).send({ data, name });
     })
     .catch(err => console.error(err));
   },
 
   memberVotes: (req, res) => {
-    console.log('test');
-    const id = req.params.id;
-    console.log(id);
+    const name = req.params.name;
+    const id = senateID[name] || houseID[name];
+    console.log('memberVotes: ', name, id, req.params);
     const url = `${BASE_URL}/members/${id}/votes.json`;
     const config = { url, headers };
 
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
-      // const parsed = { articles, query, api: 'bing' };
-      // res.status(200).send(parsed);
-      res.status(200).send(data);
+      const votes = JSON.parse(data).results[0];
+      const parsed = { votes, name };
+      res.status(200).send(parsed);
+      // res.status(200).send(data);
     })
     .catch(err => console.error(err));
   },
 
   memberBills: (req, res) => {
-    console.log('test');
-    const id = req.params.id;
-    console.log(id);
+    const name = req.params.name;
+    const id = senateID[name] || houseID[name];
+    console.log('memberBills: ', name, id, req.params);
     const url = `${BASE_URL}/members/${id}/bills/cosponsored.json`;
     const config = { url, headers };
 
     rp.get(config)
     .then((data) => {
       // PARSE THE DATA AS NECESSARY
-      // const parsed = { articles, query, api: 'bing' };
-      // res.status(200).send(parsed);
-      res.status(200).send(data);
+      const bills = JSON.parse(data).results[0];
+      const parsed = { bills, name };
+      res.status(200).send(parsed);
+      // res.status(200).send(data);
     })
     .catch(err => console.error(err));
-  },
-
-
+  }
 };
 
 module.exports = propublica;

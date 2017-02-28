@@ -1,12 +1,17 @@
 import { combineReducers } from 'redux';
 import locBarReducer from './locBarReducer';
-import politicianSearchReducer from './politicianSearchReducer';
+import newsSearchReducer from './politicianSearchReducer';
+// import politicianSearchReducer from './politicianSearchReducer'; // this is an awful name
+import propublicaReducer from './propublicaReducer';
 import meetupReducer from './meetupSearchReducer';
 import meetupMapReducer from './meetupMapReducer';
 
+
 const rootReducer = combineReducers({
   GoogleResults: locBarReducer,
-  News: politicianSearchReducer,
+  News: newsSearchReducer,
+  // News: politicianSearchReducer, // ugh this name is so bad
+  Propublica: propublicaReducer,
   Meetup: meetupReducer,
   MeetupMap: meetupMapReducer
 });
