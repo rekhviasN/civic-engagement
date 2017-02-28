@@ -78,16 +78,16 @@ class ProfileEdit extends Component {
         <h3>Day of profile creation: { this.state.createdAt } </h3>
         <form onSubmit={this.handleSubmit} >
           <p className='profileTopic'>Top 3 Issues I care about </p>
-          <div> {this.state.issues || 'n/a'} </div>
+          <div> {this.props.UserData.issues || 'n/a'} </div>
           <div> Edit: <input type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} /> </div>
           <p className='profileTopic'>Top Quote</p>
-          <div>{this.state.quote || 'n/a'}</div>
+          <div>{this.props.UserData.quote || 'n/a'}</div>
           <div> Edit: <input type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} /> </div>
           <p className='profileTopic'>Who I Am</p>
-          <div>{this.state.aboutme || 'n/a'}</div>
+          <div>{this.props.UserData.aboutme || 'n/a'}</div>
           <div> Edit: <input type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} /></div>
           <p className='profileTopic'>Location</p>
-          <div>{this.state.location || 'n/a'}</div>
+          <div>{this.props.UserData.location || 'n/a'}</div>
           <div> Edit: <input type="text" name="location" value={this.state.location} placeholder="Location" onChange={this.handleLocationChange} /></div>
           <div className="submitButton">
             <input type="submit" value="Submit Changes" />
