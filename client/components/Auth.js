@@ -54,7 +54,7 @@ class Auth extends Component {
     return (
       <div>
         {
-           this.state.promise ? (this.setLoggedState(this.state.info), <ProfileEdit info={this.state.info} />) : null
+           this.state.promise ? (this.setLoggedState(this.state.info), <ProfileEdit />) : null
         }
       </div>
     );
