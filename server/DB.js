@@ -16,7 +16,7 @@ const sequelize = new Sequelize(dbname, username, password, {
     idle: 10000
   }
 });
-
+// bla bla
 // ensures connection to db
 sequelize
   .authenticate()
