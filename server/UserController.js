@@ -7,7 +7,12 @@ const Promise = require('promise');
 
 const User = sequelize.define('user', {
   username: Sequelize.STRING,
-  password: Sequelize.STRING
+  password: Sequelize.STRING,
+  location: Sequelize.STRING,
+  issues: Sequelize.STRING,
+  quote: Sequelize.STRING,
+  aboutme: Sequelize.STRING,
+  image: Sequelize.STRING
 }, {
   freezeTableName: true,
   instanceMethods: {
@@ -18,7 +23,19 @@ const User = sequelize.define('user', {
       });
     }
   }
-});
+},
+  {
+    tableName: 'user'
+  }
+)
+
+sequelize
+  .sync({ force: true })
+  .then(function(err) {
+    console.log('It worked!');
+  }, function (err) {
+    console.log('An error occurred while creating the table:', err);
+  });
 
 function encrypt(pass) {
   return new Promise(function (fulfill, reject){
@@ -40,9 +57,13 @@ function encrypt(pass) {
 module.exports = {
 
   signup: function (req, res, next) {
-    console.log("In signup with sn & pw", req.body.username, req.body.password);
+    console.log("In signup with sn & pw", req.body.username, req.body.password, req.body.location);
     const username = req.body.username;
     const password = req.body.password;
+    const location = req.body.location;
+    const issues = req.body.issues;
+    const quote = req.body.quote;
+    const aboutme = req.body.aboutme;
     // check to see if user already exists
     User.findOne({ where: { username: username } })
       .then(function (user) {
@@ -55,7 +76,12 @@ module.exports = {
               console.log("user didn't exist. pw encrypted is ", encryptedPw);
               User.create({
                 username: username,
-                password: encryptedPw
+                password: encryptedPw,
+                location: location,
+                issues: issues,
+                quote: quote,
+                aboutme: aboutme,
+                image: 'http://melplex.eu/wp-content/uploads/2015/06/provider_female.jpg'
               })
               .then(function (newlyCreatedUser) {
                 console.log("new user is now", newlyCreatedUser.get({ plain: true }));
@@ -72,7 +98,7 @@ module.exports = {
         }
       })
       .catch((err)=> { console.log(err)});
-},
+  },
 
   signin: function (req, res, next) {
     const username = req.body.username;
@@ -83,6 +109,7 @@ module.exports = {
         if (!user) {
           next(new Error('User does not exist'));
         } else {
+          console.log('user exists', user);
           user.comparePasswords(password, function (err, isMatch) {
             if (err) {
               next(new Error('Password doesn\'t match'));
@@ -105,16 +132,12 @@ module.exports = {
     // then decode the token, which we end up being the user object
     // check to see if that user exists in the database
     // console.log(req);
-    console.log('req.headers.cookie', req.headers.cookie);
-    console.log('typpeof', typeof req.headers.cookie);
-    console.log('split', req.headers.cookie.split('; '));
 
-    const token = req.headers.cookie.split('; ')[1].split('=')[1];
+    const token = req.headers.cookie.split('=')[1];
     console.log('token after split and parse', token);
     if (!token) {
       next(new Error('No token'));
     } else {
-      console.log('parsed token', token);
       const user = jwt.decode(token, 'secret');
       console.log('user decoded from token', user);
       User.findOne({ where: { username: user.username } })

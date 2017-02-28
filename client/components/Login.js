@@ -1,9 +1,13 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import Axios from 'axios';
+import Cookies from 'js-cookie';
+
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '' };
+    this.state = { email: '', password: '', valid: false };
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,9 +22,26 @@ class Login extends React.Component {
     console.log(event.target.value);
     this.setState({ password: event.target.value });
   }
+
   handleSubmit(event) {
-    console.log('Email and pword submitted ', this.state.email + this.state.password);
     event.preventDefault();
+    console.log('Email and pword submitted ', this.state.email + this.state.password);
+    Axios.post('/api/users/signin', {
+      username: this.state.email,
+      password: this.state.password
+    }).then((resp) => {
+      if (resp.status === 200) {
+        Cookies.set('com.CivicsPortal', resp.data.token, { expires: 7 });
+      } else {
+        console.log('did not receive "200" status');
+      }
+    })
+      .then(() => {
+        this.setState({ valid: true });
+      })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   render() {
@@ -34,9 +55,11 @@ class Login extends React.Component {
           <input type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange} />
           <input type="submit" value="Login"/>
         </form>
-      </div>);
+        {
+           this.state.valid ? <Redirect to={{ pathname: '/auth' }} /> : (null)
+         }
+      </div>)
   }
 }
-
 
 export default Login;
