@@ -28,20 +28,19 @@ class RepDisplay extends Component {
       this.props.bills(name);
       this.props.votes(name);
     });
+    // delete this crap for production
   }
 
   render() {
     const { reps, propublica } = this.props;
     // reps have been saved to state! this should always be populated.
     
-    console.log('rendering!', reps, propublica);
-    
     if (reps) {
       const display = reps.map((rep) => {
         const { name, party, phones } = rep;
         const chamber = rep.urls[0].split('.').reverse()[1];
         const title = (chamber === 'house') ?
-          'House Representative' : 'Senator';
+          'Representative' : 'Senator';
 
         return (
           <div key={shortid.generate()}>
