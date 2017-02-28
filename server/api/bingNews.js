@@ -22,6 +22,7 @@ const bingNews = {
     };
     rp.get(config)
     .then((data) => {
+      const defaultThumb = 'https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/bing-128.png';
       const articles = JSON.parse(data).value.map((article, index) => {
         // console.log(index, article.image);
         const thumb = (article.image) ?
