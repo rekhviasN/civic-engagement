@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ImageUpload from './ImageUpload';
+import { Redirect } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const divStyle = {
   fontFamily: 'Andale Mono',
@@ -15,16 +17,40 @@ class ProfileEdit extends Component {
     super(props);
 
     this.state = {
-      issues: this.props.info.issues || 'n/a'
+      issues: this.props.info.issues || 'n/a',
+      location: this.props.info.location || 'n/a',
+      issues: this.props.info.issues || 'n/a',
+      quote: this.props.info.quote || 'n/a',
+      aboutme: this.props.info.aboutme || 'n/a',
+      log: true
     };
 
     this.handleIssuesChange = this.handleIssuesChange.bind(this);
-    // this.handleQuoteChange = this.handleQuoteChange.bind(this);
-    // this.handleAboutMeChange = this.handleAboutMeChange.bind(this);
-
+    this.handleQuoteChange = this.handleQuoteChange.bind(this);
+    this.handleAboutMeChange = this.handleAboutMeChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
+
   handleIssuesChange(e) {
     this.setState({ issues: e.target.value });
+  }
+
+  handleQuoteChange(e) {
+    this.setState({ quote: e.target.value });
+  }
+
+  handleAboutMeChange(e) {
+    this.setState({ aboutme: e.target.value });
+  }
+
+  handleLocationChange(e) {
+    this.setState({ location: e.target.value });
+  }
+
+  handleLogout() {
+    Cookies.remove('com.CivicsPortal');
+    this.setState({ log: false }, () => { console.log('log', this.state.log); });
   }
 
   render() {
@@ -34,6 +60,7 @@ class ProfileEdit extends Component {
     return (
       <div style={divStyle} >
         <h1> Welcome to your profile </h1>
+        <button onClick={this.handleLogout} >Logout </button>
         <h2>Username: {this.props.info.username} </h2>
         <h3>Day of profile creation: { this.props.info.createdAt } </h3>
         <form onSubmit={this.handleSubmit} >
@@ -42,20 +69,23 @@ class ProfileEdit extends Component {
           <div> Edit: <input type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} /> </div>
           <p className='profileTopic'>Top Quote</p>
           <div>{this.props.info.quote || 'n/a'}</div>
-          <div> Edit: <input type="text" name="quote" placeholder="Quote" onChange={this.handleQuoteChange} /> </div>
+          <div> Edit: <input type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} /> </div>
           <p className='profileTopic'>Who I Am</p>
           <div>{this.props.info.aboutme || 'n/a'}</div>
-          <div> Edit: <input type="text" name="aboutMe" placeholder="About Me" onChange={this.handleAboutMeChange} /></div>
+          <div> Edit: <input type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} /></div>
+          <p className='profileTopic'>Location</p>
+          <div>{this.props.info.location || 'n/a'}</div>
+          <div> Edit: <input type="text" name="location" value={this.state.location} placeholder="Location" onChange={this.handleLocationChange} /></div>
           <div className="submitButton">
             <input type="submit" value="Submit Changes" />
           </div>
         </form>
-
         <div>Photo</div>
         { this.props.info.photo ? <img src={this.props.info.photo} /> : <img src="http://melplex.eu/wp-content/uploads/2015/06/provider_female.jpg" /> }
         <div>
           <ImageUpload />
         </div>
+        { !this.state.log ? <Redirect to={{ pathname: '/' }} /> : null }
       </div>
     );
   }
@@ -63,58 +93,3 @@ class ProfileEdit extends Component {
 
 
 export default ProfileEdit;
-//
-// class Signup extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { email: this.props, password: '', valid: false };
-//     this.handleEmailChange = this.handleEmailChange.bind(this);
-//     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-//
-//   handleEmailChange(event) {
-//     console.log(event.target.value);
-//     this.setState({ email: event.target.value });
-//   }
-//
-//   handlePasswordChange(event) {
-//     console.log(event.target.value);
-//     this.setState({ password: event.target.value });
-//   }
-//   handleSubmit(event) {
-//     event.preventDefault();
-//     console.log('Email and pword submitted ', this.state.email + this.state.password);
-//     Axios.post('/api/users/signup', {
-//       username: this.state.email,
-//       password: this.state.password
-//     }).then((resp) => {
-//       Cookies.set('com.CivicsPortal', resp.data.token, { expires: 7 });
-//     }).then(() => {
-//       this.setState({ valid: true });
-//     }).catch((err) => {
-//       console.log(err);
-//     });
-//   }
-//
-//   render() {
-//     return (
-//       <div>
-//         <form onSubmit={this.handleSubmit} >
-//           <h1>Your Profile</h1>
-//           <h3>Username: {this.props.info.username}</h3>
-//           <h3>Day of profile creation: {this.props.info.createdAt} </h3>
-//           <div> Update photo
-//           <input type="text" name="username" placeholder="Email Address" onChange={this.handleEmailChange} />
-//           <h3>Password</h3>
-//           <input type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange} />
-//           <input type="submit" value="Signup"/>
-//         </form>
-//         {
-//            this.state.valid ? <Redirect to={{ pathname: '/auth' }} /> : null
-//          }
-//       </div>);
-//     }
-// }
-//
-// export default Signup;
