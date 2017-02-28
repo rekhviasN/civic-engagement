@@ -5,6 +5,7 @@ import newsSearchReducer from './politicianSearchReducer';
 import propublicaReducer from './propublicaReducer';
 import meetupReducer from './meetupSearchReducer';
 import meetupMapReducer from './meetupMapReducer';
+import setLogin from './setLogin';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   // News: politicianSearchReducer, // ugh this name is so bad
   Propublica: propublicaReducer,
   Meetup: meetupReducer,
-  MeetupMap: meetupMapReducer
+  MeetupMap: meetupMapReducer,
+  LoggedIn: setLogin
 });
 
 export default rootReducer;

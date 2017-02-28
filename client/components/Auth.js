@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import ProfileEdit from '../components/ProfileEdit';
+import setLoggedIn from '../actions/loggingActions';
 
-export default class Auth extends Component {
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setLoggedIn }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {
+    LoggedIn: state.LoggedIn
+  };
+}
+
+class Auth extends Component {
   constructor(props) {
     super(props);
     this.state = {
       promise: false,
       info: 'empty info state'
     };
+    this.setLoggedState = this.setLoggedState.bind(this);
   }
 
   componentWillMount() {
     console.log('Auth did mountT');
+    console.log('this.props.LoggedIn', this.props.LoggedIn);
+    console.log('this.props.setLoggedIn', this.props.setLoggedIn);
     axios.get('/api/users/checkAuth')
       .then((res) => {
-        console.log('req in will mounTT', res, 'res.status', res.status);
-        console.log('type of reqstatus', typeof res.status);
+        console.log('req in will mounTT', res, 'res.status', res.status);;
         if (res.status !== 401) {
           this.setState({ promise: true, info: res.data });
           console.log('thisstate.promise after res status good', this.state.promise);
@@ -28,16 +43,23 @@ export default class Auth extends Component {
       })
       .catch((err) => { console.log(err); });
   }
-// <Redirect to={{ pathname: 'signin' }}
+
+  setLoggedState(info) {
+    this.props.setLoggedIn(info);
+  }
   render() {
     console.log('rendering, this.state.promise', this.state.promise);
     console.log('this.state.info from auth', this.state.info);
+    console.log('this')
+
     return (
       <div>
         {
-           this.state.promise ? <ProfileEdit info={this.state.info} /> : null
+           this.state.promise ? (this.setLoggedState(this.state.info), <ProfileEdit info={this.state.info} />) : null
         }
       </div>
     );
   }
 }
+
+export default connect(mapDispatchToProps)(Auth);
