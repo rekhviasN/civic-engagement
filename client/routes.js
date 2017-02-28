@@ -14,6 +14,7 @@ import PageNotFound from './components/PageNotFound';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Auth from './components/Auth';
+import Top20 from './components/Top20Wrapper';
 
 // import MapContainer from './containers/GoogleMapContainer';
 // import LocationBar from './components/locationBar';
@@ -28,8 +29,6 @@ const home = function home() {
     <Link to="/counter">Counter</Link>
     <br />
     <Link to="/req">Go to request</Link>
-    <br />
-    <Link to="/map">Google Map</Link>
     <br />
     <Link to="/location">Rep Lookup</Link>
     <br />
@@ -48,6 +47,8 @@ const home = function home() {
     <Link to="/signup">Signup</Link>
     <br />
     <Link to="/congress">Congress!</Link>
+    <br />
+    <Link to="/top20">Campaign Finance Top 20 Lists</Link>
   </div>);
 };
 
@@ -74,6 +75,7 @@ export default (
     <Route path="signup" component={Signup} />
     <Route path="auth" component={Auth} />
     <Route path="congress" component={CongressContainer} />
+    <Route path="top20" component={Top20} />
     <Route path="*" component={PageNotFound} />
   </Route>
 );
