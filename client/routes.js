@@ -7,7 +7,7 @@ import Req from './src/req';
 // import MapContainer from './containers/GoogleMapContainer';
 import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
-import MapContainer from './containers/GoogleMapContainer-v2';
+import MapContainer from './containers/GoogleMapContainer';
 import Dashboard from './components/dashboard';
 import News from './components/newsList';
 import PageNotFound from './components/PageNotFound';
