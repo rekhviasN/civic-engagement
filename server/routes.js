@@ -32,6 +32,7 @@ router.get('/propublica/member/bills/:name', propublica.memberBills);
 
 router.post('/users/signin', userController.signin);
 router.post('/users/signup', userController.signup);
+router.post('/users/update', userController.update);
 router.get('/users/checkAuth', userController.checkAuth);
 
 

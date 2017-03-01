@@ -120,11 +120,6 @@ module.exports = {
   },
 
   checkAuth: function (req, res, next) {
-    // checking to see if the user is authenticated
-    // grab the token in the header is any
-    // then decode the token, which we end up being the user object
-    // check to see if that user exists in the database
-    // console.log(req);
 
     const token = req.headers.cookie.split('=')[1];
     console.log('token after split and parse', token);
@@ -145,64 +140,32 @@ module.exports = {
           next(error);
         });
     }
+  },
+
+  update: function(req, res, next) {
+    console.log(req.body);
+    const token = req.headers.cookie.split('=')[1];
+    console.log('update: token', token);
+    if (!token) {
+      next(new Error('No token'));
+    } else {
+      const decodeUser = jwt.decode(token, 'secret');
+      console.log('user decoded from token', decodeUser);
+      User.findOne({ where: { username: decodeUser.username } })
+      .then((user) => {
+        user.updateAttributes({
+          location: req.body.location,
+          issues: req.body.issues,
+          quote: req.body.quote,
+          aboutme: req.body.aboutme,
+          image: req.body.image
+        }).then((resp) => {
+          console.log('should be updated user', resp);
+          const newToken = jwt.encode(resp, 'secret');
+          res.send({ user: resp, token: newToken });
+        });
+      })
+      .catch((err) => { console.log(err); });
+    }
   }
-
 };
-
-//
-//   checkAuth: function (req, res, next) {
-//     // checking to see if the user is authenticated
-//     // grab the token in the header is any
-//     // then decode the token, which we end up being the user object
-//     // check to see if that user exists in the database
-//     var token = req.headers['x-access-token'];
-//     if (!token) {
-//       next(new Error('No token'));
-//     } else {
-//       var user = jwt.decode(token, 'secret');
-//       findUser({username: user.username})
-//         .then(function (foundUser) {
-//           if (foundUser) {
-//             res.send(200);
-//           } else {
-//             res.send(401);
-//           }
-//         })
-//         .fail(function (error) {
-//           next(error);
-//         });
-//     }
-//   }
-
-
-// function encrypt(pass) {
-//   return Bcrypt.genSalt(10, function (err, salt) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//     return Bcrypt.hash(pass, salt, function (error, hash) {
-//       if (error) {
-//         return console.error(error);
-//       }
-//       console.log(hash);
-//       return hash;
-//     });
-//   });
-// };
-//
-// const dummyPW = encrypt('AYOO');
-//
-// sequelize.sync().then(function(){
-//   const hey = encrypt('Ayo');
-//   hey.then((resp) => {
-//     User.create({
-//       username: 'janedoe',
-//       password: resp
-//     })
-//     .then(function (jane) {
-//       console.log(jane.get({
-//         plain: true
-//       }));
-//     });
-//   });
-// });
