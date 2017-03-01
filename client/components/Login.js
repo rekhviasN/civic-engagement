@@ -2,12 +2,18 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
+import { connect } from 'react-redux';
 
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', valid: false };
+    this.state = {
+      email: '',
+      password: '',
+      valid: false,
+      loggedIn: this.props.isLoggedIn
+    };
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,10 +62,18 @@ class Login extends React.Component {
           <input type="submit" value="Login"/>
         </form>
         {
-           this.state.valid ? <Redirect to={{ pathname: '/auth' }} /> : (null)
-         }
+           this.state.valid || this.state.loggedIn === true ? <Redirect to={{ pathname: '/auth' }} /> : (null)
+        }
       </div>)
   }
 }
 
-export default Login;
+
+function mapStateToProps(state) {
+  console.log('console.log state.loggedIn', state.LoggedIn);
+  return {
+    isLoggedIn: state.LoggedIn.loggedIn
+  };
+}
+
+export default connect(mapStateToProps)(Login);

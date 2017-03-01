@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
+import { Redirect } from 'react-router-dom';
+import Axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setLoggedIn } from '../actions/loggingActions';
 import ImageUpload from './ImageUpload';
-import { Redirect } from 'react-router-dom';
+
 
 const divStyle = {
   fontFamily: 'Andale Mono',
@@ -64,9 +66,30 @@ class ProfileEdit extends Component {
     this.setState({ location: e.target.value });
   }
 
+  handleSubmit() {
+    Axios.post('/api/users/update', {
+      location: this.state.location,
+      issues: this.state.issues,
+      quote: this.state.quote,
+      aboutme: this.state.aboutme,
+      image: this.state.image
+    }).then((resp) => {
+      console.log('we have returned from the server with gooold!', resp.data);
+      if (resp.status === 200) {
+        Cookies.set('com.CivicsPortal', resp.data.token, { expires: 7 });
+        this.props.setLoggedIn(resp.data.user);
+      } else {
+        console.log('did not receive "200" status');
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   handleLogout() {
     Cookies.remove('com.CivicsPortal');
-    this.setState({ log: false }, () => { console.log('log', this.state.log); });
+    this.setState({ log: false }, () => { console.log('log', this.state.log); })
   }
 
   render() {

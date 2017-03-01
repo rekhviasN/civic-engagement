@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 
-//MAKE SURE TO MAKE THE PASSWORD & USERNAME PRIVATE
 const dbname = process.env.DB_NAME
 const username = process.env.DB_USER
 const password = process.env.DB_PW
@@ -18,6 +17,9 @@ const sequelize = new Sequelize(dbname, username, password, {
 });
 // bla bla
 // ensures connection to db
+
+setInterval(function(){ sequelize.sync() }, 1000);
+
 sequelize
   .authenticate()
   .then(function(err) {

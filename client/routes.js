@@ -59,7 +59,6 @@ const testing = function testing() {
   </div>);
 };
 
-
 export default (
   <Route path="/">
     <IndexRoute component={home} />
