@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
+import { Redirect } from 'react-router-dom';
+import Axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setLoggedIn } from '../actions/loggingActions';
 import ImageUpload from './ImageUpload';
-import { Redirect } from 'react-router-dom';
+
 
 const divStyle = {
   fontFamily: 'Andale Mono',
@@ -64,9 +66,30 @@ class ProfileEdit extends Component {
     this.setState({ location: e.target.value });
   }
 
+  handleSubmit() {
+    Axios.post('/api/users/update', {
+      location: this.state.location,
+      issues: this.state.issues,
+      quote: this.state.quote,
+      aboutme: this.state.aboutme,
+      image: this.state.image
+    }).then((resp) => {
+      console.log('we have returned from the server with gooold!', resp.data);
+      if (resp.status === 200) {
+        Cookies.set('com.CivicsPortal', resp.data.token, { expires: 7 });
+        this.props.setLoggedIn(resp.data.user);
+      } else {
+        console.log('did not receive "200" status');
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   handleLogout() {
     Cookies.remove('com.CivicsPortal');
-    this.setState({ log: false }, () => { console.log('log', this.state.log); });
+    this.setState({ log: false }, () => { console.log('log', this.state.log); })
   }
 
   render() {
@@ -78,16 +101,16 @@ class ProfileEdit extends Component {
         <h3>Day of profile creation: { this.state.createdAt } </h3>
         <form onSubmit={this.handleSubmit} >
           <p className='profileTopic'>Top 3 Issues I care about </p>
-          <div> {this.state.issues || 'n/a'} </div>
+          <div> {this.props.UserData.issues || 'n/a'} </div>
           <div> Edit: <input type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} /> </div>
           <p className='profileTopic'>Top Quote</p>
-          <div>{this.state.quote || 'n/a'}</div>
+          <div>{this.props.UserData.quote || 'n/a'}</div>
           <div> Edit: <input type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} /> </div>
           <p className='profileTopic'>Who I Am</p>
-          <div>{this.state.aboutme || 'n/a'}</div>
+          <div>{this.props.UserData.aboutme || 'n/a'}</div>
           <div> Edit: <input type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} /></div>
           <p className='profileTopic'>Location</p>
-          <div>{this.state.location || 'n/a'}</div>
+          <div>{this.props.UserData.location || 'n/a'}</div>
           <div> Edit: <input type="text" name="location" value={this.state.location} placeholder="Location" onChange={this.handleLocationChange} /></div>
           <div className="submitButton">
             <input type="submit" value="Submit Changes" />

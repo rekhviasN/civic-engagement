@@ -26,16 +26,11 @@ class Auth extends Component {
   }
 
   componentWillMount() {
-    console.log('Auth did mountT');
-    console.log('this.props.LoggedIn', this.props.LoggedIn);
-    console.log('this.props.setLoggedIn', this.props.setLoggedIn);
     axios.get('/api/users/checkAuth')
       .then((res) => {
         console.log('req in will mounTT', res, 'res.status', res.status);;
         if (res.status !== 401) {
           this.setState({ promise: true, info: res.data });
-          console.log('thisstate.promise after res status good', this.state.promise);
-          console.log('req.body should be user and info, this is res: ', res);
         } else {
           console.log('7373res.status not equal to number 200; look at type of res status');
         }
@@ -49,8 +44,6 @@ class Auth extends Component {
   render() {
     console.log('rendering, this.state.promise', this.state.promise);
     console.log('this.state.info from auth', this.state.info);
-    console.log('this')
-
     return (
       <div>
         {

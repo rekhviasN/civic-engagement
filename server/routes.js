@@ -35,6 +35,7 @@ router.get('/propublica/top20/:cycle/:category', pubFinance.top20List);
 
 router.post('/users/signin', userController.signin);
 router.post('/users/signup', userController.signup);
+router.post('/users/update', userController.update);
 router.get('/users/checkAuth', userController.checkAuth);
 
 
