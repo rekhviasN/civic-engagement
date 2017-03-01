@@ -1,5 +1,8 @@
 import shortid from 'shortid';
 
+import _ from 'underscore';
+import Card from 'grommet/components/Card';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -44,6 +47,9 @@ class RepDisplay extends Component {
   }
   // componentDidUpdate(nextProps, nextState) {
   // componentDidMount() {
+  componentShouldUpdate() {
+    return false;
+  }
 
   // componentWillReceiveProps(nextProps) {
   //   // compare lengths for update conditional
@@ -59,16 +65,14 @@ class RepDisplay extends Component {
     // reps have been saved to state! this should always be populated.
     
     if (propublica) {
-      const display = require('underscore').map(propublica, (rep) => {
+      const display = _.map(propublica, (rep) => {
       // const display = reps.map((rep) => {
       //   const { name, party, phones } = rep;
       //   const chamber = rep.urls[0].split('.').reverse()[1];
       //   const title = (chamber === 'house') ?
       //     'Representative' : 'Senator';
-              // googleRep={rep}
-
         return (
-          <div key={shortid.generate()}>
+          <div className="rep-focus" key={shortid.generate()}>
             <RepBio
               key={shortid.generate()}
               propublicaRep={propublica[rep.name]}

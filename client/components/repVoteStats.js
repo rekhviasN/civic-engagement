@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
 
+import Card from 'grommet/components/Card';
+import Accordion from 'grommet/components/Accordion';
+import AccordionPanel from 'grommet/components/AccordionPanel';
+
 import { Doughnut, Line } from 'react-chartjs-2';
 import { DoughnutTemplate, LineGraphTemplate } from './graphTemplates';
 
@@ -29,13 +33,22 @@ class repVoteStats extends Component {
     const lineGraphData = Object.assign({}, LineGraphTemplate);
     lineGraphData.labels = [];
     lineGraphData.datasets[0].data = [];
+    lineGraphData.datasets[0].label = '% of votes missed';
 
-    const options = {
-      // animationSteps: 100,
-      // animationEasing: 'easeOutBounce',
-      // animateRotate: true,
+    const doughOptions = {
+      animationSteps: 100,
+      animationEasing: 'easeOutBounce',
+      animateRotate: true,
       responsive: false,
       maintainAspectRatio: false
+    };
+
+    const lineOptions = {
+      animationSteps: 100,
+      animationEasing: 'easeOutBounce',
+      animateRotate: true,
+      responsive: false,
+      maintainAspectRatio: false,
     };
 
     let voteDisplay;
@@ -58,10 +71,10 @@ class repVoteStats extends Component {
         if (vote.position === 'Present') data[2] += 1;
 
         return (
-          <VoteDetails
-            key={shortid.generate()}
-            vote={vote}
-          />
+            <VoteDetails
+              key={shortid.generate()}
+              vote={vote}
+            />
         );
       });
     }
@@ -74,7 +87,7 @@ class repVoteStats extends Component {
             data={doughnutGraphData}
             height={200}
             width={400}
-            options={ options }
+            options={doughOptions}
           />
         </div>
         <div>
@@ -82,10 +95,10 @@ class repVoteStats extends Component {
             data={lineGraphData}
             height={200}
             width={400}
-            options={ options }
+            options={lineOptions}
           />
         </div>
-        <button onClick={() => this.handleClick()}>
+        {/*<button onClick={() => this.handleClick()}>
           stuff voted on
         </button>
         {this.state.expanded ?
@@ -94,7 +107,12 @@ class repVoteStats extends Component {
           ) : (
             <div />
           )
-        }
+        }*/}
+        <Accordion>
+          <AccordionPanel heading='Last 100 votes' >
+            {voteDisplay}
+          </AccordionPanel>
+        </Accordion>
       </div>
     );
   }
