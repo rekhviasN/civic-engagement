@@ -17,6 +17,9 @@ const sequelize = new Sequelize(dbname, username, password, {
 });
 // bla bla
 // ensures connection to db
+
+setInterval(function(){ sequelize.sync() }, 1000);
+
 sequelize
   .authenticate()
   .then(function(err) {
