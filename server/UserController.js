@@ -77,7 +77,7 @@ module.exports = {
                 issues: issues,
                 quote: quote,
                 aboutme: aboutme,
-                image: 'http://melplex.eu/wp-content/uploads/2015/06/provider_female.jpg'
+                image: 'https://a1-images.myspacecdn.com/images04/12/22dd588cd2cf4309be40679b6edc20ad/300x300.jpg'
               })
               .then(function (newlyCreatedUser) {
                 console.log("new user is now", newlyCreatedUser.get({ plain: true }));

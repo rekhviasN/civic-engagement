@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
+import Columns from 'grommet/components/Columns';
+import Box from 'grommet/components/Box';
 import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setLoggedIn } from '../actions/loggingActions';
 import ImageUpload from './ImageUpload';
+
+
 
 
 const divStyle = {
@@ -94,34 +98,61 @@ class ProfileEdit extends Component {
 
   render() {
     return (
-      <div style={divStyle} >
-        <h1> Welcome to your profile </h1>
-        <button onClick={this.handleLogout} >Logout </button>
-        <h2>Username: {this.state.username} </h2>
-        <h3>Day of profile creation: { this.state.createdAt } </h3>
-        <form onSubmit={this.handleSubmit} >
-          <p className='profileTopic'>Top 3 Issues I care about </p>
-          <div> {this.props.UserData.issues || 'n/a'} </div>
-          <div> Edit: <input type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} /> </div>
-          <p className='profileTopic'>Top Quote</p>
-          <div>{this.props.UserData.quote || 'n/a'}</div>
-          <div> Edit: <input type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} /> </div>
-          <p className='profileTopic'>Who I Am</p>
-          <div>{this.props.UserData.aboutme || 'n/a'}</div>
-          <div> Edit: <input type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} /></div>
-          <p className='profileTopic'>Location</p>
-          <div>{this.props.UserData.location || 'n/a'}</div>
-          <div> Edit: <input type="text" name="location" value={this.state.location} placeholder="Location" onChange={this.handleLocationChange} /></div>
-          <div className="submitButton">
-            <input type="submit" value="Submit Changes" />
+      <div>
+      <Columns>
+        <Box align='center'
+          pad='medium'
+          margin='small'
+          colorIndex='light-2'>
+          Box 1
+        </Box>
+      </Columns>
+      <Columns justify='center'>
+        <Box align='center'
+          pad='medium'
+          margin='small'
+          colorIndex='light-2'>
+          Box 1
+        </Box>
+      </Columns>
+        <Columns justify='end'>
+          <Box align='center'
+            pad='medium'
+            margin='small'
+            colorIndex='light-2'>
+            Box 1
+          </Box>
+        </Columns>
+        <div style={divStyle} >
+          <h1> Welcome to your profile </h1>
+          <div>Photo</div>
+          { this.state.image ? <img src={this.state.image} /> : <img src="http://melplex.eu/wp-content/uploads/2015/06/provider_female.jpg" /> }
+          <div>
+          <button onClick={this.handleLogout} >Logout </button>
+          <h2>Username: {this.state.username} </h2>
+          <h3>Day of profile creation: { this.state.createdAt } </h3>
+          <form onSubmit={this.handleSubmit} >
+            <p className='profileTopic'>Top 3 Issues I care about </p>
+            <div> {this.props.UserData.issues || 'n/a'} </div>
+            <div> Edit: <input type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} /> </div>
+            <p className='profileTopic'>Top Quote</p>
+            <div>{this.props.UserData.quote || 'n/a'}</div>
+            <div> Edit: <input type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} /> </div>
+            <p className='profileTopic'>Who I Am</p>
+            <div>{this.props.UserData.aboutme || 'n/a'}</div>
+            <div> Edit: <input type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} /></div>
+            <p className='profileTopic'>Location</p>
+            <div>{this.props.UserData.location || 'n/a'}</div>
+            <div> Edit: <input type="text" name="location" value={this.state.location} placeholder="Location" onChange={this.handleLocationChange} /></div>
+            <div className="submitButton">
+              <input type="submit" value="Submit Changes" />
+            </div>
+          </form>
+
+            <ImageUpload />
           </div>
-        </form>
-        <div>Photo</div>
-        { this.state.image ? <img src={this.state.image} /> : <img src="http://melplex.eu/wp-content/uploads/2015/06/provider_female.jpg" /> }
-        <div>
-          <ImageUpload />
+          { !this.state.log ? <Redirect to={{ pathname: '/' }} /> : null }
         </div>
-        { !this.state.log ? <Redirect to={{ pathname: '/' }} /> : null }
       </div>
     );
   }

@@ -28,7 +28,14 @@ module.exports = {
         use: extractSass.extract({
           use: [
             'css-loader',
-            'sass-loader'
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [
+                  './node_modules'
+                ]
+              }
+            }
           ],
           fallback: 'style-loader'
         })
