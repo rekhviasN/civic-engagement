@@ -51,6 +51,7 @@ class RepDisplay extends Component {
   }
 
   handleClick(current) {
+    console.log(current);
     this.setState({ current });
   }
 
