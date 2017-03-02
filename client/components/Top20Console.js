@@ -21,12 +21,16 @@ class Top20Console extends Component {
       },
       // 'contribution-total'
       catKey: 'total_contributions',
-      cycle: '2016'
+      // cycle: '2016'
+      cycle: {
+        value: '2016',
+        label: '2016'
+      }
     };
     this.catHandleChange = this.catHandleChange.bind(this);
     this.cycleHandleChange = this.cycleHandleChange.bind(this);
     this.catHandleChangeNew = this.catHandleChangeNew.bind(this);
-    // this.cycleHandleChangeNew = this.cycleHandleChangeNew.bind(this);
+    this.cycleHandleChangeNew = this.cycleHandleChangeNew.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -68,6 +72,14 @@ class Top20Console extends Component {
     console.log('new cycle ', event.target.value);
     this.setState({
       cycle: event.target.value
+    });
+  }
+
+  cycleHandleChangeNew(event) {
+    console.log('current cycle ', this.state.cycle);
+    console.log('new cycle ', event.target.value);
+    this.setState({
+      cycle: event.option
     });
   }
 
@@ -118,7 +130,9 @@ class Top20Console extends Component {
 
       return (
         <div className="top20-console">
-          <Form>
+          <Form
+            className="row"
+          >
             <Select
               value={this.state.category}
               onChange={this.catHandleChangeNew}
@@ -127,7 +141,7 @@ class Top20Console extends Component {
             />
             <Select
               value={this.state.cycle}
-              onChange={this.cycleHandleChange}
+              onChange={this.cycleHandleChangeNew}
               options={cycleOptionsNew}
               placeHolder="Election Cycle"
             />
