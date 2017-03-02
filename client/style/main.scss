@@ -37,13 +37,12 @@ section:not(.grommetux-section).meetup-map {
 
 .meetup-events-list {
   height: 100%;
-  margin-left: 12px;
+  margin: 0px 12px;
   overflow: hidden;
   overflow-y: auto;
 }
 
 .meetup-list-item {
-  border: 1px solid #333333;
   word-wrap: break-word;
 }
 
