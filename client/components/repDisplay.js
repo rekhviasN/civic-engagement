@@ -2,6 +2,8 @@ import shortid from 'shortid';
 
 import _ from 'underscore';
 import Card from 'grommet/components/Card';
+import Tab from 'grommet/components/Tab';
+import Tabs from 'grommet/components/Tabs';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -19,13 +21,13 @@ import testing from '../actions/locationBarActions';
 class RepDisplay extends Component {
   constructor(props) {
     super(props);
-  // }
-
-  // componentWillMount() {
     
+    this.state = {
+      current: null
+    };
+
     // seed a location and some reps for testing
     // this.props.testing('1216 broadway ny ny');
-
     const names = [
       'Charles E. Schumer',
       'Kirsten E. Gillibrand',
@@ -44,56 +46,79 @@ class RepDisplay extends Component {
     //   this.props.bills(name);
     //   this.props.votes(name);
     // });
-  }
-  // componentDidUpdate(nextProps, nextState) {
-  // componentDidMount() {
-  componentShouldUpdate() {
-    return false;
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   // compare lengths for update conditional
-  //   const { name, News } = this.props;
-  //   if (nextProps.News[name].length > News[name].length) {
-  //     // console.log(`recieved news for ${this.props.name}`);
-  //     if (!this.state.searched) this.setState({ searched: true });
-  //   }
-  // }
+  handleClick(current) {
+    this.setState({ current });
+  }
 
   render() {
     const { reps, propublica } = this.props;
     // reps have been saved to state! this should always be populated.
     
-    if (propublica) {
-      const display = _.map(propublica, (rep) => {
-      // const display = reps.map((rep) => {
-      //   const { name, party, phones } = rep;
-      //   const chamber = rep.urls[0].split('.').reverse()[1];
-      //   const title = (chamber === 'house') ?
-      //     'Representative' : 'Senator';
-        return (
+    if (Object.keys(propublica).length === 3) {   // (hopefully) can remove for deploy/production
+      // this generates a set of graphs for each rep, might get scrapped
+      /*const display = _.map(propublica, (rep) =>
+        <div className="rep-focus" key={shortid.generate()}>
+          <h1>{ rep.name }</h1>
+          <RepBio
+            key={shortid.generate()}
+            propublicaRep={propublica[rep.name]}
+          />
+          <RepVoteStats
+            key={shortid.generate()}
+            rep={propublica[rep.name]}
+          />
+          <RepBillsList
+            key={shortid.generate()}
+            rep={propublica[rep.name]}
+          />
+        </div>
+      );*/
+
+
+      const tabArray = _.map(propublica, rep =>
+        <Tab
+          key={shortid.generate()}
+          title={rep.name}
+          onClick={() => this.handleClick(rep.name)} 
+        />
+      );
+
+      let test;
+      if (this.state.current !== null) {
+        test = (
           <div className="rep-focus" key={shortid.generate()}>
-            <RepBio
-              key={shortid.generate()}
-              propublicaRep={propublica[rep.name]}
-            />
+            <h1>{ this.state.current }</h1>
             <RepVoteStats
-              key={shortid.generate()}
-              rep={propublica[rep.name]}
-            />
-            <RepBillsList
-              key={shortid.generate()}
-              rep={propublica[rep.name]}
+              rep={propublica[this.state.current]}
             />
           </div>
         );
-      });
+      }
+
+
+
       return (
         <div>
-          <div>{display}</div>
+          <Tabs>
+            { tabArray }
+          </Tabs>
+          { this.state.current ? (
+            <div>{test}</div>
+          ) : (
+            <div>
+              <hr />
+              pick your rep!
+              { /* {display} */ }
+            </div>
+          )}
         </div>
       );
-    }
+    }  // closes the if block, to be removed
+
     // nothing!
     return (<div>you should not see this usually!</div>);
   }
