@@ -7,10 +7,6 @@ body {
   margin: 0px;
 }
 
-.rep-focus {
-  width: 500px;
-}
-
 .row {
   display: flex;
   flex-direction: row;
@@ -41,4 +37,13 @@ body {
 
 .profileTopic {
   color: #333;
+}
+
+.rep-focus {
+  width: 500px;
+}
+
+.rep-photo {
+  border-radius: 5px;
+  width: 75%;
 }
