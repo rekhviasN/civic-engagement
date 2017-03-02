@@ -50,3 +50,8 @@ section:not(.grommetux-section).meetup-map {
   height: 100%;
   width: 100%;
 }
+
+.top20-main {
+  height: calc(100% - 48px);
+  margin: 12px;
+}
