@@ -105,28 +105,41 @@ class RepDisplay extends Component {
       <div>
         <Tabs>{ tabArray }</Tabs>
         { this.state.current ? (
-          <Columns>
-            <Box>
+          <Box
+            direction='row'
+            justify='center'
+            full='true'
+          >
+            <Box
+              align='center'
+              pad='small'
+              margin='small'
+            >
               <RepBio
                 key={shortid.generate()}
                 bio={propublica[this.state.current]}
                 google={rep}
               />
             </Box>
-            <Box>
-              <RepVoteStats rep={propublica[this.state.current]} />
-            </Box>
-            <Box>
+            <Box
+              align='center'
+              pad='small'
+              margin='small'
+            >
               <RepVoteStatsLineGraph rep={propublica[this.state.current]} />
             </Box>
-            <Box>
+            <Box
+              align='center'
+              pad='small'
+              margin='small'
+            >
               <RepVoteStatsDoughnut rep={propublica[this.state.current]} />
             </Box>
-          </Columns>
+          </Box>
         ) : (
-          <div>
+          <Box>
             <Spinning /> fetching congressional activity
-          </div>
+          </Box>
         )}
       </div>
     );
