@@ -12,8 +12,6 @@ import rootReducer from './reducers';
 import routes from './routes';
 import './style/main.scss';
 
-// const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger();
 const store = createStore(
@@ -22,12 +20,12 @@ const store = createStore(
     applyMiddleware(ReduxPromise, logger)
   )
 );
-// const createStoreWithMiddleware = applyMiddleware(ReduxPromise, logger)(createStore);
 
 render((
   <App
     centered={false}
   >
+  <App>
     <Provider store={store}>
       <Router history={hashHistory} routes={routes} />
     </Provider>
