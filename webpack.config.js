@@ -45,5 +45,10 @@ module.exports = {
   plugins: [
     extractSass
   ],
-  devtool: 'eval-source-map'
+  devtool: 'eval-source-map',
+  devServer: {
+    contentBase: APP_DIR,
+    compress: true,
+    port: 9000
+  }
 };
