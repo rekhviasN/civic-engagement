@@ -28,7 +28,6 @@
     "react": "^15.4.2",
     "react-burger-menu": "^1.10.12",
     "react-chartjs-2": "^2.0.5",
-    "react-d3-library": "^1.1.7",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.11.0",
     "react-google-maps": "^4.11.0",
@@ -66,14 +65,15 @@
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.0",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack-dev-server": "^2.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "start": "nodemon index.js",
-    "webdev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors --inline"
+    "webdev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
