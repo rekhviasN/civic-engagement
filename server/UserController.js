@@ -21,8 +21,11 @@ const User = sequelize.define('user', {
   freezeTableName: true,
   instanceMethods: {
     comparePasswords: function (candidatePassword, callback) {
+      console.log('comparing pwords');
       const dbPassword = this.password;
       Bcrypt.compare(candidatePassword, dbPassword, function (err, isMatch) {
+        console.log('candidatePassword',candidatePassword)
+        console.log('dbPassword',dbPassword);
          callback(err, isMatch);
       });
     }
@@ -74,7 +77,7 @@ module.exports = {
                 issues: issues,
                 quote: quote,
                 aboutme: aboutme,
-                image: 'http://melplex.eu/wp-content/uploads/2015/06/provider_female.jpg'
+                image: 'https://a1-images.myspacecdn.com/images04/12/22dd588cd2cf4309be40679b6edc20ad/300x300.jpg'
               })
               .then(function (newlyCreatedUser) {
                 console.log("new user is now", newlyCreatedUser.get({ plain: true }));
@@ -102,12 +105,17 @@ module.exports = {
         if (!user) {
           next(new Error('User does not exist'));
         } else {
-          console.log('user exists', user);
+          console.log('user exists', user.dataValues);
           user.comparePasswords(password, function (err, isMatch) {
+            console.log('back out the callback, yeah')
+            console.log('ismatch:', isMatch);
+            console.log('err', err);
             if (err) {
+              console.log('err')
               next(new Error('Password doesn\'t match'));
             }
             if (isMatch) {
+              console.log('is match');
               const token = jwt.encode(user, 'secret');
               res.json({ token: token });
             }
