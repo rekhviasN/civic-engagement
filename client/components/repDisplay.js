@@ -104,7 +104,7 @@ class RepDisplay extends Component {
     return (
       <div>
         <Tabs>{ tabArray }</Tabs>
-        <Columns justify='center'>
+        <Columns>
           { this.state.current ? (
             <div>
               <Box>
