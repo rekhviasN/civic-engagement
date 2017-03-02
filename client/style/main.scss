@@ -1,6 +1,6 @@
 #root, .App {
-  height: 100%;
-  width: 100%;
+  // height: 100%;
+  // width: 100%;
 }
 
 body {
@@ -11,18 +11,35 @@ body {
   display: flex;
   flex-direction: row;
 }
+.dashboard-header {
 
-.dashboard-side {
-  max-width: 400px;
 }
 
-.meetup-map {
+.dashboard-side {
+  // max-width: 400px;
+  height: 100%;
+}
+
+section:not(.grommetux-section).meetup-map {
+  padding-bottom: 0px;
+}
+
+.dashboard-split {
+  height: calc(100% - 72px);
+}
+
+.meetup-searchbar {
+  width: 100%;
+  input {
+    width: 100%;
+  }
 }
 
 .meetup-events-list {
   height: 100%;
+  margin-left: 12px;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .meetup-list-item {
