@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-import Columns from 'grommet/components/Columns';
-import Box from 'grommet/components/Box';
 import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
+import dateFormat from 'dateformat';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Accordion from 'grommet/components/Accordion';
+import AccordionPanel from 'grommet/components/AccordionPanel';
+import Paragraph from 'grommet/components/Paragraph';
 import { setLoggedIn } from '../actions/loggingActions';
 import ImageUpload from './ImageUpload';
 
-
-
-
-const divStyle = {
-  fontFamily: 'Andale Mono',
-	fontSize: '14px',
-  fontStyle: 'normal',
-	fontVariant: 'normal',
-	fontWeight: '400',
-	lineHeight: '20px'
+const profileSidebarStyle = {
+  position: 'absolute',
+  right: '75px',
+  top: '100px',
+  width: '300px',
+  border: '3px solid',
+  padding: '10px',
+  marginRight: '100px'
 };
 
+const inputStyle = {
+  minWidth: '700px',
+  minHeight: '100px'
+};
+
+const profileInfoStyle = {
+  paddingTop: '30',
+  paddingLeft: '150px',
+  paddingBottom: '60px'
+};
+
+const editPanelStyle = {
+  paddingLeft: '110px',
+  paddingTop: '30px',
+  paddingBottom: '50px'
+};
 
 function mapStateToProps(state) {
   return {
@@ -98,62 +114,66 @@ class ProfileEdit extends Component {
 
   render() {
     return (
-      <div>
-      <Columns>
-        <Box align='center'
-          pad='medium'
-          margin='small'
-          colorIndex='light-2'>
-          Box 1
-        </Box>
-      </Columns>
-      <Columns justify='center'>
-        <Box align='center'
-          pad='medium'
-          margin='small'
-          colorIndex='light-2'>
-          Box 1
-        </Box>
-      </Columns>
-        <Columns justify='end'>
-          <Box align='center'
-            pad='medium'
-            margin='small'
-            colorIndex='light-2'>
-            Box 1
-          </Box>
-        </Columns>
-        <div style={divStyle} >
-          <h1> Welcome to your profile </h1>
-          <div>Photo</div>
-          { this.state.image ? <img src={this.state.image} /> : <img src="http://melplex.eu/wp-content/uploads/2015/06/provider_female.jpg" /> }
-          <div>
-          <button onClick={this.handleLogout} >Logout </button>
-          <h2>Username: {this.state.username} </h2>
-          <h3>Day of profile creation: { this.state.createdAt } </h3>
-          <form onSubmit={this.handleSubmit} >
-            <p className='profileTopic'>Top 3 Issues I care about </p>
-            <div> {this.props.UserData.issues || 'n/a'} </div>
-            <div> Edit: <input type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} /> </div>
-            <p className='profileTopic'>Top Quote</p>
-            <div>{this.props.UserData.quote || 'n/a'}</div>
-            <div> Edit: <input type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} /> </div>
-            <p className='profileTopic'>Who I Am</p>
-            <div>{this.props.UserData.aboutme || 'n/a'}</div>
-            <div> Edit: <input type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} /></div>
-            <p className='profileTopic'>Location</p>
-            <div>{this.props.UserData.location || 'n/a'}</div>
-            <div> Edit: <input type="text" name="location" value={this.state.location} placeholder="Location" onChange={this.handleLocationChange} /></div>
-            <div className="submitButton">
-              <input type="submit" value="Submit Changes" />
-            </div>
-          </form>
 
-            <ImageUpload />
-          </div>
-          { !this.state.log ? <Redirect to={{ pathname: '/' }} /> : null }
+    <div>
+      <h1 style={{ textAlign: 'center' }}> Welcome to your profile </h1>
+      <div>
+        <div style={profileSidebarStyle}>
+          { this.state.image ? <img src={this.state.image} /> : null }
+          <em>{this.props.UserData.username}</em>
+          <br />
+          profile created on:
+          <br />
+          {dateFormat(this.props.UserData.createdAt)}
+          <br />
+          <button style={{ float: 'right' }}onClick={this.handleLogout} >Logout </button>
+        </div>
+        <div style={profileInfoStyle}>
+          <p className='profileTopic' >Top 3 Issues I care about </p>
+          <div> {this.props.UserData.issues || 'n/a'} </div>
+          <p className='profileTopic'>Top Quote</p>
+          <div>{this.props.UserData.quote || 'n/a'}</div>
+          <p className='profileTopic'>Who I Am</p>
+          <div>{this.props.UserData.aboutme || 'n/a'}</div>
+          <p className='profileTopic'>Location</p>
+          <div>{this.props.UserData.location || 'n/a'}</div>
         </div>
       </div>
+      <div style={editPanelStyle}>
+        <form onSubmit={this.handleSubmit} >
+          <Accordion>
+            <AccordionPanel heading="Edit Issues">
+              <Paragraph>
+                <input style={inputStyle} type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} />
+              </Paragraph>
+            </AccordionPanel>
+            <AccordionPanel heading="Edit Top Quote">
+              <Paragraph>
+                <input style={inputStyle} type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} />
+              </Paragraph>
+            </AccordionPanel>
+            <AccordionPanel heading="Edit Who I Am">
+              <Paragraph>
+                <input style={inputStyle} type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} />
+              </Paragraph>
+            </AccordionPanel>
+            <AccordionPanel heading="Edit Location">
+              <Paragraph>
+                <input style={inputStyle} type="text" name="aboutMe" value={this.state.location} placeholder="Location" onChange={this.handleAboutMeChange} />
+              </Paragraph>
+              </AccordionPanel>
+            <AccordionPanel heading="Edit Profile Photo">
+              <Paragraph>
+                <ImageUpload />
+              </Paragraph>
+            </AccordionPanel>
+          </Accordion>
+          <input style={{ paddingTop: '20px', paddingBottom: '20px' }} type="submit" value="Submit Changes" />
+        </form>
+        { !this.state.log ? <Redirect to={{ pathname: '/' }} /> : null }
+      </div>
+    </div>
+
     );
   }
 }
