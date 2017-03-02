@@ -2,7 +2,6 @@ import _ from 'underscore';
 import shortid from 'shortid';
 
 import Box from 'grommet/components/Box';
-import Columns from 'grommet/components/Columns';
 import Tab from 'grommet/components/Tab';
 import Tabs from 'grommet/components/Tabs';
 import Spinning from 'grommet/components/icons/Spinning';
@@ -49,15 +48,8 @@ class RepDisplay extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // componentWillReceiveProps() {
-  //   // this.setState({ count: this.state.count + 1 });
-
-  //   // if (this.state.count === 8) {
-  //   // }
-  // }
-
   handleClick(current) {
-    console.log(current);
+    // console.log(current);
     if (this.state.current !== current) {
       this.setState({ current });
     }
@@ -94,12 +86,23 @@ class RepDisplay extends Component {
     );
 
     /* <div className="rep-focus" key={shortid.generate()}> */
-    const graphs = (
-      <RepVoteStats rep={propublica[this.state.current]} />
-    );
+    // const graphs = (
+    //   <RepVoteStats rep={propublica[this.state.current]} />
+    // );
 
     // parse the correct obj from the GoogleResults
     const rep = reps.filter(({ name }) => name === this.state.current)[0];
+
+    const BawksCreator = component => (
+      <Box
+        align='center'
+        pad='small'
+        margin='small'
+        basis='large'
+      >
+        { component }
+      </Box>
+    );
 
     return (
       <div>
@@ -110,35 +113,25 @@ class RepDisplay extends Component {
             justify='center'
             full='true'
           >
-            <Box
-              align='center'
-              pad='small'
-              margin='small'
-            >
+            { BawksCreator(
               <RepBio
                 key={shortid.generate()}
                 bio={propublica[this.state.current]}
                 google={rep}
               />
-            </Box>
-            <Box
-              align='center'
-              pad='small'
-              margin='small'
-            >
+            )}
+            { BawksCreator(
               <RepVoteStatsLineGraph rep={propublica[this.state.current]} />
-            </Box>
-            <Box
-              align='center'
-              pad='small'
-              margin='small'
-            >
-              <RepVoteStatsDoughnut rep={propublica[this.state.current]} />
-            </Box>
+            )}
+            { BawksCreator(
+              <RepVoteStats rep={propublica[this.state.current]} />
+            )}
           </Box>
         ) : (
-          <Box>
-            <Spinning /> fetching congressional activity
+          <Box
+            align='center'
+          >
+            <Spinning /><br />fetching congressional activity
           </Box>
         )}
       </div>
@@ -232,7 +225,7 @@ RepDisplay.defaultProps = {
       urls: [
         'http://maloney.house.gov/'
       ],
-      photoUrl: 'http://maloney.house.gov/sites/maloney.house.gov/files/styles/medium/public/wysiwyg_uploaded/CMaloney.jpg?itok=MfBXZlLs',
+      photoUrl: 'http://maloney.house.gov/sites/maloney.house.gov/files/styles/small/public/wysiwyg_uploaded/CMaloney.jpg?itok=MfBXZlLs',
       channels: [
         {
           type: 'Twitter',

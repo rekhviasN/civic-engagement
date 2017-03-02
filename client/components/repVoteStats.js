@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
 
-import Card from 'grommet/components/Card';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 

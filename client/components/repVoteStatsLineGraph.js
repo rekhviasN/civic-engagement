@@ -3,6 +3,8 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { LineGraphTemplate } from '../components/graphTemplates';
 
+import Label from 'grommet/components/Label';
+
 const RepVoteStatsLineGraph = ({ rep }) => {
   const lineGraphData = Object.assign({}, LineGraphTemplate);
   lineGraphData.labels = [];
@@ -15,6 +17,7 @@ const RepVoteStatsLineGraph = ({ rep }) => {
     animateRotate: true,
     responsive: false,
     maintainAspectRatio: false,
+    legend: { display: false }
   };
 
   const { roles } = rep;
@@ -30,10 +33,14 @@ const RepVoteStatsLineGraph = ({ rep }) => {
   }
 
   return (
-    <Line
-      data={lineGraphData}
-      options={options}
-    />
+    <div>
+      <Label>% of Votes Missed</Label>
+      <Line
+        data={lineGraphData}
+        options={options}
+        height={250}
+      />
+    </div>
   );
 }
 

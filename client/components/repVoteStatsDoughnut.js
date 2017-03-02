@@ -31,6 +31,7 @@ const RepVoteStatsDoughnut = ({ rep }) => {
     <Doughnut
       data={doughnutGraphData}
       options={options}
+      height={300}
     />
   );
 }
