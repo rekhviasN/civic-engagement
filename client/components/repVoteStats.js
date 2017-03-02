@@ -6,7 +6,6 @@ import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import RepVoteStatsDoughnut from './repVoteStatsDoughnut';
-import RepVoteStatsLineGraph from './repVoteStatsLineGraph';
 import VoteDetails from './voteDetails';
 
 class repVoteStats extends Component {
@@ -38,12 +37,8 @@ class repVoteStats extends Component {
 
     return (
       <div>
-        <div>Last 100 votes:<br />
-          <RepVoteStatsDoughnut rep={rep} />
-        </div>
-        <div>
-          <RepVoteStatsLineGraph rep={rep} />
-        </div>
+        Last 100 votes:<br />
+        <RepVoteStatsDoughnut rep={rep} />
         <button onClick={() => this.handleClick(rep.name)}>
           stuff voted on
         </button>

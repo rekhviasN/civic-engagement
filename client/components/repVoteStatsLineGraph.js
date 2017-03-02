@@ -30,12 +30,10 @@ const RepVoteStatsLineGraph = ({ rep }) => {
   }
 
   return (
-    <div>
-      <Line
-        data={lineGraphData}
-        options={options}
-      />
-    </div>
+    <Line
+      data={lineGraphData}
+      options={options}
+    />
   );
 }
 

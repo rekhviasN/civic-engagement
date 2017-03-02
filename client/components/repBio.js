@@ -7,12 +7,16 @@ const RepBio = ({ bio, google }) => {
   console.log('repbio: ', bio, google);
   // static info is available via props.rep
   const { title } = bio.roles[0];
+  const { first_name, middle_name, last_name } = bio;
+  const first = `${first_name} ${middle_name}`;
+
   return (
-    <Card>
-      <img className="rep-photo" src={google.photoUrl} alt={bio.name} />
+    <div className="rep-bio">
+      <img src={google.photoUrl} alt={bio.name} />
       <Title>{ title }</Title>
-      <h1>{ bio.name }</h1>
-    </Card>
+      <h2>{ first }</h2>
+      <h1>{ last_name }</h1>
+    </div>
   );
 };
 

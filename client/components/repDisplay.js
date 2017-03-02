@@ -15,6 +15,9 @@ import RepBio from './repBio';
 import RepBillsList from './repBillsList';
 import RepVoteStats from './repVoteStats';
 
+import RepVoteStatsLineGraph from './repVoteStatsLineGraph';
+import RepVoteStatsDoughnut from './repVoteStatsDoughnut';
+
 import { bio, bills, votes } from '../actions/politicianSearchActions';
 import testing from '../actions/locationBarActions';
 
@@ -27,8 +30,8 @@ class RepDisplay extends Component {
     super(props);
 
     this.state = {
-      current: null,
-      count: 0
+      // count: 0,
+      current: null
     };
 
     // fire off propublica actions
@@ -38,20 +41,20 @@ class RepDisplay extends Component {
       this.props.votes(name);
     });
 
+    setTimeout(() => {
+      // this.setState({ current: this.props.reps[0].name });
+      this.handleClick(this.props.reps[0].name);
+      console.log('remove spinner: ', this.props.reps[0].name);
+    }, 1000);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillReceiveProps() {
-    this.setState({ count: this.state.count + 1 });
+  // componentWillReceiveProps() {
+  //   // this.setState({ count: this.state.count + 1 });
 
-    if (this.state.count === 8) {
-      setTimeout(() => {
-        // this.setState({ current: this.props.reps[0].name });
-        this.handleClick(this.props.reps[0].name);
-        console.log('remove spinner: ', this.props.reps[0].name);
-      }, 2000);
-    }
-  }
+  //   // if (this.state.count === 8) {
+  //   // }
+  // }
 
   handleClick(current) {
     console.log(current);
@@ -82,20 +85,17 @@ class RepDisplay extends Component {
         />
       </div>
     );*/
-
     const tabArray = _.map(propublica, rep =>
       <Tab
         key={shortid.generate()}
-        title={rep.name}
+        title={rep.name || ''}
         onClick={() => this.handleClick(rep.name)}
       />
     );
 
-    /*<div className="rep-focus" key={shortid.generate()}>*/
+    /* <div className="rep-focus" key={shortid.generate()}> */
     const graphs = (
-      <div key={shortid.generate()}>
-        <RepVoteStats rep={propublica[this.state.current]} />
-      </div>
+      <RepVoteStats rep={propublica[this.state.current]} />
     );
 
     // parse the correct obj from the GoogleResults
@@ -104,26 +104,30 @@ class RepDisplay extends Component {
     return (
       <div>
         <Tabs>{ tabArray }</Tabs>
-        <Columns>
-          { this.state.current ? (
-            <div>
-              <Box>
-                <RepBio
-                  key={shortid.generate()}
-                  bio={propublica[this.state.current]}
-                  google={rep}
-                />
-              </Box>
-              <Box>
-                { graphs }
-              </Box>
-            </div>
-          ) : (
-            <div>
-              <Spinning /> fetching congressional activity
-            </div>
-          )}
-        </Columns>
+        { this.state.current ? (
+          <Columns>
+            <Box>
+              <RepBio
+                key={shortid.generate()}
+                bio={propublica[this.state.current]}
+                google={rep}
+              />
+            </Box>
+            <Box>
+              <RepVoteStats rep={propublica[this.state.current]} />
+            </Box>
+            <Box>
+              <RepVoteStatsLineGraph rep={propublica[this.state.current]} />
+            </Box>
+            <Box>
+              <RepVoteStatsDoughnut rep={propublica[this.state.current]} />
+            </Box>
+          </Columns>
+        ) : (
+          <div>
+            <Spinning /> fetching congressional activity
+          </div>
+        )}
       </div>
     );
   }

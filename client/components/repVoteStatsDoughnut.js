@@ -28,12 +28,10 @@ const RepVoteStatsDoughnut = ({ rep }) => {
   }
 
   return (
-    <div>
-      <Doughnut
-        data={doughnutGraphData}
-        options={options}
-      />
-    </div>
+    <Doughnut
+      data={doughnutGraphData}
+      options={options}
+    />
   );
 }
 
