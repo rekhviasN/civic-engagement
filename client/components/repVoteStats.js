@@ -42,9 +42,9 @@ class repVoteStats extends Component {
     }
 
     const style = {
-      'align-items': 'center',
+      alignItems: 'center',
       display: 'flex',
-      'flex-direction': 'column'
+      flexDirection: 'column'
     };
 
     return (
@@ -52,7 +52,7 @@ class repVoteStats extends Component {
         <Title>Last 100 votes</Title>
         <RepVoteStatsDoughnut rep={rep} />
         <button
-          style={{ align: "center", 'margin-top': '1em' }} 
+          style={{ align: "center", marginTop: '1em' }} 
           onClick={() => this.handleClick(rep.name)}
         >stuff voted on
         </button>

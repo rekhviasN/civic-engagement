@@ -83,20 +83,3 @@ const RepBio = ({ bio, google }) => {
 };
 
 export default RepBio;
-
-// date_of_birth: "1950-11-23"
-// url: "https://www.schumer.senate.gov"
-// times_topics_url: "http://topics.nytimes.com/top/reference/timestopics/people/s/charles_e_schumer/index.html"
-// times_tag: "Schumer, Charles E (Per)"
-// govtrack_id: "300087"
-// cspan_id: "5929"
-// icpsr_id: "14858"
-// twitter_account: "SenSchumer"
-// facebook_account: "chuckschumer"
-// facebook_id: "15771239406"
-// youtube_account: "SenatorSchumer"
-// google_entity_id: "/m/01w74d"
-// rss_url: ""
-// domain: "www.schumer.senate.gov"
-// current_party: "D"
-// most_recent_vote: "2017-03-02"
