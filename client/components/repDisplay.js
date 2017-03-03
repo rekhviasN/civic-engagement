@@ -44,7 +44,7 @@ class RepDisplay extends Component {
     setTimeout(() => {
       // this.setState({ current: this.props.reps[0].name });
       this.handleClick(this.props.reps[0].name);
-      console.log('remove spinner: ', this.props.reps[0].name);
+      // console.log('remove spinner: ', this.props.reps[0].name);
     }, 1000);
   }
 
@@ -80,7 +80,7 @@ class RepDisplay extends Component {
         align='center'
         pad='small'
         margin='small'
-        basis='large'
+        basis='medium'
       >
         { component }
       </Box>
