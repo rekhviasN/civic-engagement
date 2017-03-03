@@ -1,9 +1,11 @@
 import React from 'react';
 
+import Label from 'grommet/components/Label';
+import Title from 'grommet/components/Title';
+
 import { Line } from 'react-chartjs-2';
 import { LineGraphTemplate } from '../components/graphTemplates';
 
-import Label from 'grommet/components/Label';
 
 const RepVoteStatsLineGraph = ({ rep }) => {
   const lineGraphData = Object.assign({}, LineGraphTemplate);
@@ -34,7 +36,7 @@ const RepVoteStatsLineGraph = ({ rep }) => {
 
   return (
     <div>
-      <Label>% of Votes Missed</Label>
+      <Title>% of Votes Missed</Title>
       <Line
         data={lineGraphData}
         options={options}

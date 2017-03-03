@@ -56,15 +56,19 @@ body {
   border-radius: 5px;
   width: 75%;
 }
-// .rep-bio {
-//   img {
-//     border-radius: 5px;
-//     width: 50%;
-//   }
+.rep-bio {
+  img {
+    border-radius: 5px;
+    width: 100%;
+  }
 
-//   h2 {
-//     font-size: 1.7em;
-//     margin-top: .35em;
-//     margin-bottom: 0px;
-//   }
-// }
+  h3 {
+    font-size: 1.7em;
+    margin-top: .35em;
+    margin-bottom: 0px;
+  }
+
+  a {
+    margin-top: .25em;
+  }
+}

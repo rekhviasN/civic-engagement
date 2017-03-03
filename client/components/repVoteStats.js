@@ -4,6 +4,12 @@ import shortid from 'shortid';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 
+import Layer from 'grommet/components/Layer';
+import List from 'grommet/components/List';
+import ListItem from 'grommet/components/ListItem';
+
+import Title from 'grommet/components/Title';
+
 import RepVoteStatsDoughnut from './repVoteStatsDoughnut';
 import VoteDetails from './voteDetails';
 
@@ -23,25 +29,45 @@ class repVoteStats extends Component {
   render() {
     let voteDisplay;
     const { rep } = this.props;
-    if (rep && rep.votes ) {
+    if (rep && rep.votes) {
       const { votes } = rep;
 
       voteDisplay = votes.map(vote =>
-        (<VoteDetails
-          key={shortid.generate()}
-          vote={vote}
-        />)
+        (
+          <ListItem key={shortid.generate()}>
+            <VoteDetails vote={vote} />
+          </ListItem>
+        )
       );
     }
 
+    const style = {
+      'align-items': 'center',
+      display: 'flex',
+      'flex-direction': 'column'
+    };
+
     return (
-      <div>
-        Last 100 votes:<br />
+      <div style={style} >
+        <Title>Last 100 votes</Title>
         <RepVoteStatsDoughnut rep={rep} />
-        <button onClick={() => this.handleClick(rep.name)}>
-          stuff voted on
+        <button
+          style={{ align: "center", 'margin-top': '1em' }} 
+          onClick={() => this.handleClick(rep.name)}
+        >stuff voted on
         </button>
-        { this.state.expanded ? (<div>{voteDisplay}</div>) : (<div />) }
+        { this.state.expanded ?
+          (
+            <Layer
+              closer={true}
+              onClose={() => this.setState({ expanded: false })}
+            >
+              <List>{voteDisplay}</List>
+            </Layer>
+          ) : (
+            <div />
+          )
+        }
       </div>
     );
   }

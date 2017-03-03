@@ -20,7 +20,7 @@ import RepVoteStatsDoughnut from './repVoteStatsDoughnut';
 import { bio, bills, votes } from '../actions/politicianSearchActions';
 import testing from '../actions/locationBarActions';
 
-import { Propublica, google_reps } from './defaultProps';
+import { Propublica, testReps } from './defaultProps';
 
 /* this component will need a location
  * already searched and seeded into app state */
@@ -29,10 +29,9 @@ class RepDisplay extends Component {
     super(props);
 
     this.state = {
-      // count: 0,
       current: null
     };
-
+    console.log(props);
     // fire off propublica actions
     this.props.reps.forEach(({ name }) => {
       this.props.bio(name);
@@ -40,12 +39,13 @@ class RepDisplay extends Component {
       this.props.votes(name);
     });
 
+    this.handleClick = this.handleClick.bind(this);
+
     setTimeout(() => {
       // this.setState({ current: this.props.reps[0].name });
       this.handleClick(this.props.reps[0].name);
       console.log('remove spinner: ', this.props.reps[0].name);
     }, 1000);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(current) {
@@ -58,25 +58,12 @@ class RepDisplay extends Component {
   render() {
     // reps have been saved to state! this should always be populated.
     const { reps, propublica } = this.props;
-
-    // this generates a set of graphs for each rep, might get scrapped
-    /*const display = _.map(propublica, (rep) =>
-      <div className="rep-focus" key={shortid.generate()}>
-        <h1>{ rep.name }</h1>
-        <RepBio
-          key={shortid.generate()}
-          propublicaRep={propublica[rep.name]}
-        />
-        <RepVoteStats
-          key={shortid.generate()}
-          rep={propublica[rep.name]}
-        />
-        <RepBillsList
-          key={shortid.generate()}
-          rep={propublica[rep.name]}
-        />
-      </div>
-    );*/
+    /*
+      <RepBillsList
+        key={shortid.generate()}
+        rep={propublica[rep.name]}
+      />
+    */
     const tabArray = _.map(propublica, rep =>
       <Tab
         key={shortid.generate()}
@@ -84,11 +71,6 @@ class RepDisplay extends Component {
         onClick={() => this.handleClick(rep.name)}
       />
     );
-
-    /* <div className="rep-focus" key={shortid.generate()}> */
-    // const graphs = (
-    //   <RepVoteStats rep={propublica[this.state.current]} />
-    // );
 
     // parse the correct obj from the GoogleResults
     const rep = reps.filter(({ name }) => name === this.state.current)[0];
@@ -111,7 +93,7 @@ class RepDisplay extends Component {
           <Box
             direction='row'
             justify='center'
-            full='true'
+            full={true}
           >
             { BawksCreator(
               <RepBio
@@ -141,108 +123,8 @@ class RepDisplay extends Component {
 
 RepDisplay.defaultProps = {
   propublica: Propublica,
-  reps: [
-    {
-      name: 'Charles E. Schumer',
-      address: [
-        {
-          line1: '322 Hart Senate Office Building',
-          city: 'Washington',
-          state: 'DC',
-          zip: '20510'
-        }
-      ],
-      party: 'Democratic',
-      phones: [
-        '(202) 224-6542'
-      ],
-      urls: [
-        'http://www.schumer.senate.gov/'
-      ],
-      photoUrl: 'http://bioguide.congress.gov/bioguide/photo/S/S000148.jpg',
-      channels: [
-        {
-          type: 'Facebook',
-          id: 'chuckschumer'
-        },
-        {
-          type: 'Twitter',
-          id: 'SenSchumer'
-        },
-        {
-          type: 'YouTube',
-          id: 'SenatorSchumer'
-        }
-      ]
-    },
-    {
-      name: 'Kirsten E. Gillibrand',
-      address: [
-        {
-          line1: '478 Russell Senate Office Building',
-          city: 'Washington',
-          state: 'DC',
-          zip: '20510'
-        }
-      ],
-      party: 'Democratic',
-      phones: [
-        '(202) 224-4451'
-      ],
-      urls: [
-        'http://www.gillibrand.senate.gov/'
-      ],
-      photoUrl: 'http://bioguide.congress.gov/bioguide/photo/G/G000555.jpg',
-      channels: [
-        {
-          type: 'Facebook',
-          id: 'KirstenGillibrand'
-        },
-        {
-          type: 'Twitter',
-          id: 'SenGillibrand'
-        },
-        {
-          type: 'YouTube',
-          id: 'KirstenEGillibrand'
-        }
-      ]
-    },
-    {
-      name: 'Carolyn B. Maloney',
-      address: [
-        {
-          line1: '2308 Rayburn House Office Building',
-          city: 'Washington',
-          state: 'DC',
-          zip: '20515'
-        }
-      ],
-      party: 'Democratic',
-      phones: [
-        '(202) 225-7944'
-      ],
-      urls: [
-        'http://maloney.house.gov/'
-      ],
-      photoUrl: 'http://maloney.house.gov/sites/maloney.house.gov/files/styles/small/public/wysiwyg_uploaded/CMaloney.jpg?itok=MfBXZlLs',
-      channels: [
-        {
-          type: 'Twitter',
-          id: 'RepMaloney'
-        },
-        {
-          type: 'Facebook',
-          id: 'CarolynMaloney'
-        },
-        {
-          type: 'YouTube',
-          id: 'carolynbmaloney'
-        }
-      ]
-    }
-  ]
-  // reps: google_reps
+  reps: testReps
+  // reps: 
   // [
   //   { name: 'Charles E. Schumer' },
   //   { name: 'Kirsten E. Gillibrand' },
