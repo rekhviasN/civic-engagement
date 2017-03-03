@@ -25,7 +25,6 @@ render((
   <App
     centered={false}
   >
-  <App>
     <Provider store={store}>
       <Router history={hashHistory} routes={routes} />
     </Provider>

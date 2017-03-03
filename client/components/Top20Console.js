@@ -10,7 +10,6 @@ import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 
 
-
 class Top20Console extends Component {
   constructor(props) {
     super(props);
@@ -128,6 +127,11 @@ class Top20Console extends Component {
           )
       });
 
+
+
+
+      // pad       none|small|medium|large|{...}
+      // The amount of padding to put around the contents. An object can be specified to distinguish horizontal and vertical padding: {horizontal: none|small|medium|large, vertical: none|small|medium|large}. Defaults to none.
       return (
         <div className="top20-console">
           <Form
@@ -138,12 +142,14 @@ class Top20Console extends Component {
               onChange={this.catHandleChangeNew}
               options={catOptionsNew}
               placeHolder="Select Category"
+              className="top20-category-selector"
             />
             <Select
               value={this.state.cycle}
               onChange={this.cycleHandleChangeNew}
               options={cycleOptionsNew}
               placeHolder="Election Cycle"
+              className="top20-cycle-selector"
             />
 
 

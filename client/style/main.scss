@@ -1,6 +1,8 @@
+@import 'top20.scss';
+
 #root, .App {
-  // height: 100%;
-  // width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 body {
@@ -46,14 +48,15 @@ section:not(.grommetux-section).meetup-map {
   word-wrap: break-word;
 }
 
-.top20-console {
-  height: 100%;
-  width: 100%;
-}
-
-.top20-main {
-  height: calc(100% - 48px);
-  margin: 12px;
+// .top20-console {
+//   height: 100%;
+//   width: 100%;
+// }
+//
+// .top20-main {
+//   height: calc(100% - 48px);
+//   margin: 12px;
+// }
 
 .profileTopic {
   color: #333;
