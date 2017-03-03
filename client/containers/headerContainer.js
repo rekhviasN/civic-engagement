@@ -23,7 +23,7 @@ class HeaderContainer extends React.Component {
 
   render() {
     return (
-        <header style={{ paddingLeft: '130px' }}><Header headerIcons={iconUrls} /></header>
+        <header style={{ paddingLeft: '130px', paddingBottom: '40px' }}><Header headerIcons={iconUrls} /></header>
     );
   }
 }
