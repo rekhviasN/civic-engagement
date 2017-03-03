@@ -2,6 +2,8 @@ import _ from 'underscore';
 import shortid from 'shortid';
 import React from 'react';
 
+import List from 'grommet/components/List';
+import ListItem from 'grommet/components/ListItem';
 import NewsItem from './newsItem';
 
 const NewsList = (props) => {
@@ -12,21 +14,21 @@ const NewsList = (props) => {
       const key = shortid.generate();
       const { title, blurb, thumb, url } = article;
       return (
-        <NewsItem
-          key={key}
-          title={title}
-          blurb={blurb}
-          thumb={thumb}
-          url={url}
-        />
+        <ListItem>
+          <NewsItem
+            key={key}
+            title={title}
+            blurb={blurb}
+            thumb={thumb}
+            url={url}
+          />
+        </ListItem>
       );
     });
     return (
       <div>
         <h1> this is a test </h1>
-        <ol>
-          { NewsItems }
-        </ol>
+        <List>{ NewsItems }</List>
       </div>
     );
   }
