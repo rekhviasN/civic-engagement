@@ -130,6 +130,7 @@ RepDisplay.defaultProps = {
       { name: 'Carolyn B. Maloney' }
   ]
 };
+
 function mapStateToProps(state) {
   return {
     reps: state.GoogleResults.reps,

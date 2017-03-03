@@ -4,6 +4,7 @@ import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
 import LoginForm from 'grommet/components/LoginForm';
+import Header from '../containers/HeaderContainer';
 
 const style = { minWidth: '600px', minHeight: '200' };
 
@@ -38,20 +39,22 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div style={{ height: '100%', width: '100%', paddingLeft: '33%', paddingRight: '33%' }}>
-        <LoginForm
-          onSubmit={(user) => {
-            console.log('username', user.username);
-            this.handleSubmit(user);
-          }}
-          title="Civics Portal"
-          secondaryText="let's make local politics sexy."
-        />
-        {
-           this.state.valid || this.state.loggedIn === true ? <Redirect to={{ pathname: '/auth' }} /> : (null)
-        }
+      <div>
+        <Header />
+          <div style={{ height: '100%', width: '100%', paddingLeft: '33%', paddingRight: '33%' , paddingTop: '80px'}}>
+            <LoginForm
+              onSubmit={(user) => {
+                console.log('username', user.username);
+                this.handleSubmit(user);
+              }}
+              title="Civics Portal"
+              secondaryText="let's make local politics sexy."
+            />
+            {
+               this.state.valid || this.state.loggedIn === true ? <Redirect to={{ pathname: '/auth' }} /> : (null)
+            }
+          </div>
       </div>
-
     );
   }
 
