@@ -124,13 +124,13 @@ class RepDisplay extends Component {
 RepDisplay.defaultProps = {
   // propublica: Propublica,
   // reps: testReps
-  reps:
-  [
-    { name: 'Charles E. Schumer' },
-    { name: 'Kirsten E. Gillibrand' },
-    { name: 'Carolyn B. Maloney' }
+  reps: [
+      { name: 'Charles E. Schumer' },
+      { name: 'Kirsten E. Gillibrand' },
+      { name: 'Carolyn B. Maloney' }
   ]
 };
+
 function mapStateToProps(state) {
   return {
     reps: state.GoogleResults.reps,
