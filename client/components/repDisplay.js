@@ -20,7 +20,7 @@ import RepVoteStatsDoughnut from './repVoteStatsDoughnut';
 import { bio, bills, votes } from '../actions/politicianSearchActions';
 import testing from '../actions/locationBarActions';
 
-import { Propublica, testReps } from './defaultProps';
+// import { Propublica, testReps } from './defaultProps';
 
 /* this component will need a location
  * already searched and seeded into app state */
@@ -44,7 +44,7 @@ class RepDisplay extends Component {
     setTimeout(() => {
       // this.setState({ current: this.props.reps[0].name });
       this.handleClick(this.props.reps[0].name);
-      console.log('remove spinner: ', this.props.reps[0].name);
+      // console.log('remove spinner: ', this.props.reps[0].name);
     }, 1000);
   }
 
@@ -80,7 +80,7 @@ class RepDisplay extends Component {
         align='center'
         pad='small'
         margin='small'
-        basis='large'
+        basis='medium'
       >
         { component }
       </Box>
@@ -122,14 +122,13 @@ class RepDisplay extends Component {
 }
 
 RepDisplay.defaultProps = {
-  propublica: Propublica,
-  reps: testReps
-  // reps: 
-  // [
-  //   { name: 'Charles E. Schumer' },
-  //   { name: 'Kirsten E. Gillibrand' },
-  //   { name: 'Carolyn B. Maloney' }
-  // ]
+  // propublica: Propublica,
+  // reps: testReps
+  reps: [
+      { name: 'Charles E. Schumer' },
+      { name: 'Kirsten E. Gillibrand' },
+      { name: 'Carolyn B. Maloney' }
+  ]
 };
 function mapStateToProps(state) {
   return {

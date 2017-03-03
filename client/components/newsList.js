@@ -26,10 +26,7 @@ const NewsList = (props) => {
       );
     });
     return (
-      <div>
-        <h1> this is a test </h1>
-        <List>{ NewsItems }</List>
-      </div>
+      <List>{ NewsItems }</List>
     );
   }
   return <div>news items: nothing!</div>;
