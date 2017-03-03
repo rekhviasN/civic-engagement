@@ -57,7 +57,7 @@ const testing = function testing() {
 };
 
 export default (
-  <Route path="/">
+  <Route path="/" >
     <IndexRoute component={home} />
     <Route path="req" component={Req} />
     <Route path="location" component={LocationBar} />
