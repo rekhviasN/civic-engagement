@@ -23,18 +23,9 @@ class HeaderContainer extends React.Component {
 
   render() {
     return (
-        <header><Header headerIcons={iconUrls} /></header>
+        <header style={{ paddingLeft: '130px' }}><Header headerIcons={iconUrls} /></header>
     );
   }
 }
 
 export default HeaderContainer;
-
-
-// <div id="outer-container">
-//   <header className="header-bar"></header>
-//   <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } noOverlay />
-//   <main id="page-wrap">
-//     // Other stuff
-//   </main>
-// </div
