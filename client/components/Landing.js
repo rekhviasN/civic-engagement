@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Box from 'grommet/components/Box';
@@ -128,6 +128,10 @@ class Landing extends Component {
     );
   }
  }
+
+Landing.contextTypes = {
+  router: PropTypes.object
+};
 
 function mapStateToProps(state) { // Temporary state setup. Please feel free to modify this.
   return {
