@@ -20,7 +20,7 @@ import RepVoteStatsDoughnut from './repVoteStatsDoughnut';
 import { bio, bills, votes } from '../actions/politicianSearchActions';
 import testing from '../actions/locationBarActions';
 
-import { Propublica, testReps } from './defaultProps';
+// import { Propublica, testReps } from './defaultProps';
 
 /* this component will need a location
  * already searched and seeded into app state */
@@ -122,14 +122,14 @@ class RepDisplay extends Component {
 }
 
 RepDisplay.defaultProps = {
-  propublica: Propublica,
-  reps: testReps
-  // reps: 
-  // [
-  //   { name: 'Charles E. Schumer' },
-  //   { name: 'Kirsten E. Gillibrand' },
-  //   { name: 'Carolyn B. Maloney' }
-  // ]
+  // propublica: Propublica,
+  // reps: testReps
+  reps:
+  [
+    { name: 'Charles E. Schumer' },
+    { name: 'Kirsten E. Gillibrand' },
+    { name: 'Carolyn B. Maloney' }
+  ]
 };
 function mapStateToProps(state) {
   return {

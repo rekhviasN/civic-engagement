@@ -16,6 +16,7 @@ import Signup from './components/Signup';
 import Auth from './components/Auth';
 import Top20 from './components/Top20Wrapper';
 import HeaderContainer from './containers/headerContainer';
+import Landing from './components/Landing';
 // import MapContainer from './containers/GoogleMapContainer';
 // import LocationBar from './components/locationBar';
 // import MenuContainer from './containers/sidebarContainer';
@@ -43,6 +44,8 @@ const home = function home() {
     <Link to="/congress">Congress!</Link>
     <br />
     <Link to="/top20">Campaign Finance Top 20 Lists</Link>
+    <br />
+    <Link to="/landing">Landing Page</Link>
   </div>);
 };
 
@@ -70,6 +73,7 @@ export default (
     <Route path="congress" component={CongressContainer} />
     <Route path="top20" component={Top20} />
     <Route path="header" component={HeaderContainer} />
+    <Route path="landing" component={Landing} />
     <Route path="*" component={PageNotFound} />
   </Route>
 );
