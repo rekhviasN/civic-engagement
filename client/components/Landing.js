@@ -12,8 +12,7 @@ import Animate from 'grommet/components/Animate';
 import Form from 'grommet/components/Form';
 import SearchInput from 'grommet/components/SearchInput';
 import Heading from 'grommet/components/Heading';
-import UserFemaleIcon from 'grommet/components/icons/base/UserFemale';
-import UserIcon from 'grommet/components/icons/base/User';
+import HeaderContainer from '../containers/headerContainer';
 
 
 class Landing extends Component {
@@ -48,9 +47,11 @@ class Landing extends Component {
     return (
       <Article scrollStep={true}>
 
-        <Header float={false} fixed={true} />
+        <Header className="landing-main-nav" size="small" float={false} fixed={true}>
+          <HeaderContainer />
+        </Header>
 
-        <Hero background={<Image src={'../media/landing.jpg'} fit="cover" full={true} />}>
+        <Hero className="landing-hero" background={<Image src={'../media/landing.jpg'} fit="cover" full={true} />}>
           <Box align="center" justify="center" full="horizontal">
             <Headline align="center">
               Your personal politics agency
@@ -87,23 +88,23 @@ class Landing extends Component {
           </Headline>
         </Section>
         <Section align="center" justify="center" colorIndex="neutral-1-a" size="full" className="landing-team">
-          <Heading align="center" strong={true} tag="h3" uppercase={true}>
+          <Heading align="center" className="landing-team-header" tag="h3" uppercase={true}>
             Meet The Team
           </Heading>
-          <Box direction="row" size="full" pad={{ between: 'large' }}>
-            <Box>
-              {/* <UserFemaleIcon size="xlarge" /> */}
-              <Heading tag="h3" strong={true}>Nino</Heading>
+          <Box direction="row" size="full" pad={{ between: 'large' }} className="landing-bio-container">
+            <Box pad={{ between: 'small' }}>
+              <img src={'../media/nino.jpg'} className="landing-bio-img"/>
+              <Heading tag="h3" className="landing-bio-name">Nino Rekhviashivili</Heading>
               <h4>Fullstack Developer</h4>
             </Box>
-            <Box>
-              {/* <UserIcon size="xlarge" /> */}
-              <Heading tag="h3" strong={true}>Kevin</Heading>
+            <Box pad={{ between: 'small' }}>
+              <img src={'../media/kevin.jpg'} className="landing-bio-img"/>
+              <Heading tag="h3" className="landing-bio-name">Kevin Fung</Heading>
               <h4>Fullstack Developer</h4>
             </Box>
-            <Box>
-              {/* <UserIcon size="xlarge" /> */}
-              <Heading tag="h3" strong={true}>Rishi</Heading>
+            <Box pad={{ between: 'small' }}>
+              <img src={'../media/rishi.jpg'} className="landing-bio-img"/>
+              <Heading tag="h3" className="landing-bio-name">Rishi Shah</Heading>
               <h4>Fullstack Developer</h4>
             </Box>
           </Box>
