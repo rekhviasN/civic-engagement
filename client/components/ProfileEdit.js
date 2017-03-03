@@ -10,6 +10,7 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 import Paragraph from 'grommet/components/Paragraph';
 import { setLoggedIn } from '../actions/loggingActions';
 import ImageUpload from './ImageUpload';
+import submitLoc from '../actions/locationBarActions';
 
 const profileSidebarStyle = {
   position: 'absolute',
@@ -46,7 +47,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setLoggedIn }, dispatch);
+  return bindActionCreators({ setLoggedIn, submitLoc }, dispatch) 
 }
 
 class ProfileEdit extends Component {
@@ -85,6 +86,10 @@ class ProfileEdit extends Component {
 
   handleLocationChange(e) {
     this.setState({ location: e.target.value });
+  }
+
+  componentWillMount(){
+    this.props.submitLoc(this.props.UserData.location);
   }
 
   handleSubmit() {
