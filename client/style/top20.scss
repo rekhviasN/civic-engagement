@@ -15,3 +15,9 @@
 .top20-cycle-selector {
   margin-left: 20px;
 }
+
+
+.subtle-gray-gradient {
+  background: -webkit-linear-gradient(90deg, #dee1e1 10%, #f4f4f4 90%); /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(90deg, #dee1e1 10%, #f4f4f4 90%); /* FF3.6+ */ background: linear-gradient(90deg, #dee1e1 10%, #f4f4f4 90%); /* W3C */
+}
