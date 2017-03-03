@@ -33,9 +33,10 @@ const profileInfoStyle = {
 };
 
 const editPanelStyle = {
-  paddingLeft: '110px',
-  paddingTop: '30px',
-  paddingBottom: '50px'
+  paddingLeft: '160px',
+  paddingTop: '55px',
+  paddingBottom: '50px',
+  paddingRight: '170px'
 };
 
 function mapStateToProps(state) {
@@ -120,23 +121,23 @@ class ProfileEdit extends Component {
       <div>
         <div style={profileSidebarStyle}>
           { this.state.image ? <img src={this.state.image} /> : null }
-          <em>{this.props.UserData.username}</em>
+          <h4 style={{ fontFamily: 'verdana', textAlign: 'right', backgroundColor: 'lightgray' }}>{this.props.UserData.username}</h4>
           <br />
           profile created on:
           <br />
-          {dateFormat(this.props.UserData.createdAt)}
+          <h5>{dateFormat(this.props.UserData.createdAt)}</h5>
           <br />
           <button style={{ float: 'right' }}onClick={this.handleLogout} >Logout </button>
         </div>
         <div style={profileInfoStyle}>
           <p className='profileTopic' >Top 3 Issues I care about </p>
-          <div> {this.props.UserData.issues || 'n/a'} </div>
+          <div style={{ paddingLeft: '40px' }}> {this.props.UserData.issues || 'n/a'} </div>
           <p className='profileTopic'>Top Quote</p>
-          <div>{this.props.UserData.quote || 'n/a'}</div>
+          <div style={{ paddingLeft: '40px' }}>{this.props.UserData.quote || 'n/a'}</div>
           <p className='profileTopic'>Who I Am</p>
-          <div>{this.props.UserData.aboutme || 'n/a'}</div>
+          <div style={{ paddingLeft: '40px' }}>{this.props.UserData.aboutme || 'n/a'}</div>
           <p className='profileTopic'>Location</p>
-          <div>{this.props.UserData.location || 'n/a'}</div>
+          <div style={{ paddingLeft: '40px' }}>{this.props.UserData.location || 'n/a'}</div>
         </div>
       </div>
       <div style={editPanelStyle}>
@@ -144,22 +145,22 @@ class ProfileEdit extends Component {
           <Accordion>
             <AccordionPanel heading="Edit Issues">
               <Paragraph>
-                <input style={inputStyle} type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} />
+                <textarea style={inputStyle} type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} />
               </Paragraph>
             </AccordionPanel>
             <AccordionPanel heading="Edit Top Quote">
               <Paragraph>
-                <input style={inputStyle} type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} />
+                <textarea style={inputStyle} type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} />
               </Paragraph>
             </AccordionPanel>
             <AccordionPanel heading="Edit Who I Am">
               <Paragraph>
-                <input style={inputStyle} type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} />
+                <textarea style={inputStyle} type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} />
               </Paragraph>
             </AccordionPanel>
             <AccordionPanel heading="Edit Location">
               <Paragraph>
-                <input style={inputStyle} type="text" name="aboutMe" value={this.state.location} placeholder="Location" onChange={this.handleAboutMeChange} />
+                <textarea style={inputStyle} type="text" name="aboutMe" value={this.state.location} placeholder="Location" onChange={this.handleAboutMeChange} />
               </Paragraph>
               </AccordionPanel>
             <AccordionPanel heading="Edit Profile Photo">

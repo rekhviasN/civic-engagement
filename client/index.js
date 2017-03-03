@@ -23,7 +23,7 @@ const store = createStore(
 );
 
 render((
-  <App>
+  <App >
     <Provider store={store}>
       <Router history={hashHistory} routes={routes} />
     </Provider>
