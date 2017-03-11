@@ -12,7 +12,7 @@ const sequelize = new Sequelize(dbname, username, password, {
   pool: {
     max: 5,
     min: 0,
-    idle: 10000,
+    idle: 100000,
     tcp_keepalives_count: 5,
     tcp_keepalives_idle: 200,
     tcp_keepalives_interval: 200
