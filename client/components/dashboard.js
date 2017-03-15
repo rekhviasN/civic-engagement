@@ -13,17 +13,25 @@ const Dashboard = () =>
   (
     <div>
         <HeaderContainer />
-        <Sidebar 
-          className="dashboard-side"
-          size="large"
-          full={true}>
-          <Title>
-            Civics Events
-          </Title>
-          <Search className="meetup-search" />
-          <EventList className="meetup-list" />
-        </Sidebar>
-        <Map />
+        <div style = {{paddingTop: '70px'}}>
+          <Split>
+            <Box>
+              <Sidebar 
+                className="dashboard-side"
+                size="large"
+                full={true}>
+                <Title>
+                  Civics Events
+                </Title>
+                <Search className="meetup-search" />
+                <EventList className="meetup-list" />
+              </Sidebar>
+            </Box>
+            <Box>
+              <Map />
+            </Box>
+          </Split>
+        </div>
      </div>
   );
 
