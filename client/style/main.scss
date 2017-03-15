@@ -20,7 +20,7 @@ body {
 }
 
 .dashboard-side {
-  // max-width: 400px;
+  width: 100%;
   height: 100%;
 }
 
@@ -94,4 +94,8 @@ grommetux-paragraph {
   a {
     margin-top: .25em;
   }
+}
+
+.dashboard-side-title{
+  font-family: "Work Sans"
 }

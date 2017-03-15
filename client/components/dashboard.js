@@ -13,23 +13,30 @@ const Dashboard = () =>
   (
     <div>
         <HeaderContainer />
-        <div style = {{paddingTop: '70px'}}>
+        <div style = {{paddingTop: '70px', paddingLeft: '15px'}}>
           <Split>
-            <Box>
-              <Sidebar 
-                className="dashboard-side"
-                size="large"
-                full={true}>
-                <Title>
-                  Civics Events
-                </Title>
-                <Search className="meetup-search" />
-                <EventList className="meetup-list" />
-              </Sidebar>
-            </Box>
-            <Box>
-              <Map />
-            </Box>
+            <div style = {{paddingRight: '15px'}}>
+              <Box>
+                <Sidebar 
+                  className="dashboard-side"
+                  size="large"
+                  full={true}>
+                  <div style={{paddingLeft: '15px'}}>
+                    <Title className="dashboard-side-title">
+                      Civics Events
+                    </Title>
+                  </div>
+                  <br />
+                  <Search className="meetup-search" />
+                  <EventList className="meetup-list" />
+                </Sidebar>
+              </Box>
+            </div>
+            <div style={{paddingRight:'15px'}}>
+              <Box>
+                <Map />
+              </Box>
+            </div>
           </Split>
         </div>
      </div>
