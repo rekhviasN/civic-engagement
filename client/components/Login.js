@@ -51,7 +51,7 @@ class Login extends React.Component {
               secondaryText="let's make local politics sexy."
             />
             {
-               this.state.valid || this.state.loggedIn === true ? <Redirect to={{ pathname: '/auth' }} /> : (null)
+               this.state.valid || this.state.loggedIn ? this.context.router.push('/auth') : (null)
             }
           </div>
       </div>
@@ -60,6 +60,10 @@ class Login extends React.Component {
 
 }
 
+
+Login.contextTypes = {
+  router: React.PropTypes.func.isRequired
+}
 
 function mapStateToProps(state) {
   console.log('console.log state.loggedIn', state.LoggedIn);

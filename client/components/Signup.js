@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -113,8 +113,15 @@ class Signup extends React.Component {
               </div>
             </form>
         </div>
+        {
+          this.state.valid ? this.context.router.push('/auth') : (null)
+        }
       </div>);
   }
 }
 
+
+Signup.contextTypes = {
+  router: React.PropTypes.func.isRequired
+}
 export default Signup;

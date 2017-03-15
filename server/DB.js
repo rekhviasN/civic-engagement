@@ -6,7 +6,7 @@ const password = process.env.DB_PW
 
 
 const sequelize = new Sequelize(dbname, username, password, {
-  host: 'civicsportal.c9qldifjptpv.us-east-1.rds.amazonaws.com',
+  host: 'civicsdb.c9qldifjptpv.us-east-1.rds.amazonaws.com',
   dialect: 'postgres',
 
   pool: {
