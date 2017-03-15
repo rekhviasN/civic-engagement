@@ -11,23 +11,7 @@ import HeaderContainer from '../containers/headerContainer';
 
 const Dashboard = () =>
   (
-    <Box
-      full="true"
-      className="dashboard"
-    >
-
-      <Header className="landing-main-nav" size="small" float={false} fixed={true}>
-        <HeaderContainer />
-      </Header>
-
-      <Header
-        className="dashboard-header"
-        fixed={false}
-      >
-        {/* <Title>
-          Civic Meetup Event Search
-        </Title> */}
-      </Header>
+    <HeaderContainer />
       <Split
         fixed={false}
         flex="right"
