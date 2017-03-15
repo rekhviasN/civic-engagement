@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const ROOT_URL = 'http://localhost:8000/api';
+const ROOT_URL = 'https://civicsportal.herokuapp.com/api';
 
 export default function top20Search(category, cycle) {
   console.log('In top20Search function with: ', category, ' ', cycle);

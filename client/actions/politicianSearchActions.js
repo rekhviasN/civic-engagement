@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const ROOT_URL = 'http://localhost:8000/api';
+const ROOT_URL = 'https://civicsportal.herokuapp.com/api';
 
 export function bingNews(name) {
   console.log('in PoliticianSearchActions bing:', name);
