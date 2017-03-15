@@ -11,24 +11,20 @@ import HeaderContainer from '../containers/headerContainer';
 
 const Dashboard = () =>
   (
-    <HeaderContainer />
-      <Split
-        fixed={false}
-        flex="right"
-        className="dashboard-split"
-      >
-        <Sidebar
+    <div>
+        <HeaderContainer />
+        <Sidebar 
           className="dashboard-side"
           size="large"
-          full={true}
-        >
+          full={true}>
+          <Title>
+            Civics Events
+          </Title>
           <Search className="meetup-search" />
           <EventList className="meetup-list" />
         </Sidebar>
         <Map />
-      </Split>
-      <div />
-    </Box>
+     </div>
   );
 
 export default Dashboard;
