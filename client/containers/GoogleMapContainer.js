@@ -22,6 +22,9 @@ class MapContainer extends Component {
     // this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }
 
+  componentWillMount(){
+    console.log('changed occurred')
+  }
   componentDidUpdate(prevProps) {
     console.log('In Component Did Update');
     const old = JSON.stringify(prevProps.MeetupEvents);
