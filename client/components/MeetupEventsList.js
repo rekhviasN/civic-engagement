@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import ListItem from './MeetupEventListItem';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
+import Box from 'grommet/components/Box';
+import Spinning from 'grommet/components/Spinning';
 
 
 class EventListComponent extends Component {
@@ -71,21 +73,13 @@ class EventListComponent extends Component {
       });
     }
 
-    // return (
-    //   <div className="meetup-events-list">
-    //     {eventList}
-    //   </div>
-    // );
-
     return (
-      // <div className="meetup-events-list">
       <Accordion
         className="meetup-events-list"
         openMulti={false}
       >
         {eventList}
       </Accordion>
-      // </div>
     );
   }
 }
@@ -106,3 +100,12 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(EventListComponent);
+
+// if (this.state.status === 'pending') {
+//   return
+//       <Box align='center'>
+//         <Spinning />
+//         <div>fetching congressional activity</div>
+//       </Box>
+//
+// }

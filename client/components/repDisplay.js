@@ -105,10 +105,10 @@ class RepDisplay extends Component {
               />
             )}
             {BawksCreator(
-              <RepVoteStatsLineGraph rep={propublica[this.state.current]} />
-            )}
-            {BawksCreator(
               <RepVoteStats rep={propublica[this.state.current]} />
+            )}
+             {BawksCreator(
+            <RepVoteStatsLineGraph rep={propublica[this.state.current]} />
             )}
           </Box>
         ) : (

@@ -18,8 +18,7 @@ const sequelize = new Sequelize(dbname, username, password, {
     tcp_keepalives_interval: 200
   }
 });
-// bla bla
-// ensures connection to db
+
 
 setInterval(function(){ sequelize.sync() }, 1000);
 

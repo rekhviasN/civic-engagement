@@ -18,9 +18,7 @@ const CongressMembersContainer = (props) => {
     // const { reps } = this.props;
   return (
     <div>
-      <Header className="landing-main-nav" size="small" float={false} fixed={true}>
-        <HeaderContainer />
-      </Header>
+      <HeaderContainer />
       <div style={{ marginTop: "80px" }}>
       <RepDisplay />
       </div>

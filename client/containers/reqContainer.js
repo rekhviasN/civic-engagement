@@ -11,9 +11,10 @@ class ResultsComp extends React.Component {
   }
   render() {
     const { data } = this.props;
+
     return (
       <div>
-        <div style={{paddingTop: '100px', paddingLeft: '100' }}>
+        <div style={{ paddingTop: '100px', paddingLeft: '100' }}>
           <LocationBar />
           <GoogleList GoogleResults={data} />
         </div>

@@ -54,7 +54,7 @@ class repVoteStats extends Component {
         <button
           style={{ align: "center", marginTop: '1em' }} 
           onClick={() => this.handleClick(rep.name)}
-        >stuff voted on
+        >Recent Voting Record
         </button>
         { this.state.expanded ?
           (
