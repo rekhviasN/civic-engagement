@@ -14,9 +14,11 @@ class ResultsComp extends React.Component {
 
     return (
       <div>
-        <div style={{ paddingTop: '100px', paddingLeft: '100' }}>
+        <div style={{ paddingLeft: '2%'}}>
           <LocationBar />
-          <GoogleList GoogleResults={data} />
+          <div style={{paddingLeft: '4%'}}>
+           <GoogleList GoogleResults={data} />
+          </div>
         </div>
       </div>
     );

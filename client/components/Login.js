@@ -51,7 +51,7 @@ class Login extends React.Component {
               secondaryText="let's make local politics sexy."
             />
             {
-               this.state.valid || this.state.loggedIn ? this.context.router.push('/auth') : (null)
+               this.state.valid || this.state.loggedIn ? this.context.router.push('/profile') : (null)
             }
           </div>
       </div>

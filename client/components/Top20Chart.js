@@ -1,16 +1,6 @@
 import React from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 
-//   Function to format names from ProPublica Top 20 response
-// const formatName = (str) => {
-//   let strArray = str.split('/');
-//   strArray.forEach()
-//   const re = /\s*,\s*/;
-// };
-// function toTitleCase(str) {
-//   return str.replace(/\w\S*/g, function(txt){
-// return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-// }
 
 const dataSet = {
   labels: [],
@@ -27,37 +17,6 @@ const dataSet = {
     }
   ]
 };
-
-
-// render() {
-    // const data = (canvas) => {
-    //     const ctx = canvas.getContext("2d")
-    //     const gradient = ctx.createLinearGradient(0,0,100,0);
-//         ...
-//         return {
-//             ...
-//             backgroundColor: gradient
-//             ...
-//         }
-//     }
-//
-//     return (
-//         <Line data={data} />
-//     )
-// }
-//
-// grd = ctx.createLinearGradient(0.000, 150.000, 300.000, 150.000);
-//
-//      // Add colors
-//      grd.addColorStop(0.000, 'rgba(86, 68, 68, 1.000)');
-//      grd.addColorStop(1.000, 'rgba(249, 242, 242, 1.000)');
-//      grd.addColorStop(1.000, 'rgba(255, 255, 255, 0.000)');
-//
-//      // Fill with gradient
-//      ctx.fillStyle = grd;
-//      ctx.fillRect(0, 0, 300.000, 300.000);
-
-
 
 
 const options = {};

@@ -3,12 +3,10 @@ import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Form from 'grommet/components/Form';
-import Header from 'grommet/components/Header';
-import Heading from 'grommet/components/Heading';
 import FormFields from 'grommet/components/FormFields';
 import Footer from 'grommet/components/Footer';
 import Button from 'grommet/components/Button';
-import Header2 from '../containers/headerContainer';
+import Header from '../containers/headerContainer';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -83,7 +81,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div>
-        <Header2 />
+        <Header />
           <div style={{ width: '800px', margin: '0 auto', border: '10px #35FEFE', paddingTop: '55px'}}>
             <form onSubmit={this.handleSubmit} >
               <h1 style={{ fontFamily: "Work Sans", fontWeight: '500', paddingTop: '30px'}} >Civics Portal </h1>

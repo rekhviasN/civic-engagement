@@ -50,16 +50,6 @@ section:not(.grommetux-section).meetup-map {
   word-wrap: break-word;
 }
 
-// .top20-console {
-//   height: 100%;
-//   width: 100%;
-// }
-//
-// .top20-main {
-//   height: calc(100% - 48px);
-//   margin: 12px;
-// }
-
 .grommetux-heading--strong {
   font-weight: 500;
   background-color: white;
@@ -98,4 +88,12 @@ grommetux-paragraph {
 
 .dashboard-side-title{
   font-family: "Work Sans"
+}
+
+.rep-search-bar{
+  font-family: "Work Sans"
+}
+
+location-searchbar{
+  width: 40%
 }

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import submitLoc from '../actions/locationBarActions';
+import FormField from 'grommet/components/FormField';
+import TextInput from 'grommet/components/TextInput';
+import Button from 'grommet/components/Button';
+import Title from 'grommet/components/Title';
+import Form from 'grommet/components/Form';
 
 class LocationBar extends Component {
   constructor(props) {
@@ -25,17 +29,30 @@ class LocationBar extends Component {
   render() {
     console.log("in locbar");
     return (
-      <form onSubmit={this.onFormSubmit}>
-        <input
-          className="form-control"
-          placeholder="Get info for which area?"
-          onChange={this.onInputChange}
+       <Form
+        onSubmit={this.onFormSubmit}
+        pad={{
+          vertical: 'small',
+          horizontal: 'small'
+        }}
+        plain={true}
+      >
+        <Title className="rep-search-bar">
+        Find Your Representatives in the News
+        </Title>
+        <br />
+        <TextInput
+          className="location-searchbar"
+          placeHolder="Enter Address"
+          onDOMChange={this.onInputChange}
           value={this.state.searchLocation}
         />
-        <span>
-          <button type="submit">Submit</button>
-        </span>
-      </form>
+        <Button label='search'
+          type='submit'
+          primary={true}
+          onClick={this.onFormSubmit} />
+      </Form>
+
     );
   }
 }

@@ -5,15 +5,14 @@ import EventList from './MeetupEventsList';
 import Split from 'grommet/components/Split';
 import Sidebar from 'grommet/components/Sidebar';
 import Box from 'grommet/components/Box';
-import Header from 'grommet/components/Header';
 import Title from 'grommet/components/Title';
-import HeaderContainer from '../containers/headerContainer';
+import Header from '../containers/headerContainer';
 
 const Dashboard = () =>
   (
     <div>
-        <HeaderContainer />
-        <div style = {{paddingTop: '70px', paddingLeft: '15px'}}>
+        <Header/>
+        <div style = {{paddingLeft: '15px'}}>
           <Split>
             <div style = {{paddingRight: '15px'}}>
               <Box>

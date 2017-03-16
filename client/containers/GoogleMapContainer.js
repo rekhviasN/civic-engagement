@@ -15,11 +15,8 @@ class MapContainer extends Component {
         lng: -73.988249
       },
       defaultZoom: 9
-      // windowPosition: null,
-      // showInfoWindow: false,
-      // current_event: ''
     };
-    // this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
+    
   }
 
   componentWillMount(){
@@ -32,22 +29,6 @@ class MapContainer extends Component {
     if (old === current) { return; }
     this._fitTheBounds();
   }
-
-  // toggleInfoWindow(event, loc) {
-  //   if (loc === null) {
-  //     this.setState({ windowPosition: null });
-  //     return;
-  //   }
-  //   const markerLoc = {
-  //     lat: loc.latLng.lat(),
-  //     lng: loc.latLng.lng()
-  //   };
-  //   this.setState({
-  //     current_event: event,
-  //     windowPosition: markerLoc,
-  //     showInfoWindow: true
-  //   });
-  // }
 
   _fitTheBounds() {
     console.log('_fitTheBounds has been triggered');
@@ -135,14 +116,6 @@ class MapContainer extends Component {
     );
   }
 }
-
-// MapContainer.propTypes = {
-//   MeetupEvents: PropTypes.arrayof(PropTypes.object)
-// };
-//
-// MapContainer.defaultProps = {
-//   MeetupEvents: 'n/a'
-// };
 
 function mapStateToProps(state) {
   return {

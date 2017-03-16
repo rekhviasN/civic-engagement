@@ -82,14 +82,6 @@ class Top20Console extends Component {
     });
   }
 
-
-//   onChange      {function ({target: , option: , value: })}
-// Function that will be called when the user selects an option. The target corresponds to the embedded input element, allowing you to distinguish which component triggered the event. The option contains the object chosen from the supplied options. The value contains all selected options when multiple={true}.
-
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  // }
-
   render() {
     const catOptions = categories.map(category =>
       (
@@ -188,45 +180,6 @@ class Top20Console extends Component {
       </div>
     );
   }
-
-
-  // import Select from 'grommet/components/Select';
-  // <Select placeHolder='None'
-  //   options={['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']}
-  //   value={undefined}
-  //   onChange={...} />
-
-    // if (this.props.data) {
-    //   const results = this.props.data.results;
-    //   let spend = [];
-    //
-    //   if (results) {
-    //     spend = results.map((candidate, index) => {
-    //       return (
-    //         <div
-    //           key={index}
-    //         >
-    //           {candidate.name}
-    //         </div>
-    //       )
-    //     });
-  //
-  //       return (
-  //         <div className="top20-console">
-  //           <div className="row">
-  //             <>
-  //           </div>
-  //           { spend }
-  //         </div>
-  //       );
-  //     }
-  //   }
-  //   return (
-  //     <div>
-  //       <h3>Loading</h3>
-  //     </div>
-  //   );
-  // }
 }
 
 function mapStateToProps(state) {
