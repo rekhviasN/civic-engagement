@@ -4,7 +4,7 @@ import ListItem from './MeetupEventListItem';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 import Box from 'grommet/components/Box';
-import Spinning from 'grommet/components/Spinning';
+import Spinning from 'grommet/components/icons/Spinning';
 
 
 class EventListComponent extends Component {
