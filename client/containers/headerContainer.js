@@ -4,6 +4,7 @@ import ResultsComp from './reqContainer';
 
 
 const iconUrls = [
+  ["../media/icon.png","CivPort Home","/"],
   ["https://www.shareicon.net/data/128x128/2016/08/04/806712_megaphone_512x512.png", "  EVENTS", '/dashboard'],
   ["http://icons.iconarchive.com/icons/designcontest/ecommerce-business/128/news-icon.png", "  NEWS", '/news'],
   ["http://icons.iconarchive.com/icons/webalys/kameleon.pics/128/Graph-Magnifier-icon.png", "  CHARTS", '/campaignfinance'],

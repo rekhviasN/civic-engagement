@@ -38,7 +38,7 @@ class HeaderIconView extends React.Component {
         <Link to={this.props.route}>
           <img style={{ height:'70px', width: '70px' }} src={this.props.url} />
           <br />
-          {this.props.description}
+          <span className="icon-description">{this.props.description}</span>
         </Link>
       </div>
     );
