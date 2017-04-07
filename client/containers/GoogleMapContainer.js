@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { toggleInfoWindow, closeInfoWindow } from '../actions/meetupMapActions';
-// import sampleData from '../reference/markerDummyData';
-// import meetupData from '../reference/meetupDummyData';
 
 class MapContainer extends Component {
   constructor(props, context) {
@@ -16,12 +14,12 @@ class MapContainer extends Component {
       },
       defaultZoom: 9
     };
-    
   }
 
-  componentWillMount(){
-    console.log('changed occurred')
+  componentWillMount() {
+    console.log('changed occurred');
   }
+
   componentDidUpdate(prevProps) {
     console.log('In Component Did Update');
     const old = JSON.stringify(prevProps.MeetupEvents);
@@ -88,20 +86,13 @@ class MapContainer extends Component {
             >
               { markers }
               {
-                // this.state.showInfoWindow &&
                 this.props.InfoWindow.showInfoWindow &&
                 <InfoWindow
-                  // position={this.state.windowPosition}
-                  // onCloseclick={() => { this.setState({ showInfoWindow: false }); }}
                   position={this.props.InfoWindow.windowPosition}
                   onCloseclick={this.props.closeInfoWindow}
                   options={{ pixelOffset: new window.google.maps.Size(0, -30) }}
                 >
                   {
-                    // `<h2>${this.state.current_event.name}</h2>
-                    // <h4>Hosted By: ${this.state.current_event.group.name}</h4>
-                    // <h4>When: ${new Date(this.state.current_event.time)}</h4>
-                    // <p>${this.state.current_event.description}</p>`
                     `<h2>${this.props.InfoWindow.current_event.name}</h2>
                     <h4>Hosted By: ${this.props.InfoWindow.current_event.group.name}</h4>
                     <h4>When: ${new Date(this.props.InfoWindow.current_event.time)}</h4>

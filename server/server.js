@@ -15,7 +15,7 @@ const morgan = require('morgan');
 const routes = require('./routes.js');
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 7000;
 
 // John code:
 app.use((req, res, next) => {

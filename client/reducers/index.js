@@ -7,6 +7,7 @@ import meetupMapReducer from './meetupMapReducer';
 import setLogin from './setLogin';
 import setDefaultLocation from './setDefaultLocation';
 
+  // meetup: meetup events after search is api call
 
 const rootReducer = combineReducers({
   GoogleResults: locBarReducer,

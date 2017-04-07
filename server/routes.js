@@ -4,11 +4,6 @@ const nytimes = require('./api/nytimes');
 const bingNews = require('./api/bingNews');
 const propublica = require('./api/propublica');
 const pubFinance = require('./api/propublica_finance');
-
-// const wsj = require('./api/wsj');
-// const reuters = require('./api/reuters');
-// const apnews = require('./api/apnews');
-
 const meetup = require('./api/meetup');
 const eventbrite = require('./api/eventbrite');
 

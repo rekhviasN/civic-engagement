@@ -43,8 +43,9 @@ class Landing extends Component {
     this.setState({ input: event.target.value });
   }
 
-  onSubmit(event) {
+  onSubmit() {
     event.preventDefault();
+    console.log('clicked')
     this.props.meetupSearch(this.state.input);
     this.props.locationSearch(this.state.input);
     this.context.router.push('/dashboard');
@@ -82,14 +83,17 @@ class Landing extends Component {
                 visible={this.state.searchVisibility}
               >
                 <Box>
-                  <Form onSubmit={this.onSubmit} plain={true}>
-                    <SearchInput
+                  <form onSubmit={this.onSubmit}>
+                    <p className="form-heading">Enter Your Address</p>
+                    <input 
                       className="landing-searchbar"
-                      placeHolder="Enter Address"
-                      onDOMChange={this.onInputChange}
+                      placeholder="..."
+                      onChange={this.onInputChange}
                       value={this.state.input}
+            
                     />
-                  </Form>
+                    <button className="go-button" type="submit">Go</button>
+                  </form>
                 </Box>
               </Animate>
             </Box>

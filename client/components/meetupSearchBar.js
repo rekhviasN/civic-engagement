@@ -28,7 +28,6 @@ class MeetupSearchBar extends Component {
     this.props.meetupSearch(this.state.input);
     console.log(this.state.input);
   }
-  
 
 
   render() {
